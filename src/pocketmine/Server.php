@@ -373,7 +373,7 @@ class Server{
 	 * @return string
 	 */
 	public function getName() : string{
-		return "Genisys";
+		return "Cyclone";
 	}
 
 	/**
