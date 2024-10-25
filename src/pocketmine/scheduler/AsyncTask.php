@@ -168,6 +168,7 @@ abstract class AsyncTask extends \Threaded implements \Collectable{
 				$this->{$p} = null;
 			}
 		}
+		$this->setGarbage();
 	}
 
 }
