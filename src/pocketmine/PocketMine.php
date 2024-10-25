@@ -72,9 +72,9 @@ namespace pocketmine {
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\Installer;
 
-	const VERSION = ""; //will be set by CI to a git hash
+	const VERSION = "0.0.1b";
 	const API_VERSION = "2.1.0";
-	const CODENAME = "Kyrios";
+	const CODENAME = "Sunch233";
 	const MINECRAFT_VERSION = "v0.16.0.5 alpha";
 	const MINECRAFT_VERSION_NETWORK = "0.16.0.5";
 	const GENISYS_API_VERSION = '1.9.3';
@@ -92,8 +92,8 @@ namespace pocketmine {
 		@define('pocketmine\PATH', \getcwd() . DIRECTORY_SEPARATOR);
 	}
 
-	if(version_compare("7.0", PHP_VERSION) > 0){
-		echo "[CRITICAL] You must use PHP >= 7.0" . PHP_EOL;
+	if(version_compare("8.0", PHP_VERSION) > 0){
+		echo "[CRITICAL] You must use PHP >= 8.0" . PHP_EOL;
 		echo "[CRITICAL] Please use the installer provided on the homepage." . PHP_EOL;
 		exit(1);
 	}
@@ -119,7 +119,7 @@ namespace pocketmine {
 	set_time_limit(0); //Who set it to 30 seconds?!?!
 
 	gc_enable();
-	error_reporting(-1);
+	error_reporting(E_ALL ^ E_DEPRECATED); //暂时排大错
 	ini_set("allow_url_fopen", 1);
 	ini_set("display_errors", 1);
 	ini_set("display_startup_errors", 1);
