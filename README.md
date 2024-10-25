@@ -5,7 +5,7 @@ __Feature-rich server software for MC:PE - v0.16.x__
 
 Introduction
 -------------
-Cyclone is a fork of **[iTXTech/Genisys](https://github.com/iTXTech/Genisys)** . It aims to achieve many gameplay features implemented which PocketMine-MP and Genisys does not in Minecraft PE v1.0.
+Cyclone is a fork of **[iTXTech/Genisys](https://github.com/iTXTech/Genisys)** . It aims to achieve many gameplay features implemented which PocketMine-MP
 
 -------------
 ## Finished & Planned New things:
