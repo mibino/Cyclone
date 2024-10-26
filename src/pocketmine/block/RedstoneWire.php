@@ -399,10 +399,11 @@ class RedstoneWire extends RedstoneSource{
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$down = $this->getSide(Vector3::SIDE_DOWN);
-		if($down instanceof Transparent and $down->getId() != Block::INACTIVE_REDSTONE_LAMP and $down->getId() != Block::ACTIVE_REDSTONE_LAMP) return;
+		if($down instanceof Transparent and $down->getId() != Block::INACTIVE_REDSTONE_LAMP and $down->getId() != Block::ACTIVE_REDSTONE_LAMP) return false;
 		else{
 			$this->getLevel()->setBlock($block, $this, true, false);
 			$this->calcSignal(15, self::PLACE);
+			return true;
 		}
 	}
 

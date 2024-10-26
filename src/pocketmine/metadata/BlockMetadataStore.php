@@ -21,7 +21,7 @@
 
 namespace pocketmine\metadata;
 
-use pocketmine\Block\Block;
+use pocketmine\block\Block;
 use pocketmine\level\Level;
 use pocketmine\plugin\Plugin;
 

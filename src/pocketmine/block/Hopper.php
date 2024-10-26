@@ -22,6 +22,7 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
+use pocketmine\item\Tool;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
@@ -71,10 +72,6 @@ class Hopper extends Transparent{
 
 	public function activate(){
 		//TODO: Hopper content freezing (requires basic redstone system upgrade)
-	}
-
-	public function getTarget(){
-		return $this->target;
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){

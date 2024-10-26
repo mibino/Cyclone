@@ -52,10 +52,11 @@ class RedstoneSource extends Flowable{
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		$this->getLevel()->setBlock($this, $this, true);
-		if($this->isActivated()){
+		$done = $this->getLevel()->setBlock($this, $this, true);
+		if($this->isActivated() and $done){
 			$this->activate();
 		}
+		return $done;
 	}
 
 	public function onBreak(Item $item){

@@ -142,10 +142,11 @@ class PoweredRepeater extends RedstoneSource{
 		if($player instanceof Player){
 			$this->meta = ((int) $player->getDirection() + 5) % 4;
 		}
-		$this->getLevel()->setBlock($block, $this, true, false);
-		if($this->checkPower($this)){
+		$done = $this->getLevel()->setBlock($block, $this, true, false);
+		if($this->checkPower($this) and $done){
 			$this->activate();
 		}
+		return $done;
 	}
 
 	public function onBreak(Item $item){

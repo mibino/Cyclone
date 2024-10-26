@@ -53,22 +53,24 @@ use const FILE_APPEND;
 use const PHP_EOL;
 
 class MainLogger extends \AttachableThreadedLogger{
-	protected $logFile;
-	protected $logStream;
+	protected string $logFile;
+	protected \Threaded $logStream;
 	protected $shutdown;
-	protected $logDebug;
+	protected bool $logDebug;
 	private $logResource;
 	/** @var MainLogger */
-	public static $logger = null;
+	public static ?MainLogger $logger = null;
 
 	private $consoleCallback;
 
 	/** Extra Settings */
-	protected $write = false;
+	protected bool $write = false;
 
-	public $shouldSendMsg = "";
-	public $shouldRecordMsg = false;
-	private $lastGet = 0;
+	public string $shouldSendMsg = "";
+	public bool $shouldRecordMsg = false;
+	private int $lastGet = 0;
+
+	public $attachment;
 
 	public function setSendMsg($b){
 		$this->shouldRecordMsg = $b;

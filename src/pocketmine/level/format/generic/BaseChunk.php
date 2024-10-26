@@ -207,6 +207,8 @@ abstract class BaseChunk extends BaseFullChunk implements Chunk{
 			$this->sections[(int) $fY] = $section;
 		}
 		$this->hasChanged = true;
+
+		return true;
 	}
 
 	private function setInternalSection($fY, ChunkSection $section){

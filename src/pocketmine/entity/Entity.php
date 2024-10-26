@@ -738,8 +738,6 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * @param float             $damage
-	 *
-	 * @return bool
 	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if($this->hasEffect(Effect::FIRE_RESISTANCE)
