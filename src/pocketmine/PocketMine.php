@@ -75,8 +75,8 @@ namespace pocketmine {
 	const VERSION = "0.0.1";
 	const API_VERSION = "2.1.0";
 	const CODENAME = "Sunch233";
-	const MINECRAFT_VERSION = "v0.16.0.5 alpha";
-	const MINECRAFT_VERSION_NETWORK = "0.16.0.5";
+	const MINECRAFT_VERSION = "v0.16.x alpha";
+	const MINECRAFT_VERSION_NETWORK = "0.16";
 	const GENISYS_API_VERSION = '1.9.3';
 
 	/*
