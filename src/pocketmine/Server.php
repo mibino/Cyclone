@@ -195,7 +195,6 @@ use function is_numeric;
 use function is_string;
 use function is_subclass_of;
 use function json_decode;
-use function kill;
 use function max;
 use function microtime;
 use function min;
@@ -227,6 +226,9 @@ use const E_WARNING;
 use const PHP_INT_MAX;
 use const PHP_INT_SIZE;
 use const PHP_VERSION;
+use const SIGHUP;
+use const SIGINT;
+use const SIGTERM;
 use const ZLIB_ENCODING_DEFLATE;
 
 /**
@@ -2466,7 +2468,7 @@ class Server{
 
 		$this->forceShutdown();
 		$this->isRunning = false;
-		@kill(getmypid());
+		@\pocketmine\kill(getmypid());
 		exit(1);
 	}
 
