@@ -100,7 +100,7 @@ class CommandReader extends Thread{
 		global $stdin;
 		$stdin = fopen("php://stdin", "r");
 		if($this->readline){
-			readline_callback_handler_install("Genisys> ", [$this, "readline_callback"]);
+			readline_callback_handler_install("> ", [$this, "readline_callback"]);
 			$this->logger->setConsoleCallback("readline_redisplay");
 		}
 
