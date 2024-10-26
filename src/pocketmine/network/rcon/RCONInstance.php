@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -24,6 +24,27 @@ namespace pocketmine\network\rcon;
 use pocketmine\Thread;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
+use function ltrim;
+use function microtime;
+use function rtrim;
+use function serialize;
+use function socket_accept;
+use function socket_close;
+use function socket_getpeername;
+use function socket_read;
+use function socket_select;
+use function socket_set_block;
+use function socket_set_nonblock;
+use function socket_set_option;
+use function socket_shutdown;
+use function socket_write;
+use function str_replace;
+use function strlen;
+use function trim;
+use function unserialize;
+use const SO_KEEPALIVE;
+use const SO_LINGER;
+use const SOL_SOCKET;
 
 class RCONInstance extends Thread{
 	public $stop;
@@ -42,7 +63,6 @@ class RCONInstance extends Thread{
 	public function isWaiting(){
 		return $this->waiting === true;
 	}
-
 
 	public function __construct($logger, $socket, $password, $maxClients = 50){
 		$this->logger = $logger;

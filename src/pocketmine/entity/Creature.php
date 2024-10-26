@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -24,6 +24,11 @@ namespace pocketmine\entity;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
+use function abs;
+use function asin;
+use function atan;
+use function floor;
+use function rad2deg;
 
 abstract class Creature extends Living{
 	public $attackingTick = 0;
@@ -82,8 +87,6 @@ abstract class Creature extends Living{
 	}
 
 	/**
-	 * @param Level   $level
-	 * @param Vector3 $v3
 	 * @param bool    $hate
 	 * @param bool    $reason
 	 * @return bool|float|string
@@ -282,8 +285,6 @@ abstract class Creature extends Living{
 	}
 
 	/**
-	 * @param $mx
-	 * @param $mz
 	 * @return float|int
 	 * 获取yaw角度
 	 */
@@ -318,8 +319,6 @@ abstract class Creature extends Living{
 	}
 
 	/**
-	 * @param Vector3 $from
-	 * @param Vector3 $to
 	 * @return float|int
 	 * 获取pitch角度
 	 */

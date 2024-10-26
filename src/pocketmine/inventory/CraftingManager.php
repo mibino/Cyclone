@@ -19,21 +19,17 @@
 */
 namespace pocketmine\inventory;
 
-use pocketmine\block\Planks;
-use pocketmine\block\Quartz;
-use pocketmine\block\Sandstone;
-use pocketmine\block\Slab;
-use pocketmine\block\Stone;
-use pocketmine\block\StoneBricks;
-use pocketmine\block\StoneWall;
-use pocketmine\block\Wood;
-use pocketmine\block\Wood2;
 use pocketmine\item\Item;
 use pocketmine\item\Potion;
-use pocketmine\utils\UUID;
 use pocketmine\Server;
-use pocketmine\utils\MainLogger;
 use pocketmine\utils\Config;
+use pocketmine\utils\MainLogger;
+use pocketmine\utils\UUID;
+use function array_chunk;
+use function array_values;
+use function count;
+use function min;
+use function usort;
 
 class CraftingManager{
 	/** @var Recipe[] */
@@ -256,7 +252,6 @@ class CraftingManager{
 	}
 
 	/**
-	 * @param UUID $id
 	 * @return Recipe
 	 */
 	public function getRecipe(UUID $id){
@@ -282,7 +277,6 @@ class CraftingManager{
 	}
 
 	/**
-	 * @param Item $input
 	 *
 	 * @return FurnaceRecipe
 	 */
@@ -295,24 +289,18 @@ class CraftingManager{
 		return null;
 	}
 
-
 	/**
-	 * @param Item $input
-	 * @param Item $potion
 	 *
 	 * @return BrewingRecipe
 	 */
 	public function matchBrewingRecipe(Item $input, Item $potion){
-		$subscript = $input->getId() . ":" . ($input->getDamage() === null ? "0" : $input->getDamage()) . ":" . $potion->getId() . ":" .($potion->getDamage() === null ? "0" : $potion->getDamage());
+		$subscript = $input->getId() . ":" . ($input->getDamage() === null ? "0" : $input->getDamage()) . ":" . $potion->getId() . ":" . ($potion->getDamage() === null ? "0" : $potion->getDamage());
 		if(isset($this->brewingRecipes[$subscript])){
 			return $this->brewingRecipes[$subscript];
 		}
 		return null;
 	}
 
-	/**
-	 * @param ShapedRecipe $recipe
-	 */
 	public function registerShapedRecipe(ShapedRecipe $recipe){
 		$result = $recipe->getResult();
 		$this->recipes[$recipe->getId()->toBinary()] = $recipe;
@@ -330,9 +318,6 @@ class CraftingManager{
 		$this->recipeLookup[$result->getId() . ":" . $result->getDamage()][$hash] = $recipe;
 	}
 
-	/**
-	 * @param ShapelessRecipe $recipe
-	 */
 	public function registerShapelessRecipe(ShapelessRecipe $recipe){
 		$result = $recipe->getResult();
 		$this->recipes[$recipe->getId()->toBinary()] = $recipe;
@@ -345,25 +330,18 @@ class CraftingManager{
 		$this->recipeLookup[$result->getId() . ":" . $result->getDamage()][$hash] = $recipe;
 	}
 
-	/**
-	 * @param FurnaceRecipe $recipe
-	 */
 	public function registerFurnaceRecipe(FurnaceRecipe $recipe){
 		$input = $recipe->getInput();
 		$this->furnaceRecipes[$input->getId() . ":" . ($input->getDamage() === null ? "?" : $input->getDamage())] = $recipe;
 	}
 
-	/**
-	 * @param BrewingRecipe $recipe
-	 */
 	public function registerBrewingRecipe(BrewingRecipe $recipe){
 		$input = $recipe->getInput();
 		$potion = $recipe->getPotion();
-		$this->brewingRecipes[$input->getId() . ":" . ($input->getDamage() === null ? "0" : $input->getDamage()) . ":" . $potion->getId() . ":" .($potion->getDamage() === null ? "0" : $potion->getDamage())] = $recipe;
+		$this->brewingRecipes[$input->getId() . ":" . ($input->getDamage() === null ? "0" : $input->getDamage()) . ":" . $potion->getId() . ":" . ($potion->getDamage() === null ? "0" : $potion->getDamage())] = $recipe;
 	}
 
 	/**
-	 * @param ShapelessRecipe $recipe
 	 * @return bool
 	 */
 	public function matchRecipe(ShapelessRecipe $recipe){
@@ -414,9 +392,6 @@ class CraftingManager{
 		return $hasRecipe !== null;
 	}
 
-	/**
-	 * @param Recipe $recipe
-	 */
 	public function registerRecipe(Recipe $recipe){
 		$recipe->setId(UUID::fromData(++self::$RECIPE_COUNT, $recipe->getResult()->getId(), $recipe->getResult()->getDamage(), $recipe->getResult()->getCount(), $recipe->getResult()->getCompoundTag()));
 		if($recipe instanceof ShapedRecipe){

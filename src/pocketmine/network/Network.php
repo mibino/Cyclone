@@ -53,8 +53,8 @@ use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\network\protocol\ExplodePacket;
 use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\network\protocol\HurtArmorPacket;
-use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\network\protocol\Info;
+use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\network\protocol\InteractPacket;
 use pocketmine\network\protocol\InventoryActionPacket;
 use pocketmine\network\protocol\ItemFrameDropItemPacket;
@@ -65,13 +65,12 @@ use pocketmine\network\protocol\MobArmorEquipmentPacket;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\network\protocol\MoveEntityPacket;
 use pocketmine\network\protocol\MovePlayerPacket;
-use pocketmine\network\protocol\PlayStatusPacket;
 use pocketmine\network\protocol\PlayerActionPacket;
 use pocketmine\network\protocol\PlayerInputPacket;
 use pocketmine\network\protocol\PlayerListPacket;
+use pocketmine\network\protocol\PlayStatusPacket;
 use pocketmine\network\protocol\RemoveBlockPacket;
 use pocketmine\network\protocol\RemoveEntityPacket;
-use pocketmine\network\protocol\RemovePlayerPacket;
 use pocketmine\network\protocol\ReplaceSelectedItemPacket;
 use pocketmine\network\protocol\RequestChunkRadiusPacket;
 use pocketmine\network\protocol\ResourcePackClientResponsePacket;
@@ -94,9 +93,16 @@ use pocketmine\network\protocol\UpdateBlockPacket;
 use pocketmine\network\protocol\UseItemPacket;
 use pocketmine\Player;
 use pocketmine\Server;
-use pocketmine\utils\Binary;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\MainLogger;
+use function assert;
+use function bin2hex;
+use function get_class;
+use function ord;
+use function spl_object_hash;
+use function strlen;
+use function substr;
+use function zlib_decode;
 
 class Network {
 
@@ -170,9 +176,6 @@ class Network {
 		}
 	}
 
-	/**
-	 * @param SourceInterface $interface
-	 */
 	public function registerInterface(SourceInterface $interface) {
 		$this->interfaces[$hash = spl_object_hash($interface)] = $interface;
 		if ($interface instanceof AdvancedSourceInterface) {
@@ -182,9 +185,6 @@ class Network {
 		$interface->setName($this->name);
 	}
 
-	/**
-	 * @param SourceInterface $interface
-	 */
 	public function unregisterInterface(SourceInterface $interface) {
 		unset($this->interfaces[$hash = spl_object_hash($interface)],
 			$this->advancedInterfaces[$hash]);
@@ -196,7 +196,7 @@ class Network {
 	 * @param string $name
 	 */
 	public function setName($name) {
-		$this->name = (string)$name;
+		$this->name = (string) $name;
 		foreach ($this->interfaces as $interface) {
 			$interface->setName($this->name);
 		}
@@ -217,7 +217,7 @@ class Network {
 	 * @param DataPacket $class
 	 */
 	public function registerPacket($id, $class) {
-		$this->packetPool[$id] = new $class;
+		$this->packetPool[$id] = new $class();
 	}
 
 	public function getServer() {
@@ -266,7 +266,6 @@ class Network {
 	}
 
 	/**
-	 * @param $id
 	 *
 	 * @return DataPacket
 	 */
@@ -278,7 +277,6 @@ class Network {
 		}
 		return null;
 	}
-
 
 	/**
 	 * @param string $address

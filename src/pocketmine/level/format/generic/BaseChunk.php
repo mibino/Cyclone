@@ -27,6 +27,9 @@ use pocketmine\level\format\LevelProvider;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\utils\Binary;
 use pocketmine\utils\ChunkException;
+use function array_fill;
+use function count;
+use function substr_count;
 
 abstract class BaseChunk extends BaseFullChunk implements Chunk{
 

@@ -21,9 +21,12 @@
 
 namespace pocketmine\block;
 
-use pocketmine\Player;
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
+use pocketmine\Player;
+use function abs;
+use function count;
+use function is_array;
 
 class PoweredRail extends Rail{
 
@@ -45,7 +48,6 @@ class PoweredRail extends Rail{
 	}
 
 	/**
-	 * @param Rail $block
 	 * @return bool
 	 */
 	public function canConnect(Rail $block){

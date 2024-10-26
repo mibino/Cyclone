@@ -17,7 +17,6 @@ namespace raklib\protocol;
 
 #include <rules/RakLibPacket.h>
 
-
 use raklib\RakLib;
 
 class UNCONNECTED_PING extends Packet{

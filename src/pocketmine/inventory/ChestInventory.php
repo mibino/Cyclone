@@ -27,6 +27,7 @@ use pocketmine\network\protocol\BlockEventPacket;
 use pocketmine\Player;
 
 use pocketmine\tile\Chest;
+use function count;
 
 class ChestInventory extends ContainerInventory{
 	public function __construct(Chest $tile){

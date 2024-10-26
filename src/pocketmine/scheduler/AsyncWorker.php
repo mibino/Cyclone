@@ -22,6 +22,8 @@
 namespace pocketmine\scheduler;
 
 use pocketmine\Worker;
+use function gc_enable;
+use function ini_set;
 
 class AsyncWorker extends Worker{
 

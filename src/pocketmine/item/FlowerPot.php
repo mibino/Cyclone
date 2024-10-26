@@ -32,4 +32,4 @@ class FlowerPot extends Item {
 	public function getMaxStackSize() : int{
 		return 64;
 	}
-} 
+}

@@ -15,11 +15,27 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
 namespace raklib\server;
+
+use function socket_bind;
+use function socket_close;
+use function socket_create;
+use function socket_recvfrom;
+use function socket_sendto;
+use function socket_set_nonblock;
+use function socket_set_option;
+use function strlen;
+use const AF_INET;
+use const SO_RCVBUF;
+use const SO_REUSEADDR;
+use const SO_SNDBUF;
+use const SOCK_DGRAM;
+use const SOL_SOCKET;
+use const SOL_UDP;
 
 class UDPServerSocket{
 	/** @var \Logger */
@@ -93,5 +109,3 @@ class UDPServerSocket{
 	}
 
 }
-
-?>

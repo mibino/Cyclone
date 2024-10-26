@@ -27,6 +27,11 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\level\sound\ExpPickupSound;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function count;
+use function mt_rand;
+use function rtrim;
+use function strcasecmp;
+use function substr;
 
 class XpCommand extends VanillaCommand{
 

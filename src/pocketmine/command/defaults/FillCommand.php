@@ -21,15 +21,19 @@
 
 namespace pocketmine\command\defaults;
 
-use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
+use pocketmine\item\Item;
+use pocketmine\item\ItemBlock;
+use pocketmine\level\Level;
+use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
-use pocketmine\math\Vector3;
-use pocketmine\item\ItemBlock;
-use pocketmine\item\Item;
-use pocketmine\level\Level;
+use function is_int;
+use function is_integer;
+use function is_numeric;
+use function max;
+use function min;
 
 class FillCommand extends VanillaCommand{
 
@@ -66,7 +70,7 @@ class FillCommand extends VanillaCommand{
 								for($z = $zmin; $z <= $zmax; $z++){
 									if ($this->setBlock(new Vector3($x, $y, $z), $level, $item, isset($args[7]) ? $args[7] : 0)) {
 										$n++;
-										if (is_int($n/10000)) {
+										if (is_int($n / 10000)) {
 											$sender->sendMessage(new TranslationContainer("$n out of $nmax blocks filled, now at $x $y $z", []));
 										}
 									}

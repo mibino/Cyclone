@@ -21,17 +21,16 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\Player;
-use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\Player;
 
 class Husk extends Zombie{
 	const NETWORK_ID = 47;
-	
+
 	public function getName(){
 		return "Husk";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

@@ -28,7 +28,8 @@ use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 use pocketmine\tile\Spawnable;
 use pocketmine\utils\BinaryStream;
-
+use function count;
+use function pack;
 
 class ChunkRequestTask extends AsyncTask{
 

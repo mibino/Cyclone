@@ -26,6 +26,7 @@ use pocketmine\entity\Living;
 use pocketmine\entity\Projectile;
 use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
+use function count;
 
 class EntityShootBowEvent extends EntityEvent implements Cancellable{
 	public static $handlerList = null;
@@ -38,9 +39,6 @@ class EntityShootBowEvent extends EntityEvent implements Cancellable{
 	private $force;
 
 	/**
-	 * @param Living     $shooter
-	 * @param Item       $bow
-	 * @param Projectile $projectile
 	 * @param float      $force
 	 */
 	public function __construct(Living $shooter, Item $bow, Projectile $projectile, $force){
@@ -71,9 +69,6 @@ class EntityShootBowEvent extends EntityEvent implements Cancellable{
 		return $this->projectile;
 	}
 
-	/**
-	 * @param Entity $projectile
-	 */
 	public function setProjectile(Entity $projectile){
 		if($projectile !== $this->projectile){
 			if(count($this->projectile->getViewers()) === 0){
@@ -97,6 +92,5 @@ class EntityShootBowEvent extends EntityEvent implements Cancellable{
 	public function setForce($force){
 		$this->force = $force;
 	}
-
 
 }

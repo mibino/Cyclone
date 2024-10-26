@@ -24,16 +24,26 @@ namespace pocketmine\network;
 use pocketmine\event\player\PlayerCreationEvent;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\Info as ProtocolInfo;
-use pocketmine\network\protocol\Info;
 use pocketmine\Player;
 use pocketmine\Server;
-use pocketmine\utils\MainLogger;
 use raklib\protocol\EncapsulatedPacket;
 use raklib\protocol\PacketReliability;
 use raklib\RakLib;
 use raklib\server\RakLibServer;
 use raklib\server\ServerHandler;
 use raklib\server\ServerInstance;
+use function addcslashes;
+use function assert;
+use function bin2hex;
+use function chr;
+use function count;
+use function get_class;
+use function ord;
+use function spl_object_hash;
+use function strlen;
+use function substr;
+use function time;
+use function unserialize;
 
 class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 
@@ -154,7 +164,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 	public function blockAddress($address, $timeout = 300){
 		$this->interface->blockAddress($address, $timeout);
 	}
-	
+
 	public function unblockAddress($address){
 		$this->interface->unblockAddress($address);
 	}
@@ -214,7 +224,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 				$packet->encode();
 			}elseif(!$needACK){
 				if(!isset($packet->__encapsulatedPacket)){
-					$packet->__encapsulatedPacket = new CachedEncapsulatedPacket;
+					$packet->__encapsulatedPacket = new CachedEncapsulatedPacket();
 					$packet->__encapsulatedPacket->identifierACK = null;
 					$packet->__encapsulatedPacket->buffer = chr(0xfe) . $packet->buffer;
 					$packet->__encapsulatedPacket->reliability = PacketReliability::RELIABLE_ORDERED;

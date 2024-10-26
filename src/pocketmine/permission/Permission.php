@@ -25,6 +25,9 @@
 namespace pocketmine\permission;
 
 use pocketmine\Server;
+use function is_array;
+use function is_bool;
+use function strtolower;
 
 /**
  * Represents a permission
@@ -38,7 +41,6 @@ class Permission{
 	public static $DEFAULT_PERMISSION = self::DEFAULT_OP;
 
 	/**
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -106,9 +108,6 @@ class Permission{
 		$this->recalculatePermissibles();
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return $this->name;
 	}
@@ -168,10 +167,8 @@ class Permission{
 		}
 	}
 
-
 	/**
 	 * @param string|Permission $name
-	 * @param                   $value
 	 *
 	 * @return Permission|void Permission if $name is a string, void if it's a Permission
 	 */
@@ -194,8 +191,6 @@ class Permission{
 	}
 
 	/**
-	 * @param array $data
-	 * @param       $default
 	 *
 	 * @return Permission[]
 	 */
@@ -210,7 +205,6 @@ class Permission{
 
 	/**
 	 * @param string $name
-	 * @param array  $data
 	 * @param string $default
 	 * @param array  $output
 	 *
@@ -252,6 +246,5 @@ class Permission{
 		return new Permission($name, $desc, $default, $children);
 
 	}
-
 
 }

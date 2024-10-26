@@ -32,8 +32,6 @@ class EntityDamageByEntityEvent extends EntityDamageEvent{
 	private $knockBack;
 
 	/**
-	 * @param Entity    $damager
-	 * @param Entity    $entity
 	 * @param int       $cause
 	 * @param int|int[] $damage
 	 * @param float     $knockBack
@@ -51,7 +49,7 @@ class EntityDamageByEntityEvent extends EntityDamageEvent{
 		}
 
 		if($damager->hasEffect(Effect::WEAKNESS)){
-			$eff_level = 1 -  0.2 * ($damager->getEffect(Effect::WEAKNESS)->getAmplifier() + 1);
+			$eff_level = 1 - 0.2 * ($damager->getEffect(Effect::WEAKNESS)->getAmplifier() + 1);
 			if($eff_level < 0){
 				$eff_level = 0;
 			}

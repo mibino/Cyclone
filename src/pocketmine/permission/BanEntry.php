@@ -22,6 +22,12 @@
 namespace pocketmine\permission;
 
 use pocketmine\utils\MainLogger;
+use function array_shift;
+use function count;
+use function explode;
+use function strlen;
+use function strtolower;
+use function trim;
 
 class BanEntry{
 	public static $format = "Y-m-d H:i:s O";

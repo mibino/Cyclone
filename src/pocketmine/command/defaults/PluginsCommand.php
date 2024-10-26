@@ -24,6 +24,8 @@ namespace pocketmine\command\defaults;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\utils\TextFormat;
+use function count;
+use function strlen;
 
 class PluginsCommand extends VanillaCommand{
 

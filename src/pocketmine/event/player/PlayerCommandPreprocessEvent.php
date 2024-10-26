@@ -38,9 +38,7 @@ class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancellable{
 	/** @var string */
 	protected $message;
 
-
 	/**
-	 * @param Player $player
 	 * @param string $message
 	 */
 	public function __construct(Player $player, $message){
@@ -62,9 +60,6 @@ class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancellable{
 		$this->message = $message;
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function setPlayer(Player $player){
 		$this->player = $player;
 	}

@@ -35,9 +35,7 @@ class ExplosionPrimeEvent extends EntityEvent implements Cancellable{
 	private $dropItem;
 
 	/**
-	 * @param Entity $entity
 	 * @param float  $force
-	 * @param bool   $dropItem
 	 */
 	public function __construct(Entity $entity, $force, bool $dropItem){
 		$this->entity = $entity;

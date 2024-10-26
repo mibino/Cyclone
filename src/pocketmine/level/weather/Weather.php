@@ -26,6 +26,13 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\network\protocol\LevelEventPacket;
 use pocketmine\Player;
+use function array_rand;
+use function count;
+use function is_int;
+use function max;
+use function min;
+use function mt_rand;
+use function strtolower;
 
 class Weather{
 	const CLEAR = 0;
@@ -69,13 +76,13 @@ class Weather{
 		if($this->canCalculate()){
 			$tickDiff = $currentTick - $this->lastUpdate;
 			$this->duration -= $tickDiff;
-			
+
 			if($this->duration <= 0){
 				$duration = mt_rand(
-						min($this->level->getServer()->weatherRandomDurationMin, $this->level->getServer()->weatherRandomDurationMax), 
+						min($this->level->getServer()->weatherRandomDurationMin, $this->level->getServer()->weatherRandomDurationMax),
 						max($this->level->getServer()->weatherRandomDurationMin, $this->level->getServer()->weatherRandomDurationMax));
 
-				if($this->weatherNow === self::SUNNY){ 
+				if($this->weatherNow === self::SUNNY){
 					$weather = $this->randomWeatherData[array_rand($this->randomWeatherData)];
 					$this->setWeather($weather, $duration);
 				}else{
@@ -146,30 +153,18 @@ class Weather{
 		}
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isSunny() : bool{
 		return $this->getWeather() === self::SUNNY;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isRainy() : bool{
 		return $this->getWeather() === self::RAINY;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isRainyThunder() : bool{
 		return $this->getWeather() === self::RAINY_THUNDER;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isThunder() : bool{
 		return $this->getWeather() === self::THUNDER;
 	}
@@ -183,13 +178,13 @@ class Weather{
 			new LevelEventPacket(),
 			new LevelEventPacket()
 		];
-		
+
 		//Set defaults. These will be sent if the case statement defaults.
 		$pks[0]->evid = LevelEventPacket::EVENT_STOP_RAIN;
-		$pks[0]->data = $this->strength1;	
+		$pks[0]->data = $this->strength1;
 		$pks[1]->evid = LevelEventPacket::EVENT_STOP_THUNDER;
 		$pks[1]->data = $this->strength2;
-		
+
 		switch($this->weatherNow){
 			//If the weather is not clear, overwrite the packet values with these
 			case self::RAIN:
@@ -208,7 +203,7 @@ class Weather{
 				break;
 			default: break;
 		}
-		
+
 		foreach($pks as $pk){
 			$p->dataPacket($pk);
 		}

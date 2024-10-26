@@ -27,6 +27,8 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function count;
+use function round;
 
 class SpawnpointCommand extends VanillaCommand{
 

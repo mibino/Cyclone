@@ -24,6 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\math\Vector3;
+use function in_array;
 
 class ActiveRedstoneLamp extends Solid implements ElectricalAppliance, SolidLight{
 	protected $id = self::ACTIVE_REDSTONE_LAMP;

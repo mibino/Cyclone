@@ -24,6 +24,7 @@ namespace pocketmine\inventory;
 use pocketmine\item\Item;
 use pocketmine\Server;
 use pocketmine\utils\UUID;
+use function count;
 
 class ShapelessRecipe implements Recipe{
 	/** @var Item */
@@ -55,7 +56,6 @@ class ShapelessRecipe implements Recipe{
 	}
 
 	/**
-	 * @param Item $item
 	 *
 	 * @returns ShapelessRecipe
 	 *
@@ -78,7 +78,6 @@ class ShapelessRecipe implements Recipe{
 	}
 
 	/**
-	 * @param Item $item
 	 *
 	 * @return $this
 	 */

@@ -23,13 +23,15 @@ namespace pocketmine\entity;
 
 use pocketmine\block\Block;
 use pocketmine\block\Rail;
-use pocketmine\item\Item as ItemItem;
-use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\Player;
 use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\math\Math;
 use pocketmine\math\Vector3;
+use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\network\protocol\EntityEventPacket;
+use pocketmine\Player;
+use function abs;
+use function in_array;
+use const PHP_INT_MAX;
 
 class Minecart extends Vehicle{
 	const NETWORK_ID = 84;
@@ -105,9 +107,8 @@ class Minecart extends Vehicle{
 		}
 		$this->timings->stopTiming ();
 
-		return $hasUpdate or ! $this->onGround or abs ( $this->motionX ) > 0.00001 or abs ( $this->motionY ) > 0.00001 or abs ( $this->motionZ ) > 0.00001;
+		return $hasUpdate or !$this->onGround or abs ( $this->motionX ) > 0.00001 or abs ( $this->motionY ) > 0.00001 or abs ( $this->motionZ ) > 0.00001;
 	}
-
 
 	/**
 	 * Check if minecart is currently on a rail and if so center the cart.
@@ -414,7 +415,6 @@ class Minecart extends Vehicle{
 	/**
 	 * Invoke the normal move code, but first need to convert the desired position vector into the
 	 * delta values from the current position.
-	 * @param Vector3 $desiredPosition
 	 */
 	private function moveUsingVector(Vector3 $desiredPosition){
 		$dx = $desiredPosition->x - $this->x;
@@ -422,7 +422,6 @@ class Minecart extends Vehicle{
 		$dz = $desiredPosition->z - $this->z;
 		$this->move($dx, $dy, $dz);
 	}
-
 
 	/**
 	 * @return Rail

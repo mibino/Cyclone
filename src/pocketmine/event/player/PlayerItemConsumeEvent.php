@@ -34,10 +34,6 @@ class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable{
 	/** @var Item */
 	private $item;
 
-	/**
-	 * @param Player $player
-	 * @param Item   $item
-	 */
 	public function __construct(Player $player, Item $item){
 		$this->player = $player;
 		$this->item = $item;

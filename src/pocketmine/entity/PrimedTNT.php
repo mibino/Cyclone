@@ -21,7 +21,6 @@
 
 namespace pocketmine\entity;
 
-
 use pocketmine\event\entity\EntityDamageEvent;
 
 use pocketmine\event\entity\ExplosionPrimeEvent;
@@ -29,9 +28,9 @@ use pocketmine\level\Explosion;
 use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\network\Network;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
+use function abs;
 
 class PrimedTNT extends Entity implements Explosive{
 	const NETWORK_ID = 65;
@@ -54,7 +53,6 @@ class PrimedTNT extends Entity implements Explosive{
 		$this->dropItem = $dropItem;
 	}
 
-
 	public function attack($damage, EntityDamageEvent $source){
 		if($source->getCause() === EntityDamageEvent::CAUSE_VOID){
 			parent::attack($damage, $source);
@@ -73,7 +71,6 @@ class PrimedTNT extends Entity implements Explosive{
 		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_IGNITED, true);
 		$this->setDataProperty(self::DATA_FUSE_LENGTH, self::DATA_TYPE_INT, $this->fuse);
 	}
-
 
 	public function canCollideWith(Entity $entity){
 		return false;
@@ -133,7 +130,6 @@ class PrimedTNT extends Entity implements Explosive{
 			}
 
 		}
-
 
 		return $hasUpdate or $this->fuse >= 0 or abs($this->motionX) > 0.00001 or abs($this->motionY) > 0.00001 or abs($this->motionZ) > 0.00001;
 	}

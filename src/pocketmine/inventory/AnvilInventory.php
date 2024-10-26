@@ -31,7 +31,6 @@ class AnvilInventory extends TemporaryInventory{
 	const SACRIFICE = 1;
 	const RESULT = 2;
 
-
 	public function __construct(Position $pos){
 		parent::__construct(new FakeBlockMenu($this, $pos), InventoryType::get(InventoryType::ANVIL));
 	}
@@ -57,7 +56,7 @@ class AnvilInventory extends TemporaryInventory{
 			return false;
 		}
 		$player->takeXpLevel($resultItem->getRepairCost());
-		
+
 		$this->clearAll();
 		if(!$player->getServer()->allowInventoryCheats and !$player->isCreative()){
 			if(!$player->getFloatingInventory()->canAddItem($resultItem)){

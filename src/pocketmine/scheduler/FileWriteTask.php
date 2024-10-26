@@ -21,6 +21,8 @@
 
 namespace pocketmine\scheduler;
 
+use function file_put_contents;
+
 class FileWriteTask extends AsyncTask{
 
 	private $path;

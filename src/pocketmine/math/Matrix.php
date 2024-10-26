@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,12 +15,15 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
 namespace pocketmine\math;
 
+use function implode;
+use function max;
+use function substr;
 
 class Matrix implements \ArrayAccess{
 	private $matrix = [];
@@ -28,22 +31,22 @@ class Matrix implements \ArrayAccess{
 	private $columns = 0;
 
 	public function offsetExists($offset): bool
-    {
+	{
 		return isset($this->matrix[(int) $offset]);
 	}
 
 	public function offsetGet($offset): mixed
-    {
+	{
 		return $this->matrix[(int) $offset];
 	}
 
 	public function offsetSet($offset, $value): void
-    {
+	{
 		$this->matrix[(int) $offset] = $value;
 	}
 
 	public function offsetUnset($offset): void
-    {
+	{
 		unset($this->matrix[(int) $offset]);
 	}
 
@@ -130,7 +133,6 @@ class Matrix implements \ArrayAccess{
 		return $result;
 	}
 
-
 	public function divideScalar($number){
 		$result = clone $this;
 		for($r = 0; $r < $this->rows; ++$r){
@@ -173,7 +175,6 @@ class Matrix implements \ArrayAccess{
 		return $result;
 	}
 
-
 	//Computation of the determinant of 2x2 and 3x3 matrices
 	public function determinant(){
 		if($this->isSquare() !== true){
@@ -190,7 +191,6 @@ class Matrix implements \ArrayAccess{
 
 		return false;
 	}
-
 
 	public function __toString(){
 		$s = "";

@@ -36,7 +36,7 @@ class CaveSpider extends Monster{
 	public function getName() : string{
 		return "Cave Spider";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

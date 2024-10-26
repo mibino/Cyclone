@@ -22,6 +22,14 @@
 namespace pocketmine\math;
 
 use pocketmine\utils\Random;
+use function abs;
+use function ceil;
+use function floor;
+use function max;
+use function pi;
+use function pow;
+use function round;
+use function sqrt;
 
 class Vector3{
 
@@ -236,7 +244,6 @@ class Vector3{
 	 * Returns a new vector with x value equal to the second parameter, along the line between this vector and the
 	 * passed in vector, or null if not possible.
 	 *
-	 * @param Vector3 $v
 	 * @param float   $x
 	 *
 	 * @return Vector3
@@ -263,7 +270,6 @@ class Vector3{
 	 * Returns a new vector with y value equal to the second parameter, along the line between this vector and the
 	 * passed in vector, or null if not possible.
 	 *
-	 * @param Vector3 $v
 	 * @param float   $y
 	 *
 	 * @return Vector3
@@ -290,7 +296,6 @@ class Vector3{
 	 * Returns a new vector with z value equal to the second parameter, along the line between this vector and the
 	 * passed in vector, or null if not possible.
 	 *
-	 * @param Vector3 $v
 	 * @param float   $z
 	 *
 	 * @return Vector3
@@ -314,9 +319,6 @@ class Vector3{
 	}
 
 	/**
-	 * @param $x
-	 * @param $y
-	 * @param $z
 	 *
 	 * @return Vector3
 	 */
@@ -328,10 +330,6 @@ class Vector3{
 	}
 
 	/**
-	 * @param Vector3 $pos
-	 * @param         $x
-	 * @param         $y
-	 * @param         $z
 	 *
 	 * @return $this
 	 */

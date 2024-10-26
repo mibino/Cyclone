@@ -28,6 +28,10 @@ use pocketmine\level\ChunkManager;
 use pocketmine\level\generator\noise\Noise;
 use pocketmine\level\generator\normal\Normal;
 use pocketmine\utils\Random;
+use function array_fill;
+use function array_keys;
+use function is_subclass_of;
+use function strtolower;
 
 abstract class Generator{
 	private static $list = [];
@@ -50,7 +54,6 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param $name
 	 *
 	 * @return Generator
 	 */
@@ -73,7 +76,6 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param Noise $noise
 	 * @param int   $xSize
 	 * @param int   $samplingRate
 	 * @param int   $x
@@ -107,7 +109,6 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param Noise $noise
 	 * @param int   $xSize
 	 * @param int   $zSize
 	 * @param int   $samplingRate
@@ -159,7 +160,6 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param Noise $noise
 	 * @param int   $xSize
 	 * @param int   $ySize
 	 * @param int   $zSize

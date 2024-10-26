@@ -19,13 +19,12 @@
  *
 */
 
-
 namespace pocketmine\item;
 
 use pocketmine\block\Block;
 use pocketmine\entity\Entity;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\item\enchantment\Enchantment;
+use function mt_rand;
 
 abstract class Tool extends Item{
 	const TIER_WOODEN = 1;

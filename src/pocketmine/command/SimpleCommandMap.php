@@ -47,8 +47,8 @@ use pocketmine\command\defaults\ListCommand;
 use pocketmine\command\defaults\LvdatCommand;
 use pocketmine\command\defaults\MeCommand;
 use pocketmine\command\defaults\OpCommand;
-use pocketmine\command\defaults\PardonCommand;
 use pocketmine\command\defaults\PardonCidCommand;
+use pocketmine\command\defaults\PardonCommand;
 use pocketmine\command\defaults\PardonIpCommand;
 use pocketmine\command\defaults\ParticleCommand;
 use pocketmine\command\defaults\PluginsCommand;
@@ -79,6 +79,14 @@ use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\TextFormat;
+use function array_rand;
+use function array_shift;
+use function count;
+use function explode;
+use function strlen;
+use function strpos;
+use function strtolower;
+use function trim;
 
 class SimpleCommandMap implements CommandMap{
 
@@ -86,7 +94,7 @@ class SimpleCommandMap implements CommandMap{
 	 * @var Command[]
 	 */
 	protected $knownCommands = [];
-	
+
 	/**
 	 * @var bool[]
 	 */
@@ -162,7 +170,6 @@ class SimpleCommandMap implements CommandMap{
 		}
 	}
 
-
 	public function registerAll($fallbackPrefix, array $commands){
 		foreach($commands as $command){
 			$this->register($fallbackPrefix, $command);
@@ -174,7 +181,7 @@ class SimpleCommandMap implements CommandMap{
 			$label = $command->getName();
 		}
 		$label = strtolower(trim($label));
-		
+
 		//Check if command was disabled in config and for override
 		if(!(($this->commandConfig[$label] ?? $this->commandConfig["default"] ?? true) or $overrideConfig)){
 			return false;
@@ -312,7 +319,6 @@ class SimpleCommandMap implements CommandMap{
 		return $this->knownCommands;
 	}
 
-
 	/**
 	 * @return void
 	 */
@@ -356,6 +362,5 @@ class SimpleCommandMap implements CommandMap{
 
 		}
 	}
-
 
 }

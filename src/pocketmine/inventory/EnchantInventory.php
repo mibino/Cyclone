@@ -31,11 +31,15 @@ use pocketmine\item\enchantment\EnchantmentList;
 use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\level\Position;
-use pocketmine\math\Vector3;
 use pocketmine\network\protocol\CraftingDataPacket;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\tile\EnchantTable;
+use function count;
+use function max;
+use function mt_getrandmax;
+use function mt_rand;
+use function round;
 
 class EnchantInventory extends TemporaryInventory{
 	private $bookshelfAmount = 0;
@@ -54,7 +58,7 @@ class EnchantInventory extends TemporaryInventory{
 	public function getHolder(){
 		return $this->holder;
 	}
-	
+
 	public function getResultSlotIndex(){
 		return -1; //enchanting tables don't have result slots, they modify the item in the target slot instead
 	}
@@ -278,7 +282,6 @@ class EnchantInventory extends TemporaryInventory{
 	}
 
 	/**
-	 * @param Enchantment   $enchantment
 	 * @param Enchantment[] $enchantments
 	 * @return Enchantment[]
 	 */

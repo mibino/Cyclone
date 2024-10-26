@@ -1,11 +1,11 @@
 <?php
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,19 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 namespace pocketmine\utils;
+
 #include <rules/DataPacket.h>
 #ifndef COMPILE
 #endif
 use pocketmine\item\Item;
+use function chr;
+use function ord;
+use function strlen;
+use function substr;
 
 class BinaryStream extends \stdClass{
 	public $offset;
@@ -225,7 +230,6 @@ class BinaryStream extends \stdClass{
 		);
 	}
 
-
 	public function putSlot(Item $item){
 		if($item->getId() === 0){
 			$this->putVarInt(0);
@@ -282,7 +286,7 @@ class BinaryStream extends \stdClass{
 	public function getEntityId(){
 		return $this->getVarInt();
 	}
-	
+
 	public function putEntityId($v){
 		$this->putVarInt($v);
 	}
@@ -298,13 +302,13 @@ class BinaryStream extends \stdClass{
 		$this->putByte($y);
 		$this->putVarInt($z);
 	}
-	
+
 	public function getVector3f(&$x, &$y, &$z){
 		$x = $this->getLFloat();
 		$y = $this->getLFloat();
 		$z = $this->getLFloat();
 	}
-	
+
 	public function putVector3f($x, $y, $z){
 		$this->putLFloat($x);
 		$this->putLFloat($y);

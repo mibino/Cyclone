@@ -39,11 +39,6 @@ class PlayerFishEvent extends PlayerEvent implements Cancellable{
 	/** @var FishingHook */
 	private $hook;
 
-	/**
-	 * @param Player $player
-	 * @param Item   $item
-	 * @param        $fishingHook
-	 */
 	public function __construct(Player $player, Item $item, $fishingHook = null){
 		$this->player = $player;
 		$this->item = $item;

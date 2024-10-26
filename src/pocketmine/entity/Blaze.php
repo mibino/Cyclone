@@ -21,11 +21,12 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\Player;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item as ItemItem;
+use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\Player;
+use function mt_rand;
 
 class Blaze extends Monster{
 	const NETWORK_ID = 43;
@@ -35,11 +36,11 @@ class Blaze extends Monster{
 	public $height = 1.8;
 
 	public $dropExp = [10, 10];
-	
+
 	public function getName() : string{
 		return "Blaze";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -62,7 +63,7 @@ class Blaze extends Monster{
 		//Only drop when kill by player or dog(No add now.)
 		if($cause instanceof EntityDamageByEntityEvent and $cause->getDamager() instanceof Player){
 			$lootingL = $cause->getDamager()->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
-			$drops = array(ItemItem::get(ItemItem::BLAZE_ROD, 0, mt_rand(0, 1 + $lootingL)));
+			$drops = [ItemItem::get(ItemItem::BLAZE_ROD, 0, mt_rand(0, 1 + $lootingL))];
 			return $drops;
 		}
 		return [];

@@ -24,6 +24,18 @@ namespace pocketmine\command;
 use pocketmine\Thread;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\Utils;
+use function extension_loaded;
+use function feof;
+use function fgets;
+use function fopen;
+use function getopt;
+use function is_resource;
+use function readline_add_history;
+use function readline_callback_handler_install;
+use function readline_callback_handler_remove;
+use function readline_callback_read_char;
+use function stream_select;
+use function trim;
 
 class CommandReader extends Thread{
 	private $readline;
@@ -37,7 +49,7 @@ class CommandReader extends Thread{
 		$opts = getopt("", ["disable-readline"]);
 		$this->readline = (extension_loaded("readline") and !isset($opts["disable-readline"]));
 		$this->logger = $logger;
-		$this->buffer = new \Threaded;
+		$this->buffer = new \Threaded();
 		$this->start();
 	}
 

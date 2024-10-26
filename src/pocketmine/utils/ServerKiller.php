@@ -22,6 +22,8 @@
 namespace pocketmine\utils;
 
 use pocketmine\Thread;
+use function getmypid;
+use function time;
 
 class ServerKiller extends Thread{
 

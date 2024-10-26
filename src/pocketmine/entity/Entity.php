@@ -28,8 +28,8 @@ use pocketmine\block\Block;
 use pocketmine\block\Fire;
 use pocketmine\block\Portal;
 use pocketmine\block\PressurePlate;
-use pocketmine\block\Water;
 use pocketmine\block\SlimeBlock;
+use pocketmine\block\Water;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDespawnEvent;
 use pocketmine\event\entity\EntityEffectAddEvent;
@@ -55,9 +55,9 @@ use pocketmine\metadata\MetadataValue;
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\DoubleTag;
-use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\MobEffectPacket;
@@ -68,6 +68,20 @@ use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\ChunkException;
+use function cos;
+use function count;
+use function deg2rad;
+use function floor;
+use function get_class;
+use function is_a;
+use function is_array;
+use function is_infinite;
+use function is_nan;
+use function lcg_value;
+use function mt_rand;
+use function round;
+use function sin;
+use const M_PI_2;
 
 abstract class Entity extends Location implements Metadatable{
 
@@ -97,7 +111,7 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_POTION_AMBIENT = 9; //byte
 
 	/* 27 (byte) player-specific flags
-	 * 28 (int) player "index"? 
+	 * 28 (int) player "index"?
 	 * 29 (block coords) bed position */
 	const DATA_LEAD_HOLDER_EID = 38; //long
 	const DATA_SCALE = 39; //float
@@ -120,7 +134,6 @@ abstract class Entity extends Location implements Metadatable{
 	 * 57 (byte)
 	 * 58 (float)
 	 * 59 (float) */
-
 
 	const DATA_FLAG_ONFIRE = 0;
 	const DATA_FLAG_SNEAKING = 1;
@@ -283,10 +296,9 @@ abstract class Entity extends Location implements Metadatable{
 
 	public $dropExp = [0, 0];
 
-
 	public function __construct(FullChunk $chunk, CompoundTag $nbt){
 		if($chunk === null or $chunk->getProvider() === null){
- 			throw new ChunkException("Invalid garbage Chunk given to Entity");
+			throw new ChunkException("Invalid garbage Chunk given to Entity");
 		}
 
 		$this->timings = Timings::getEntityTimings($this);
@@ -360,16 +372,10 @@ abstract class Entity extends Location implements Metadatable{
 
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getDropExpMin() : int{
 		return $this->dropExp[0];
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getDropExpMax() : int{
 		return $this->dropExp[1];
 	}
@@ -394,7 +400,6 @@ abstract class Entity extends Location implements Metadatable{
 	public function isNameTagAlwaysVisible(){
 		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ALWAYS_SHOW_NAMETAG);
 	}
-
 
 	/**
 	 * @param string $name
@@ -545,9 +550,6 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * @param int|string  $type
-	 * @param FullChunk   $chunk
-	 * @param CompoundTag $nbt
-	 * @param             $args
 	 *
 	 * @return Entity|Projectile
 	 */
@@ -680,9 +682,6 @@ abstract class Entity extends Location implements Metadatable{
 		return $this->hasSpawned;
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function spawnTo(Player $player){
 		if(!isset($this->hasSpawned[$player->getLoaderId()]) and isset($player->usedChunks[Level::chunkHash($this->chunk->getX(), $this->chunk->getZ())])){
 			$this->hasSpawned[$player->getLoaderId()] = $player;
@@ -728,9 +727,6 @@ abstract class Entity extends Location implements Metadatable{
 		}
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function despawnFrom(Player $player){
 		if(isset($this->hasSpawned[$player->getLoaderId()])){
 			$pk = new RemoveEntityPacket();
@@ -742,7 +738,6 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * @param float             $damage
-	 * @param EntityDamageEvent $source
 	 *
 	 * @return bool
 	 */
@@ -778,7 +773,6 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * @param float                   $amount
-	 * @param EntityRegainHealthEvent $source
 	 *
 	 */
 	public function heal($amount, EntityRegainHealthEvent $source){
@@ -823,9 +817,6 @@ abstract class Entity extends Location implements Metadatable{
 		}
 	}
 
-	/**
-	 * @param EntityDamageEvent $type
-	 */
 	public function setLastDamageCause(EntityDamageEvent $type){
 		$this->lastDamageCause = $type;
 	}
@@ -1315,13 +1306,12 @@ abstract class Entity extends Location implements Metadatable{
 			if(!$this->level->getBlock(new Vector3($this->x, $this->y - 1, $this->z))->isTransparent())
 				$this->onGround = true;
 			/*
-                        if(count($this->level->getCollisionBlocks($bb)) > 0){
-                            $this->onGround = true;
-                        }*/
+						if(count($this->level->getCollisionBlocks($bb)) > 0){
+							$this->onGround = true;
+						}*/
 		}
 		$this->isCollided = $this->onGround;
 		$this->updateFallState($dy, $this->onGround);
-
 
 		Timings::$entityMoveTimer->stopTiming();
 
@@ -1411,7 +1401,6 @@ abstract class Entity extends Location implements Metadatable{
 
 			$this->boundingBox->offset(0, 0, $dz);
 
-
 			if($this->stepHeight > 0 and $fallingFlag and $this->ySize < 0.05 and ($movX != $dx or $movZ != $dz)){
 				$cx = $dx;
 				$cy = $dy;
@@ -1475,7 +1464,6 @@ abstract class Entity extends Location implements Metadatable{
 			if($movZ != $dz){
 				$this->motionZ = 0;
 			}
-
 
 			//TODO: vehicle collision events (first we need to spawn them!)
 
@@ -1885,8 +1873,6 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	/**
-	 * @param      $propertyId
-	 * @param      $id
 	 * @param bool $value
 	 * @param int  $type
 	 */

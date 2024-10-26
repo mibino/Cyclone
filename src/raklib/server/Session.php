@@ -15,7 +15,6 @@
 
 namespace raklib\server;
 
-use raklib\Binary;
 use raklib\protocol\ACK;
 use raklib\protocol\CLIENT_CONNECT_DataPacket;
 use raklib\protocol\CLIENT_DISCONNECT_DataPacket;
@@ -34,9 +33,17 @@ use raklib\protocol\PacketReliability;
 use raklib\protocol\PING_DataPacket;
 use raklib\protocol\PONG_DataPacket;
 use raklib\protocol\SERVER_HANDSHAKE_DataPacket;
-use raklib\protocol\UNCONNECTED_PING;
-use raklib\protocol\UNCONNECTED_PONG;
 use raklib\RakLib;
+use function abs;
+use function bcadd;
+use function count;
+use function ksort;
+use function microtime;
+use function min;
+use function ord;
+use function str_split;
+use function strlen;
+use function time;
 
 class Session{
 	const STATE_UNCONNECTED = 0;
@@ -181,7 +188,6 @@ class Session{
 			}
 		}
 
-
 		foreach($this->recoveryQueue as $seq => $pk){
 			if($pk->sendTime < (time() - 8)){
 				$this->packetToSend[] = $pk;
@@ -221,7 +227,6 @@ class Session{
 	}
 
 	/**
-	 * @param EncapsulatedPacket $pk
 	 * @param int                $flags
 	 */
 	private function addToQueue(EncapsulatedPacket $pk, $flags = RakLib::PRIORITY_NORMAL){
@@ -259,7 +264,6 @@ class Session{
 	}
 
 	/**
-	 * @param EncapsulatedPacket $packet
 	 * @param int                $flags
 	 */
 	public function addEncapsulatedToQueue(EncapsulatedPacket $packet, $flags = RakLib::PRIORITY_NORMAL){
@@ -313,7 +317,6 @@ class Session{
 		if($packet->splitCount >= self::MAX_SPLIT_SIZE or $packet->splitIndex >= self::MAX_SPLIT_SIZE or $packet->splitIndex < 0){
 			return;
 		}
-
 
 		if(!isset($this->splitPackets[$packet->splitID])){
 			if(count($this->splitPackets) >= self::MAX_SPLIT_COUNT){
@@ -397,10 +400,10 @@ class Session{
 		if($id < 0x80){ //internal data packet
 			if($this->state === self::STATE_CONNECTING_2){
 				if($id === CLIENT_CONNECT_DataPacket::$ID){
-					$dataPacket = new CLIENT_CONNECT_DataPacket;
+					$dataPacket = new CLIENT_CONNECT_DataPacket();
 					$dataPacket->buffer = $packet->buffer;
 					$dataPacket->decode();
-					$pk = new SERVER_HANDSHAKE_DataPacket;
+					$pk = new SERVER_HANDSHAKE_DataPacket();
 					$pk->address = $this->address;
 					$pk->port = $this->port;
 					$pk->sendPing = $dataPacket->sendPing;
@@ -412,7 +415,7 @@ class Session{
 					$sendPacket->buffer = $pk->buffer;
 					$this->addToQueue($sendPacket, RakLib::PRIORITY_IMMEDIATE);
 				}elseif($id === CLIENT_HANDSHAKE_DataPacket::$ID){
-					$dataPacket = new CLIENT_HANDSHAKE_DataPacket;
+					$dataPacket = new CLIENT_HANDSHAKE_DataPacket();
 					$dataPacket->buffer = $packet->buffer;
 					$dataPacket->decode();
 
@@ -425,11 +428,11 @@ class Session{
 			}elseif($id === CLIENT_DISCONNECT_DataPacket::$ID){
 				$this->disconnect("client disconnect");
 			}elseif($id === PING_DataPacket::$ID){
-				$dataPacket = new PING_DataPacket;
+				$dataPacket = new PING_DataPacket();
 				$dataPacket->buffer = $packet->buffer;
 				$dataPacket->decode();
 
-				$pk = new PONG_DataPacket;
+				$pk = new PONG_DataPacket();
 				$pk->pingID = $dataPacket->pingID;
 				$pk->encode();
 
@@ -519,8 +522,8 @@ class Session{
 			}elseif($this->state === self::STATE_CONNECTING_1 and $packet instanceof OPEN_CONNECTION_REQUEST_2){
 				$this->id = $packet->clientID;
 				if($packet->serverPort === $this->sessionManager->getPort() or !$this->sessionManager->portChecking){
- 					$this->mtuSize = min(abs($packet->mtuSize), 1432);  //MTU — (Max IP Header Size) — (UDP Header Size) = 1500 — 60 — 8 = 1432 
- 					$pk = new OPEN_CONNECTION_REPLY_2();
+					$this->mtuSize = min(abs($packet->mtuSize), 1432);  //MTU — (Max IP Header Size) — (UDP Header Size) = 1500 — 60 — 8 = 1432
+					$pk = new OPEN_CONNECTION_REPLY_2();
 					$pk->mtuSize = $this->mtuSize;
 					$pk->serverID = $this->sessionManager->getID();
 					$pk->clientAddress = $this->address;

@@ -36,9 +36,6 @@ class EntityDespawnEvent extends EntityEvent{
 
 	private $entityType;
 
-	/**
-	 * @param Entity $entity
-	 */
 	public function __construct(Entity $entity){
 		$this->entity = $entity;
 		$this->entityType = $entity::NETWORK_ID;

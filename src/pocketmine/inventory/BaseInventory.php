@@ -25,11 +25,16 @@ use pocketmine\entity\Entity;
 use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\inventory\InventoryOpenEvent;
 use pocketmine\item\Item;
-use pocketmine\network\Network;
 use pocketmine\network\protocol\ContainerSetContentPacket;
 use pocketmine\network\protocol\ContainerSetSlotPacket;
 use pocketmine\Player;
 use pocketmine\Server;
+use function array_slice;
+use function count;
+use function gettype;
+use function max;
+use function min;
+use function spl_object_hash;
 
 abstract class BaseInventory implements Inventory{
 
@@ -51,8 +56,6 @@ abstract class BaseInventory implements Inventory{
 	protected $holder;
 
 	/**
-	 * @param InventoryHolder $holder
-	 * @param InventoryType   $type
 	 * @param Item[]          $items
 	 * @param int             $overrideSize
 	 * @param string          $overrideTitle
@@ -158,7 +161,6 @@ abstract class BaseInventory implements Inventory{
 		$this->slots[$index] = clone $item;
 		$this->onSlotChange($index, $old, $send);
 
-
 		return true;
 	}
 
@@ -235,7 +237,7 @@ abstract class BaseInventory implements Inventory{
 
 		return -1;
 	}
-	
+
 	public function firstOccupied(){
 		for($i = 0; $i < $this->size; $i++){
 			if(($item = $this->getItem($i))->getId() !== Item::AIR and $item->getCount() > 0){
@@ -273,7 +275,7 @@ abstract class BaseInventory implements Inventory{
 		$itemSlots = [];
 		foreach($slots as $slot){
 			if(!($slot instanceof Item)){
-				throw new \InvalidArgumentException("Expected Item, got ".gettype($slot));
+				throw new \InvalidArgumentException("Expected Item, got " . gettype($slot));
 			}
 			if($slot->getId() !== 0 and $slot->getCount() > 0){
 				$itemSlots[] = clone $slot;
@@ -333,7 +335,7 @@ abstract class BaseInventory implements Inventory{
 		$itemSlots = [];
 		foreach($slots as $slot){
 			if(!($slot instanceof Item)){
-				throw new \InvalidArgumentException("Expected Item[], got ".gettype($slot));
+				throw new \InvalidArgumentException("Expected Item[], got " . gettype($slot));
 			}
 			if($slot->getId() !== 0 and $slot->getCount() > 0){
 				$itemSlots[] = clone $slot;
@@ -442,7 +444,6 @@ abstract class BaseInventory implements Inventory{
 	public function processSlotChange(Transaction $transaction): bool{
 		return true;
 	}
-
 
 	/**
 	 * @param Player|Player[] $target

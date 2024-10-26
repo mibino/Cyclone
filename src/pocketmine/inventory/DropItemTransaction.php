@@ -34,9 +34,6 @@ class DropItemTransaction extends BaseTransaction{
 
 	protected $sourceItem = null;
 
-	/**
-	 * @param Item $droppedItem
-	 */
 	public function __construct(Item $droppedItem){
 		$this->targetItem = $droppedItem;
 	}
@@ -59,7 +56,7 @@ class DropItemTransaction extends BaseTransaction{
 
 	public function getChange(){
 		return ["in" => $this->getTargetItem(),
-				"out" => null];
+			"out" => null];
 	}
 
 	public function execute(Player $source): bool{

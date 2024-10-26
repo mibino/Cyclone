@@ -36,6 +36,17 @@ use pocketmine\utils\Binary;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\ChunkException;
 use pocketmine\utils\LevelException;
+use function count;
+use function file_exists;
+use function file_get_contents;
+use function file_put_contents;
+use function is_dir;
+use function microtime;
+use function mkdir;
+use function pack;
+use function strlen;
+use function substr;
+use const LEVELDB_ZLIB_COMPRESSION;
 
 class LevelDB extends BaseLevelProvider{
 
@@ -229,8 +240,6 @@ class LevelDB extends BaseLevelProvider{
 	}
 
 	/**
-	 * @param      $chunkX
-	 * @param      $chunkZ
 	 *
 	 * @return Chunk
 	 */

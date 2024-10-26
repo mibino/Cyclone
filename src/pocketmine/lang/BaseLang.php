@@ -23,6 +23,19 @@ namespace pocketmine\lang;
 
 use pocketmine\event\TextContainer;
 use pocketmine\event\TranslationContainer;
+use function array_shift;
+use function count;
+use function explode;
+use function file_exists;
+use function file_get_contents;
+use function implode;
+use function ord;
+use function str_replace;
+use function strlen;
+use function strpos;
+use function strtolower;
+use function substr;
+use function trim;
 
 class BaseLang{
 

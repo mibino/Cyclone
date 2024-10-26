@@ -21,15 +21,17 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\item\enchantment\Enchantment;
-use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item as ItemItem;
-use pocketmine\nbt\tag\ByteTag;
-use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\level\format\FullChunk;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
+use function count;
+use function mt_rand;
 
 class Rabbit extends Animal{
 	const NETWORK_ID = 18;
@@ -118,6 +120,5 @@ class Rabbit extends Animal{
 		}
 		return $drops;
 	}
-
 
 }

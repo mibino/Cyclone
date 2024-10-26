@@ -25,7 +25,12 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
-
+use function array_shift;
+use function count;
+use function date;
+use function implode;
+use function is_numeric;
+use function time;
 
 class BanCommand extends VanillaCommand{
 
@@ -62,7 +67,6 @@ class BanCommand extends VanillaCommand{
 		}else{
 			$sender->getServer()->getNameBans()->addBan($name, $reason = implode(" ", $args), null, $sender->getName());
 		}
-
 
 		if(($player = $sender->getServer()->getPlayerExact($name)) instanceof Player){
 			$player->kick($reason !== "" ? "Banned by admin. Reason: " . $reason : "Banned by admin." . "Banned Until:" . date('r'), $until = "Forever");

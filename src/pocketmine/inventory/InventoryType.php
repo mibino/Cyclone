@@ -21,6 +21,8 @@
 
 namespace pocketmine\inventory;
 
+use function count;
+
 /**
  * Saves all the information regarding default inventory sizes and types
  */
@@ -48,7 +50,6 @@ class InventoryType{
 	private $typeId;
 
 	/**
-	 * @param $index
 	 *
 	 * @return InventoryType
 	 */

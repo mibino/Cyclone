@@ -84,7 +84,6 @@ class Normal2 extends Normal{
 		return $this->selector->pickBiome($x + $xNoise - 1, $z + $zNoise - 1);
 	}
 
-
 	public function init(ChunkManager $level, Random $random){
 		$this->level = $level;
 		$this->random = $random;
@@ -167,7 +166,6 @@ class Normal2 extends Normal{
 		$this->populators[] = $ores;
 	}
 
-
 	public function generateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
@@ -218,7 +216,7 @@ class Normal2 extends Normal{
 						$genyHeight = $this->seaFloorHeight;
 					}
 					$canRiver = false;
-				}else if($genyHeight <= $this->beathStopHeight && $genyHeight >= $this->beathStartHeight){
+				}elseif($genyHeight <= $this->beathStopHeight && $genyHeight >= $this->beathStartHeight){
 					//todo: there is no beach biome, use desert temporarily
 					$biome = Biome::getBiome(Biome::DESERT);
 				}else{
@@ -288,7 +286,6 @@ class Normal2 extends Normal{
 		}
 
 	}
-
 
 	public function populateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());

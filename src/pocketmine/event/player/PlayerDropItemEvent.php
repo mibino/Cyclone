@@ -34,10 +34,6 @@ class PlayerDropItemEvent extends PlayerEvent implements Cancellable{
 	/** @var Item */
 	private $drop;
 
-	/**
-	 * @param Player $player
-	 * @param Item   $drop
-	 */
 	public function __construct(Player $player, Item $drop){
 		$this->player = $player;
 		$this->drop = $drop;

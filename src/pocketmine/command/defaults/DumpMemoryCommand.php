@@ -21,12 +21,13 @@
 
 namespace pocketmine\command\defaults;
 
-use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
-
+use pocketmine\command\CommandSender;
+use function date;
+use function time;
 
 class DumpMemoryCommand extends VanillaCommand{
-	
+
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -40,11 +41,11 @@ class DumpMemoryCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-		
+
 		Command::broadcastCommandMessage($sender, "Dumping server memory");
-		
-		$sender->getServer()->getMemoryManager()->dumpServerMemory(isset($args[0]) ? $args[0] : $sender->getServer()->getDataPath() . "/memory_dumps/memoryDump_".date("D_M_j-H.i.s-T_Y", time()), 48, 80);
+
+		$sender->getServer()->getMemoryManager()->dumpServerMemory(isset($args[0]) ? $args[0] : $sender->getServer()->getDataPath() . "/memory_dumps/memoryDump_" . date("D_M_j-H.i.s-T_Y", time()), 48, 80);
 		return true;
 	}
-	
+
 }

@@ -24,11 +24,7 @@
  */
 namespace pocketmine\item;
 
-use pocketmine\Player;
-use pocketmine\Server;
 use pocketmine\block\Block;
-use pocketmine\block\Fence;
-use pocketmine\block\Flower;
 use pocketmine\entity\CaveSpider;
 use pocketmine\entity\Entity;
 use pocketmine\entity\PigZombie;
@@ -47,7 +43,19 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
+use pocketmine\Player;
+use pocketmine\Server;
 use pocketmine\utils\Config;
+use function bin2hex;
+use function constant;
+use function defined;
+use function explode;
+use function get_class;
+use function is_numeric;
+use function is_string;
+use function str_replace;
+use function strtoupper;
+use function trim;
 
 class Item implements ItemIds, \JsonSerializable{
 
@@ -71,7 +79,6 @@ class Item implements ItemIds, \JsonSerializable{
 		self::$cachedParser->setData($tag);
 		return self::$cachedParser->write();
 	}
-
 
 	/** @var \SplFixedArray */
 	public static $list = null;
@@ -278,7 +285,7 @@ class Item implements ItemIds, \JsonSerializable{
 	public static function getCreativeItems() : array{
 		return Item::$creative;
 	}
-	
+
 	public static function addCreativeItem(Item $item){
 		Item::$creative[] = clone $item;
 	}
@@ -301,7 +308,6 @@ class Item implements ItemIds, \JsonSerializable{
 	}
 
 	/**
-	 * @param $index
 	 * @return Item
 	 */
 	public static function getCreativeItem(int $index){
@@ -340,8 +346,6 @@ class Item implements ItemIds, \JsonSerializable{
 	}
 
 	/**
-	 * @param string $str
-	 * @param bool   $multiple
 	 * @return Item[]|Item
 	 */
 	public static function fromString(string $str, bool $multiple = false){
@@ -485,7 +489,6 @@ class Item implements ItemIds, \JsonSerializable{
 	}
 
 	/**
-	 * @param $id
 	 * @return Enchantment|null
 	 */
 	public function getEnchantment(int $id){
@@ -504,12 +507,6 @@ class Item implements ItemIds, \JsonSerializable{
 		return null;
 	}
 
-	/**
-	 * @param int  $id
-	 * @param int  $level
-	 * @param bool $compareLevel
-	 * @return bool
-	 */
 	public function hasEnchantment(int $id, int $level = 1, bool $compareLevel = false) : bool{
 		if($this->hasEnchantments()){
 			foreach($this->getEnchantments() as $enchantment){
@@ -526,9 +523,8 @@ class Item implements ItemIds, \JsonSerializable{
 		}
 		return false;
 	}
-	
+
 	/**
-	 * @param $id
 	 * @return Int level|0(for null)
 	 */
 	public function getEnchantmentLevel(int $id){
@@ -548,9 +544,6 @@ class Item implements ItemIds, \JsonSerializable{
 		return 0;
 	}
 
-	/**
-	 * @param Enchantment $ench
-	 */
 	public function addEnchantment(Enchantment $ench){
 		if(!$this->hasCompoundTag()){
 			$tag = new CompoundTag("", []);
@@ -643,7 +636,6 @@ class Item implements ItemIds, \JsonSerializable{
 		return 1;
 	}
 
-
 	public function setRepairCost(int $cost){
 		if($cost === 1){
 			$this->clearRepairCost();
@@ -677,7 +669,6 @@ class Item implements ItemIds, \JsonSerializable{
 
 		return $this;
 	}
-
 
 	public function hasCustomName() : bool{
 		if(!$this->hasCompoundTag()){
@@ -959,7 +950,7 @@ class Item implements ItemIds, \JsonSerializable{
 	}
 
 	public final function equals(Item $item, bool $checkDamage = true, bool $checkCompound = true, bool $checkCount = false) : bool{
-		return $this->id === $item->getId() and ($checkCount === false or $this->getCount() === $item->getCount()) and($checkDamage === false or $this->getDamage() === $item->getDamage()) and ($checkCompound === false or $this->getCompoundTag() === $item->getCompoundTag());
+		return $this->id === $item->getId() and ($checkCount === false or $this->getCount() === $item->getCount()) and ($checkDamage === false or $this->getDamage() === $item->getDamage()) and ($checkCompound === false or $this->getCompoundTag() === $item->getCompoundTag());
 	}
 
 	public final function deepEquals(Item $item, bool $checkDamage = true, bool $checkCompound = true, bool $checkCount = false) : bool{
@@ -992,7 +983,6 @@ class Item implements ItemIds, \JsonSerializable{
 	 * @param int $slot optional, the inventory slot of the item
 	 * @param string $tagName optional, the tag name
 	 *
-	 * @return CompoundTag
 	 */
 	public function nbtSerialize(int $slot = -1, string $tagName = "") : CompoundTag{
 		$tag = new CompoundTag($tagName, [
@@ -1005,7 +995,7 @@ class Item implements ItemIds, \JsonSerializable{
 			$tag->tag = clone $this->getNamedTag();
 			$tag->tag->setName("tag");
 		}
-		
+
 		if($slot !== -1){
 			$tag->Slot = new ByteTag("Slot", $slot);
 		}
@@ -1016,9 +1006,7 @@ class Item implements ItemIds, \JsonSerializable{
 	/**
 	 * Deserializes an Item from an NBT CompoundTag
 	 *
-	 * @param CompoundTag $tag
 	 *
-	 * @return Item
 	 */
 	public static function nbtDeserialize(CompoundTag $tag) : Item{
 		if(!isset($tag->id) or !isset($tag->Count)){

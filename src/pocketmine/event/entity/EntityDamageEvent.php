@@ -26,9 +26,15 @@ use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\item\Armor;
-use pocketmine\Player;
-use pocketmine\item\Item;
 use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\Item;
+use pocketmine\Player;
+use function array_rand;
+use function ceil;
+use function is_array;
+use function max;
+use function min;
+use function mt_rand;
 
 class EntityDamageEvent extends EntityEvent implements Cancellable{
 	public static $handlerList = null;
@@ -59,7 +65,6 @@ class EntityDamageEvent extends EntityEvent implements Cancellable{
 
 	const CAUSE_LIGHTNING = 16;
 
-
 	private $cause;
 	private $EPF = 0;
 	private $fireProtectL = 0;
@@ -72,9 +77,7 @@ class EntityDamageEvent extends EntityEvent implements Cancellable{
 	private $thornsArmor;
 	private $thornsDamage = 0;
 
-
 	/**
-	 * @param Entity    $entity
 	 * @param int       $cause
 	 * @param int|int[] $damage
 	 *

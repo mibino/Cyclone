@@ -21,6 +21,8 @@
 
 namespace pocketmine\event;
 
+use function count;
+
 class TranslationContainer extends TextContainer{
 
 	/** @var string[] $params */

@@ -25,6 +25,12 @@ use pocketmine\command\defaults\TimingsCommand;
 use pocketmine\entity\Living;
 use pocketmine\plugin\PluginManager;
 use pocketmine\Server;
+use function count;
+use function fwrite;
+use function microtime;
+use function round;
+use function spl_object_hash;
+use const PHP_EOL;
 
 class TimingsHandler{
 
@@ -45,7 +51,6 @@ class TimingsHandler{
 
 	/**
 	 * @param string         $name
-	 * @param TimingsHandler $parent
 	 */
 	public function __construct($name, TimingsHandler $parent = null){
 		$this->name = $name;

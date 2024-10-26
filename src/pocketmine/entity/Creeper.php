@@ -19,7 +19,6 @@
  *
  */
 
-
 namespace pocketmine\entity;
 
 use pocketmine\event\entity\CreeperPowerEvent;
@@ -35,7 +34,7 @@ class Creeper extends Monster{
 	const DATA_SWELL_DIRECTION = 21;
 
 	public $dropExp = [5, 5];
-	
+
 	public function getName() : string{
 		return "Creeper";
 	}

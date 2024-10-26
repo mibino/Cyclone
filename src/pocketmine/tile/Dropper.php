@@ -22,6 +22,7 @@
 namespace pocketmine\tile;
 
 use pocketmine\block\Block;
+use pocketmine\entity\Item as ItemEntity;
 use pocketmine\inventory\DropperInventory;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
@@ -29,16 +30,19 @@ use pocketmine\level\format\FullChunk;
 use pocketmine\level\particle\SmokeParticle;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NBT;
+use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\FloatTag;
-use pocketmine\nbt\tag\ShortTag;
-use pocketmine\entity\Item as ItemEntity;
 
-use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
+use pocketmine\nbt\tag\ShortTag;
 
 use pocketmine\nbt\tag\StringTag;
+use function count;
+use function is_array;
+use function lcg_value;
+use function mt_rand;
 
 class Dropper extends Spawnable implements InventoryHolder, Container, Nameable{
 
@@ -92,7 +96,6 @@ class Dropper extends Spawnable implements InventoryHolder, Container, Nameable{
 	}
 
 	/**
-	 * @param $index
 	 *
 	 * @return int
 	 */
@@ -126,7 +129,6 @@ class Dropper extends Spawnable implements InventoryHolder, Container, Nameable{
 	 * This method should not be used by plugins, use the Inventory
 	 *
 	 * @param int  $index
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */

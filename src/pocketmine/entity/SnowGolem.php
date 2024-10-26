@@ -30,16 +30,16 @@ class SnowGolem extends Animal{
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 1.8;
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(4);
 		parent::initEntity();
 	}
-	
+
 	public function getName() {
 		return "Snow Golem";
 	}
-	
+
 	public function spawnTo(Player $player) {
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

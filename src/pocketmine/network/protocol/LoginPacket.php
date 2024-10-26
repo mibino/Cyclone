@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,14 +15,28 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
 namespace pocketmine\network\protocol;
 
-#include <rules/DataPacket.h>
+use function base64_decode;
+use function chr;
+use function explode;
+use function extension_loaded;
+use function json_decode;
+use function openssl_verify;
+use function ord;
+use function str_repeat;
+use function strtr;
+use function substr;
+use function time;
+use function wordwrap;
+use function zlib_decode;
+use const OPENSSL_ALGO_SHA384;
 
+#include <rules/DataPacket.h>
 
 class LoginPacket extends DataPacket{
 	const NETWORK_ID = Info::LOGIN_PACKET;
@@ -30,7 +44,6 @@ class LoginPacket extends DataPacket{
 	const MOJANG_PUBKEY = "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE8ELkixyLcwlZryUQcu1TvPOmI2B7vX83ndnWRUaXm74wFfa5f/lwQNTfrLVHa2PmenpGI6JhIMUJaWZrjmMj90NoKNFSNBuKdm8rYiXsfaz3K36x/1U26HpG0ZxK/V1V";
 
 	const EDITION_POCKET = 0;
-
 
 	public $username;
 	public $protocol;
@@ -110,7 +123,7 @@ class LoginPacket extends DataPacket{
 	public function encode(){
 
 	}
-	
+
 	public function decodeToken($token, $key){
 		$tokens = explode(".", $token);
 		list($headB64, $payloadB64, $sigB64) = $tokens;
@@ -139,7 +152,7 @@ class LoginPacket extends DataPacket{
 			$verified = false;
 		}
 
-		return array($verified, json_decode(base64_decode($payloadB64), true));
+		return [$verified, json_decode(base64_decode($payloadB64), true)];
 	}
 
 }

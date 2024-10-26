@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,14 +15,45 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
 namespace pocketmine\utils;
+
 use pocketmine\scheduler\FileWriteTask;
 use pocketmine\Server;
-
+use function array_change_key_case;
+use function array_keys;
+use function array_pop;
+use function array_shift;
+use function basename;
+use function count;
+use function date;
+use function explode;
+use function file_exists;
+use function file_get_contents;
+use function file_put_contents;
+use function implode;
+use function is_array;
+use function is_bool;
+use function json_decode;
+use function json_encode;
+use function preg_match_all;
+use function preg_replace;
+use function serialize;
+use function str_replace;
+use function strlen;
+use function strtolower;
+use function substr;
+use function trim;
+use function unserialize;
+use function yaml_emit;
+use function yaml_parse;
+use const CASE_LOWER;
+use const JSON_BIGINT_AS_STRING;
+use const JSON_PRETTY_PRINT;
+use const YAML_UTF8_ENCODING;
 
 /**
  * Class Config
@@ -92,7 +123,6 @@ class Config{
 	}
 
 	/**
-	 * @param $str
 	 *
 	 * @return mixed
 	 */
@@ -101,7 +131,6 @@ class Config{
 	}
 
 	/**
-	 * @param       $file
 	 * @param int   $type
 	 * @param array $default
 	 *
@@ -221,7 +250,6 @@ class Config{
 	}
 
 	/**
-	 * @param $k
 	 *
 	 * @return boolean|mixed
 	 */
@@ -229,16 +257,11 @@ class Config{
 		return $this->get($k);
 	}
 
-	/**
-	 * @param $k
-	 * @param $v
-	 */
 	public function __set($k, $v){
 		$this->set($k, $v);
 	}
 
 	/**
-	 * @param $k
 	 *
 	 * @return boolean
 	 */
@@ -246,17 +269,10 @@ class Config{
 		return $this->exists($k);
 	}
 
-	/**
-	 * @param $k
-	 */
 	public function __unset($k){
 		$this->remove($k);
 	}
 
-	/**
-	 * @param $key
-	 * @param $value
-	 */
 	public function setNested($key, $value){
 		$vars = explode(".", $key);
 		$base = array_shift($vars);
@@ -265,14 +281,14 @@ class Config{
 			$this->config[$base] = [];
 		}
 
-		$base =& $this->config[$base];
+		$base = &$this->config[$base];
 
 		while(count($vars) > 0){
 			$baseKey = array_shift($vars);
 			if(!isset($base[$baseKey])){
 				$base[$baseKey] = [];
 			}
-			$base =& $base[$baseKey];
+			$base = &$base[$baseKey];
 		}
 
 		$base = $value;
@@ -280,7 +296,6 @@ class Config{
 	}
 
 	/**
-	 * @param       $key
 	 * @param mixed $default
 	 *
 	 * @return mixed
@@ -311,7 +326,6 @@ class Config{
 	}
 
 	/**
-	 * @param       $k
 	 * @param mixed $default
 	 *
 	 * @return boolean|mixed
@@ -329,7 +343,7 @@ class Config{
 		foreach($this->nestedCache as $nestedKey => $nvalue){
 			if(substr($nestedKey, 0, strlen($k) + 1) === ($k . ".")){
 				unset($this->nestedCache[$nestedKey]);
-  			}
+			}
 		}
 	}
 
@@ -341,7 +355,6 @@ class Config{
 	}
 
 	/**
-	 * @param      $k
 	 * @param bool $lowercase If set, searches Config in single-case / lowercase.
 	 *
 	 * @return boolean
@@ -356,9 +369,6 @@ class Config{
 		}
 	}
 
-	/**
-	 * @param $k
-	 */
 	public function remove($k){
 		unset($this->config[$k]);
 	}
@@ -372,16 +382,11 @@ class Config{
 		return ($keys === true ? array_keys($this->config) : $this->config);
 	}
 
-	/**
-	 * @param array $defaults
-	 */
 	public function setDefaults(array $defaults){
 		$this->fillDefaults($defaults, $this->config);
 	}
 
 	/**
-	 * @param $default
-	 * @param $data
 	 *
 	 * @return integer
 	 */
@@ -402,9 +407,6 @@ class Config{
 		return $changed;
 	}
 
-	/**
-	 * @param $content
-	 */
 	private function parseList($content){
 		foreach(explode("\n", trim(str_replace("\r\n", "\n", $content))) as $v){
 			$v = trim($v);
@@ -432,9 +434,6 @@ class Config{
 		return $content;
 	}
 
-	/**
-	 * @param $content
-	 */
 	private function parseProperties($content){
 		if(preg_match_all('/([a-zA-Z0-9\-_\.]*)=([^\r\n]*)/u', $content, $matches) > 0){ //false or 0 matches
 			foreach($matches[1] as $i => $k){

@@ -24,6 +24,10 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use function abs;
+use function count;
+use function in_array;
+use function is_array;
 
 class Rail extends Flowable{
 
@@ -37,7 +41,6 @@ class Rail extends Flowable{
 	const CURVED_SOUTH_WEST = 6;
 	const CURVED_SOUTH_EAST = 9;
 	const CURVED_NORTH_EAST = 8;
-
 
 	protected $id = self::RAIL;
 	/** @var Vector3 [] */
@@ -56,7 +59,6 @@ class Rail extends Flowable{
 	}
 
 	/**
-	 * @param Rail $block
 	 * @return bool
 	 */
 	public function canConnect(Rail $block){
@@ -171,7 +173,6 @@ class Rail extends Flowable{
 	}
 
 	/**
-	 * @param Rail $rail
 	 * @return array
 	 */
 	public static function check(Rail $rail){

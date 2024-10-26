@@ -44,8 +44,6 @@ class EntityExplodeEvent extends EntityEvent implements Cancellable{
 	protected $yield;
 
 	/**
-	 * @param Entity   $entity
-	 * @param Position $position
 	 * @param Block[]  $blocks
 	 * @param float    $yield
 	 */

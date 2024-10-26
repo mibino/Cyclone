@@ -22,11 +22,29 @@
 /**
  * Various Utilities used around the code
  */
- 
+
 namespace pocketmine\utils;
 
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
+use function assert;
+use function bcadd;
+use function bccomp;
+use function bcdiv;
+use function bcmod;
+use function bcmul;
+use function chr;
+use function count;
+use function ord;
+use function pack;
+use function preg_replace;
+use function sprintf;
+use function strlen;
+use function strrev;
+use function substr;
+use function unpack;
+use const PHP_INT_MAX;
+use const PHP_INT_SIZE;
 
 class Binary{
 	const BIG_ENDIAN = 0x00;
@@ -39,7 +57,6 @@ class Binary{
 	/**
 	 * Reads a 3-byte big-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return mixed
 	 */
@@ -51,7 +68,6 @@ class Binary{
 	/**
 	 * Writes a 3-byte big-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -62,7 +78,6 @@ class Binary{
 	/**
 	 * Reads a 3-byte little-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return mixed
 	 */
@@ -74,7 +89,6 @@ class Binary{
 	/**
 	 * Writes a 3-byte little-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -85,7 +99,6 @@ class Binary{
 	/**
 	 * Writes a coded metadata string
 	 *
-	 * @param array $data
 	 *
 	 * @return string
 	 */
@@ -134,7 +147,6 @@ class Binary{
 	/**
 	 * Reads a metadata coded string
 	 *
-	 * @param      $value
 	 * @param bool $types
 	 *
 	 * @return array
@@ -198,7 +210,6 @@ class Binary{
 	/**
 	 * Reads a byte boolean
 	 *
-	 * @param $b
 	 *
 	 * @return bool
 	 */
@@ -209,7 +220,6 @@ class Binary{
 	/**
 	 * Writes a byte boolean
 	 *
-	 * @param $b
 	 *
 	 * @return bool|string
 	 */
@@ -243,7 +253,6 @@ class Binary{
 	/**
 	 * Writes an unsigned/signed byte
 	 *
-	 * @param $c
 	 *
 	 * @return string
 	 */
@@ -254,7 +263,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit unsigned big-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return int
 	 */
@@ -266,7 +274,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit signed big-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return int
 	 */
@@ -282,7 +289,6 @@ class Binary{
 	/**
 	 * Writes a 16-bit signed/unsigned big-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -293,7 +299,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit unsigned little-endian number
 	 *
-	 * @param      $str
 	 *
 	 * @return int
 	 */
@@ -305,7 +310,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit signed little-endian number
 	 *
-	 * @param      $str
 	 *
 	 * @return int
 	 */
@@ -321,7 +325,6 @@ class Binary{
 	/**
 	 * Writes a 16-bit signed/unsigned little-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */

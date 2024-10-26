@@ -21,11 +21,12 @@
 
 namespace pocketmine;
 
-
-use pocketmine\metadata\MetadataValue;
 use pocketmine\metadata\Metadatable;
+use pocketmine\metadata\MetadataValue;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\plugin\Plugin;
+use function file_exists;
+use function strtolower;
 
 class OfflinePlayer implements IPlayer, Metadatable{
 
@@ -34,7 +35,6 @@ class OfflinePlayer implements IPlayer, Metadatable{
 	private $namedtag;
 
 	/**
-	 * @param Server $server
 	 * @param string $name
 	 */
 	public function __construct(Server $server, $name){
@@ -130,6 +130,5 @@ class OfflinePlayer implements IPlayer, Metadatable{
 	public function removeMetadata($metadataKey, Plugin $plugin){
 		$this->server->getPlayerMetadata()->removeMetadata($this, $metadataKey, $plugin);
 	}
-
 
 }

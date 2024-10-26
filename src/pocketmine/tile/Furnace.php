@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -32,12 +32,14 @@ use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\NBT;
 
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\nbt\tag\IntTag;
-use pocketmine\network\Network;
 use pocketmine\network\protocol\ContainerSetDataPacket;
+use function ceil;
+use function floor;
+use function microtime;
 
 class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	/** @var FurnaceInventory */
@@ -113,7 +115,6 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	}
 
 	/**
-	 * @param $index
 	 *
 	 * @return int
 	 */
@@ -147,7 +148,6 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	 * This method should not be used by plugins, use the Inventory
 	 *
 	 * @param int  $index
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */
@@ -284,7 +284,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 
 		return $ret;
 	}
-	
+
 	public function getSpawnCompound(){
 		$nbt = new CompoundTag("", [
 			new StringTag("id", Tile::FURNACE),
@@ -295,7 +295,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 			new ShortTag("CookTime", $this->namedtag["CookTime"]),
 			//new ShortTag("BurnDuration", $this->namedtag["BurnTicks"])
 		]);
-		
+
 		if($this->hasName()){
 			$nbt->CustomName = $this->namedtag->CustomName;
 		}

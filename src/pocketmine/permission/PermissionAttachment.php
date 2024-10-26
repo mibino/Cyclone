@@ -40,8 +40,6 @@ class PermissionAttachment{
 	private $plugin;
 
 	/**
-	 * @param Plugin      $plugin
-	 * @param Permissible $permissible
 	 *
 	 * @throws PluginException
 	 */
@@ -61,9 +59,6 @@ class PermissionAttachment{
 		return $this->plugin;
 	}
 
-	/**
-	 * @param PermissionRemovedExecutor $ex
-	 */
 	public function setRemovalCallback(PermissionRemovedExecutor $ex){
 		$this->removed = $ex;
 	}

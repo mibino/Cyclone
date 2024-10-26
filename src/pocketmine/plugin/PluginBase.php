@@ -26,6 +26,20 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\Server;
 use pocketmine\utils\Config;
+use function dirname;
+use function fclose;
+use function file_exists;
+use function fopen;
+use function is_dir;
+use function mkdir;
+use function rtrim;
+use function str_replace;
+use function stream_copy_to_stream;
+use function stream_get_contents;
+use function strtolower;
+use function substr;
+use function trim;
+use function yaml_parse;
 
 abstract class PluginBase implements Plugin{
 
@@ -151,10 +165,7 @@ abstract class PluginBase implements Plugin{
 	}
 
 	/**
-	 * @param CommandSender $sender
-	 * @param Command       $command
 	 * @param string        $label
-	 * @param array         $args
 	 *
 	 * @return bool
 	 */

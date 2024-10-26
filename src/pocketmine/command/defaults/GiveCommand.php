@@ -29,6 +29,9 @@ use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function array_slice;
+use function count;
+use function implode;
 
 class GiveCommand extends VanillaCommand{
 

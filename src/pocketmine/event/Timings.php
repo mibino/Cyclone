@@ -21,7 +21,6 @@
 
 namespace pocketmine\event;
 
-
 use pocketmine\entity\Entity;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\Player;
@@ -29,6 +28,7 @@ use pocketmine\plugin\PluginManager;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\scheduler\TaskHandler;
 use pocketmine\tile\Tile;
+use function dechex;
 
 abstract class Timings{
 
@@ -163,8 +163,6 @@ abstract class Timings{
 	}
 
 	/**
-	 * @param TaskHandler $task
-	 * @param             $period
 	 *
 	 * @return TimingsHandler
 	 */
@@ -196,7 +194,6 @@ abstract class Timings{
 	}
 
 	/**
-	 * @param Entity $entity
 	 *
 	 * @return TimingsHandler
 	 */
@@ -214,7 +211,6 @@ abstract class Timings{
 	}
 
 	/**
-	 * @param Tile $tile
 	 *
 	 * @return TimingsHandler
 	 */
@@ -228,7 +224,6 @@ abstract class Timings{
 	}
 
 	/**
-	 * @param DataPacket $pk
 	 *
 	 * @return TimingsHandler
 	 */
@@ -241,9 +236,7 @@ abstract class Timings{
 		return self::$packetReceiveTimingMap[$pk::NETWORK_ID];
 	}
 
-
 	/**
-	 * @param DataPacket $pk
 	 *
 	 * @return TimingsHandler
 	 */

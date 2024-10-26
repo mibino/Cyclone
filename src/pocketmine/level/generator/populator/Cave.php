@@ -27,6 +27,9 @@ use pocketmine\math\Math;
 use pocketmine\math\Vector3;
 use pocketmine\math\VectorMath;
 use pocketmine\utils\Random;
+use function floor;
+use function pi;
+use function sin;
 
 class Cave extends Populator{
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){

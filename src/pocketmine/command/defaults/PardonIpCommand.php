@@ -24,7 +24,8 @@ namespace pocketmine\command\defaults;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
-
+use function count;
+use function preg_match;
 
 class PardonIpCommand extends VanillaCommand{
 

@@ -25,6 +25,12 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\TextFormat;
+use function count;
+use function intval;
+use function ord;
+use function strlen;
+use function strpos;
+use function substr;
 
 class FormattedCommandAlias extends Command{
 	private $formatStrings = [];
@@ -70,7 +76,6 @@ class FormattedCommandAlias extends Command{
 
 	/**
 	 * @param string $formatString
-	 * @param array  $args
 	 *
 	 * @return string
 	 * @throws \InvalidArgumentException

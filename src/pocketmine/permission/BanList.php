@@ -23,6 +23,14 @@ namespace pocketmine\permission;
 
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
+use function fclose;
+use function fgets;
+use function fopen;
+use function fwrite;
+use function is_resource;
+use function strftime;
+use function strtolower;
+use function time;
 
 class BanList{
 
@@ -81,9 +89,6 @@ class BanList{
 		}
 	}
 
-	/**
-	 * @param BanEntry $entry
-	 */
 	public function add(BanEntry $entry){
 		$this->list[$entry->getName()] = $entry;
 		$this->save();

@@ -112,9 +112,9 @@ use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\DoubleTag;
-use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\LongTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
@@ -127,7 +127,6 @@ use pocketmine\network\protocol\PlayerListPacket;
 use pocketmine\network\query\QueryHandler;
 use pocketmine\network\RakLibInterface;
 use pocketmine\network\rcon\RCON;
-use pocketmine\network\SourceInterface;
 use pocketmine\network\upnp\UPnP;
 use pocketmine\permission\BanList;
 use pocketmine\permission\DefaultPermissions;
@@ -167,6 +166,70 @@ use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
+use function array_key_exists;
+use function array_shift;
+use function array_sum;
+use function asort;
+use function base64_encode;
+use function bccomp;
+use function class_exists;
+use function cleanPath;
+use function cli_set_process_title;
+use function count;
+use function define;
+use function explode;
+use function extension_loaded;
+use function file_exists;
+use function file_get_contents;
+use function file_put_contents;
+use function floor;
+use function function_exists;
+use function gc_collect_cycles;
+use function getenv;
+use function getmypid;
+use function getopt;
+use function getTrace;
+use function implode;
+use function ini_set;
+use function is_array;
+use function is_bool;
+use function is_numeric;
+use function is_string;
+use function is_subclass_of;
+use function json_decode;
+use function kill;
+use function max;
+use function microtime;
+use function min;
+use function mkdir;
+use function pcntl_signal;
+use function pcntl_signal_dispatch;
+use function random_bytes;
+use function realpath;
+use function register_shutdown_function;
+use function rename;
+use function round;
+use function spl_object_hash;
+use function str_replace;
+use function stripos;
+use function strlen;
+use function strpos;
+use function strtolower;
+use function substr;
+use function time;
+use function time_sleep_until;
+use function touch;
+use function trim;
+use function zlib_encode;
+use const DIRECTORY_SEPARATOR;
+use const E_ERROR;
+use const E_USER_ERROR;
+use const E_USER_WARNING;
+use const E_WARNING;
+use const PHP_INT_MAX;
+use const PHP_INT_SIZE;
+use const PHP_VERSION;
+use const ZLIB_ENCODING_DEFLATE;
 
 /**
  * The class that manages everything
@@ -192,7 +255,7 @@ class Server{
 	private $banByIP = null;
 
 	/** @var BanList */
-	private $banByCID = \null;
+	private $banByCID = null;
 
 	/** @var Config */
 	private $operators = null;
@@ -366,9 +429,6 @@ class Server{
 
 	/** @var CraftingDataPacket */
 	private $recipeList = null;
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return "Cyclone";
 	}
@@ -443,7 +503,6 @@ class Server{
 	public function getApiVersion(){
 		return \pocketmine\API_VERSION;
 	}
-
 
 	/**
 	 * @return string
@@ -901,7 +960,6 @@ class Server{
 
 	/**
 	 * @param string   $name
-	 * @param CompoundTag $nbtTag
 	 * @param bool     $async
 	 */
 	public function saveOfflinePlayerData($name, CompoundTag $nbtTag, $async = false){
@@ -923,7 +981,6 @@ class Server{
 	}
 
 	/**
-	 * @param string $name
 	 *
 	 * @return Player
 	 */
@@ -948,7 +1005,6 @@ class Server{
 	}
 
 	/**
-	 * @param string $name
 	 *
 	 * @return Player
 	 */
@@ -983,9 +1039,6 @@ class Server{
 		return $matchedPlayers;
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function removePlayer(Player $player){
 		if(isset($this->identifiers[$hash = spl_object_hash($player)])){
 			$identifier = $this->identifiers[$hash];
@@ -1053,7 +1106,6 @@ class Server{
 	}
 
 	/**
-	 * @param $name
 	 *
 	 * @return Level
 	 */
@@ -1068,7 +1120,6 @@ class Server{
 	}
 
 	/**
-	 * @param Level $level
 	 * @param bool  $forceUnload
 	 *
 	 * @return bool
@@ -1484,9 +1535,6 @@ class Server{
 		return $this->dataPath . "crashdumps/";
 	}
 
-	/**
-	 * @return Server
-	 */
 	public static function getInstance() : Server{
 		return self::$instance;
 	}
@@ -1548,10 +1596,9 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 	}
-	
+
 	/**
 	 * @deprecated Use SynapsePM plugin instead
-	 * @return bool
 	 */
 	public function isSynapseEnabled() : bool {
 		return $this->getSynapse() !== null;
@@ -1592,8 +1639,6 @@ class Server{
 	}
 
 	/**
-	 * @param \ClassLoader    $autoloader
-	 * @param \ThreadedLogger $logger
 	 * @param string          $filePath
 	 * @param string          $dataPath
 	 * @param string          $pluginPath
@@ -1601,7 +1646,7 @@ class Server{
 	 */
 	public function __construct(\ClassLoader $autoloader, \ThreadedLogger $logger, $filePath, $dataPath, $pluginPath, $defaultLang = "unknown"){
 		self::$instance = $this;
-		self::$sleeper = new \Threaded;
+		self::$sleeper = new \Threaded();
 		$this->autoloader = $autoloader;
 		$this->logger = $logger;
 		$this->filePath = $filePath;
@@ -1848,7 +1893,6 @@ class Server{
 				LevelProviderManager::addProvider($this, LevelDB::class);
 			}
 
-
 			Generator::addGenerator(Flat::class, "flat");
 			Generator::addGenerator(Normal::class, "normal");
 			Generator::addGenerator(Normal::class, "default");
@@ -1893,7 +1937,6 @@ class Server{
 
 				$this->setDefaultLevel($this->getLevelByName($default));
 			}
-
 
 			$this->properties->save(true);
 
@@ -1952,7 +1995,6 @@ class Server{
 	 * @param string        $message
 	 * @param Player[]|null $recipients
 	 *
-	 * @return int
 	 */
 	public function broadcastMessage($message, $recipients = null) : int{
 		if(!is_array($recipients)){
@@ -1968,10 +2010,8 @@ class Server{
 	}
 
 	/**
-	 * @param string        $tip
 	 * @param Player[]|null $recipients
 	 *
-	 * @return int
 	 */
 	public function broadcastTip(string $tip, $recipients = null) : int{
 		if(!is_array($recipients)){
@@ -1994,10 +2034,8 @@ class Server{
 	}
 
 	/**
-	 * @param string        $popup
 	 * @param Player[]|null $recipients
 	 *
-	 * @return int
 	 */
 	public function broadcastPopup(string $popup, $recipients = null) : int{
 		if(!is_array($recipients)){
@@ -2021,9 +2059,7 @@ class Server{
 
 	/**
 	 * @param string $message
-	 * @param string $permissions
 	 *
-	 * @return int
 	 */
 	public function broadcast($message, string $permissions) : int{
 		/** @var CommandSender[] $recipients */
@@ -2047,7 +2083,6 @@ class Server{
 	 * Broadcasts a Minecraft packet to a list of players
 	 *
 	 * @param Player[]   $players
-	 * @param DataPacket $packet
 	 */
 	public static function broadcastPacket(array $players, DataPacket $packet){
 		$packet->encode();
@@ -2117,10 +2152,6 @@ class Server{
 		}
 	}
 
-
-	/**
-	 * @param int $type
-	 */
 	public function enablePlugins(int $type){
 		foreach($this->pluginManager->getPlugins() as $plugin){
 			if(!$plugin->isEnabled() and $plugin->getDescription()->getOrder() === $type){
@@ -2134,9 +2165,6 @@ class Server{
 		}
 	}
 
-	/**
-	 * @param Plugin $plugin
-	 */
 	public function enablePlugin(Plugin $plugin){
 		$this->pluginManager->enablePlugin($plugin);
 	}
@@ -2159,7 +2187,6 @@ class Server{
 	/**
 	 * Executes a command from a CommandSender
 	 *
-	 * @param CommandSender $sender
 	 * @param string        $commandLine
 	 *
 	 * @return bool
@@ -2170,7 +2197,6 @@ class Server{
 		if($this->commandMap->dispatch($sender, $commandLine)){
 			return true;
 		}
-
 
 		$sender->sendMessage(new TranslationContainer(TextFormat::GOLD . "%commands.generic.notFound"));
 
@@ -2220,8 +2246,6 @@ class Server{
 
 	/**
 	 * Shutdowns the server correctly
-	 * @param bool   $restart
-	 * @param string $msg
 	 */
 	public function shutdown(bool $restart = false, string $msg = ""){
 		/*if($this->isRunning){
@@ -2321,7 +2345,6 @@ class Server{
 			$this->sendUsage(SendUsageTask::TYPE_OPEN);
 		}
 
-
 		if($this->getProperty("network.upnp-forwarding", false) == true){
 			$this->logger->info("[UPnP] Trying to port forward...");
 			UPnP::PortForward($this->getPort());
@@ -2413,7 +2436,6 @@ class Server{
 		}
 
 		$this->logger->emergency($this->getLanguage()->translateString("pocketmine.crash.submit", [$dump->getPath()]));
-
 
 		if($this->getProperty("auto-report.enabled", true) !== false){
 			$report = true;
@@ -2622,7 +2644,6 @@ class Server{
 		$this->uniquePlayers = [];
 	}
 
-
 	/**
 	 * @return BaseLang
 	 */
@@ -2697,9 +2718,7 @@ class Server{
 	}
 
 	/**
-	 * @param             $variable
 	 * @param null        $defaultValue
-	 * @param Config|null $cfg
 	 * @return bool|mixed|null
 	 */
 	public function getAdvancedProperty($variable, $defaultValue = null, Config $cfg = null){
@@ -2734,7 +2753,6 @@ class Server{
 			$this->logger->logException($e);
 		}
 	}
-
 
 	/**
 	 * Tries to execute a server tick

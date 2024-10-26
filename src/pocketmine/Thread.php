@@ -21,6 +21,9 @@
 
 namespace pocketmine;
 
+use function interface_exists;
+use const PTHREADS_INHERIT_ALL;
+
 /**
  * This class must be extended by all custom threading classes
  */

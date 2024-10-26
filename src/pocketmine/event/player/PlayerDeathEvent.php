@@ -35,7 +35,6 @@ class PlayerDeathEvent extends EntityDeathEvent{
 	private $keepExperience = false;
 
 	/**
-	 * @param Player               $entity
 	 * @param Item[]               $drops
 	 * @param string|TextContainer $deathMessage
 	 */

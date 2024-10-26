@@ -24,16 +24,26 @@ namespace pocketmine\level\format\mcregion;
 use pocketmine\level\format\generic\BaseFullChunk;
 use pocketmine\level\format\LevelProvider;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\ByteArrayTag;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\ListTag;
-use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\IntArrayTag;
+use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\LongTag;
 use pocketmine\Player;
 use pocketmine\utils\Binary;
 use pocketmine\utils\BinaryStream;
+use function array_fill;
+use function array_values;
+use function chr;
+use function count;
+use function ord;
+use function pack;
+use function str_repeat;
+use function substr;
+use function unpack;
+use const ZLIB_ENCODING_DEFLATE;
 
 class Chunk extends BaseFullChunk{
 
@@ -46,7 +56,7 @@ class Chunk extends BaseFullChunk{
 			$this->nbt = new CompoundTag("Level", []);
 			return;
 		}
-		
+
 		$this->nbt = $nbt;
 
 		if(isset($this->nbt->Entities) and $this->nbt->Entities instanceof ListTag){
@@ -294,7 +304,6 @@ class Chunk extends BaseFullChunk{
 
 	/**
 	 * @param string        $data
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */
@@ -314,7 +323,7 @@ class Chunk extends BaseFullChunk{
 			return null;
 		}
 	}
-	
+
 	public static function fromFastBinary($data, LevelProvider $provider = null){
 
 		try{
@@ -352,7 +361,7 @@ class Chunk extends BaseFullChunk{
 			return null;
 		}
 	}
-	
+
 	public function toFastBinary(){
 		return
 			Binary::writeInt($this->x) .
@@ -395,7 +404,6 @@ class Chunk extends BaseFullChunk{
 		$nbt->Entities = new ListTag("Entities", $entities);
 		$nbt->Entities->setTagType(NBT::TAG_Compound);
 
-
 		$tiles = [];
 		foreach($this->getTiles() as $tile){
 			$tile->saveNBT();
@@ -431,7 +439,6 @@ class Chunk extends BaseFullChunk{
 	/**
 	 * @param int           $chunkX
 	 * @param int           $chunkZ
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */

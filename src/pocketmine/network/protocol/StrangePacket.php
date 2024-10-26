@@ -17,6 +17,8 @@
 
 namespace pocketmine\network\protocol;
 
+use function explode;
+
 class StrangePacket extends DataPacket{
 	const NETWORK_ID = 0x1b;
 

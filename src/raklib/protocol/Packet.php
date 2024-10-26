@@ -17,6 +17,11 @@ namespace raklib\protocol;
 
 #ifndef COMPILE
 use raklib\Binary;
+use function chr;
+use function explode;
+use function ord;
+use function strlen;
+use function substr;
 #endif
 
 #include <rules/RakLibPacket.h>
@@ -76,7 +81,7 @@ abstract class Packet{
 	protected function getAddress(&$addr, &$port, &$version = null){
 		$version = $this->getByte();
 		if($version === 4){
-			$addr = ((~$this->getByte()) & 0xff) .".". ((~$this->getByte()) & 0xff) .".". ((~$this->getByte()) & 0xff) .".". ((~$this->getByte()) & 0xff);
+			$addr = ((~$this->getByte()) & 0xff) . "." . ((~$this->getByte()) & 0xff) . "." . ((~$this->getByte()) & 0xff) . "." . ((~$this->getByte()) & 0xff);
 			$port = $this->getShort(false);
 		}else{
 			//TODO: IPv6
@@ -119,7 +124,7 @@ abstract class Packet{
 		$this->putShort(strlen($v));
 		$this->put($v);
 	}
-	
+
 	protected function putAddress($addr, $port, $version = 4){
 		$this->putByte($version);
 		if($version === 4){

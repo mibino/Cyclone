@@ -25,6 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use function in_array;
 
 /*
  * This class is the power of all redstone blocks!
@@ -196,7 +197,6 @@ class RedstoneSource extends Flowable{
 
 		return false;
 	}
-
 
 	public function checkTorchOn(Block $pos, array $ignore = []){
 		$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP];

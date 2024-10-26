@@ -23,6 +23,7 @@ namespace pocketmine\event;
 
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\RegisteredListener;
+use function spl_object_hash;
 
 class HandlerList{
 
@@ -81,7 +82,6 @@ class HandlerList{
 	}
 
 	/**
-	 * @param RegisteredListener $listener
 	 *
 	 * @throws \Throwable
 	 */

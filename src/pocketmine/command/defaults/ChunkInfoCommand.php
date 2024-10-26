@@ -28,6 +28,7 @@ use pocketmine\level\Level;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function count;
 
 class ChunkInfoCommand extends VanillaCommand{
 	public function __construct($name){

@@ -35,6 +35,16 @@ use pocketmine\tile\Spawnable;
 
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\ChunkException;
+use function count;
+use function file_exists;
+use function file_put_contents;
+use function glob;
+use function is_dir;
+use function microtime;
+use function mkdir;
+use function pack;
+use function strpos;
+use function time;
 
 class McRegion extends BaseLevelProvider{
 
@@ -246,8 +256,6 @@ class McRegion extends BaseLevelProvider{
 	}
 
 	/**
-	 * @param $x
-	 * @param $z
 	 *
 	 * @return RegionLoader
 	 */
@@ -285,7 +293,6 @@ class McRegion extends BaseLevelProvider{
 
 		$chunk->setX($chunkX);
 		$chunk->setZ($chunkZ);
-
 
 		if(isset($this->chunks[$index = Level::chunkHash($chunkX, $chunkZ)]) and $this->chunks[$index] !== $chunk){
 			$this->unloadChunk($chunkX, $chunkZ, false);

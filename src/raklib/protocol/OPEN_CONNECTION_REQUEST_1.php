@@ -17,8 +17,10 @@ namespace raklib\protocol;
 
 #include <rules/RakLibPacket.h>
 
-
 use raklib\RakLib;
+use function chr;
+use function str_repeat;
+use function strlen;
 
 class OPEN_CONNECTION_REQUEST_1 extends Packet{
 	public static $ID = 0x05;

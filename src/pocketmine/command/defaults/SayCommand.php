@@ -26,6 +26,8 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function count;
+use function implode;
 
 class SayCommand extends VanillaCommand{
 

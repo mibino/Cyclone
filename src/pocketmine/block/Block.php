@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -26,8 +26,6 @@ namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
 
-
-use pocketmine\event\block\BlockBurnEvent;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\level\Level;
@@ -39,9 +37,10 @@ use pocketmine\metadata\Metadatable;
 use pocketmine\metadata\MetadataValue;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
+use function trigger_error;
+use const E_USER_NOTICE;
 
-
-class Block extends Position implements BlockIds, Metadatable{	
+class Block extends Position implements BlockIds, Metadatable{
 
 	/** @var \SplFixedArray */
 	public static $list = null;
@@ -169,7 +168,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::IRON_TRAPDOOR] = IronTrapdoor::class;
 
 			self::$list[self::STONE_BRICKS] = StoneBricks::class;
-			
+
 			self::$list[self::BROWN_MUSHROOM_BLOCK] = BrownMushroomBlock::class;
 			self::$list[self::RED_MUSHROOM_BLOCK] = RedMushroomBlock::class;
 
@@ -323,7 +322,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * @param int      $id
 	 * @param int      $meta
-	 * @param Position $pos
 	 *
 	 * @return Block
 	 */
@@ -365,9 +363,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Places the Block, using block space and block target, and side. Returns if the block has been placed.
 	 *
-	 * @param Item   $item
-	 * @param Block  $block
-	 * @param Block  $target
 	 * @param int    $face
 	 * @param float  $fx
 	 * @param float  $fy
@@ -383,7 +378,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Returns if the item can be broken with an specific Item
 	 *
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */
@@ -398,7 +392,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Do the actions needed so the block is broken with the Item
 	 *
-	 * @param Item $item
 	 *
 	 * @return mixed
 	 */
@@ -420,8 +413,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Do actions when activated by Item. Returns if it has done anything
 	 *
-	 * @param Item   $item
-	 * @param Player $player
 	 *
 	 * @return bool
 	 */
@@ -443,16 +434,10 @@ class Block extends Position implements BlockIds, Metadatable{
 		return $this->getHardness() * 5;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getBurnChance() : int{
 		return 0;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getBurnAbility() : int{
 		return 0;
 	}
@@ -461,7 +446,7 @@ class Block extends Position implements BlockIds, Metadatable{
 		if($this->isSolid()){
 			return true;
 		}else{
-			if($this instanceof Stair and ($this->getDamage() &4) == 4){
+			if($this instanceof Stair and ($this->getDamage() & 4) == 4){
 				return true;
 			}elseif($this instanceof Slab and ($this->getDamage() & 8) == 8){
 				return true;
@@ -547,7 +532,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * AKA: Block->isActivable
 	 *
-	 * @return bool
 	 */
 	public function canBeActivated() : bool{
 		return false;
@@ -573,9 +557,6 @@ class Block extends Position implements BlockIds, Metadatable{
 		return false;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return "Unknown";
 	}
@@ -608,7 +589,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Sets the block position to a new Position object
 	 *
-	 * @param Position $v
 	 */
 	final public function position(Position $v){
 		$this->x = (int) $v->x;
@@ -621,9 +601,7 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Returns an array of Item objects to be dropped
 	 *
-	 * @param Item $item
 	 *
-	 * @return array
 	 */
 	public function getDrops(Item $item) : array{
 		if(!isset(self::$list[$this->getId()])){ //Unknown blocks
@@ -638,7 +616,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Returns the seconds that this block takes to be broken using an specific Item
 	 *
-	 * @param Item $item
 	 *
 	 * @return float
 	 */
@@ -711,7 +688,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Checks for collision against an AxisAlignedBB
 	 *
-	 * @param AxisAlignedBB $bb
 	 *
 	 * @return bool
 	 */
@@ -721,9 +697,6 @@ class Block extends Position implements BlockIds, Metadatable{
 		return $bb2 !== null and $bb->intersectsWith($bb2);
 	}
 
-	/**
-	 * @param Entity $entity
-	 */
 	public function onEntityCollide(Entity $entity){
 
 	}
@@ -753,8 +726,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	}
 
 	/**
-	 * @param Vector3 $pos1
-	 * @param Vector3 $pos2
 	 *
 	 * @return MovingObjectPosition
 	 */

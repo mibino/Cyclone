@@ -23,6 +23,8 @@ namespace pocketmine\scheduler;
 
 use pocketmine\event\Timings;
 use pocketmine\Server;
+use function count;
+use function mt_rand;
 
 class AsyncPool{
 

@@ -24,10 +24,36 @@ namespace pocketmine\level\format\mcregion;
 use pocketmine\level\format\FullChunk;
 use pocketmine\level\format\LevelProvider;
 
-
 use pocketmine\utils\Binary;
 use pocketmine\utils\ChunkException;
 use pocketmine\utils\MainLogger;
+use function ceil;
+use function chr;
+use function count;
+use function fclose;
+use function fgetc;
+use function file_exists;
+use function fopen;
+use function fread;
+use function fseek;
+use function ftruncate;
+use function fwrite;
+use function is_resource;
+use function ksort;
+use function ord;
+use function pack;
+use function str_pad;
+use function stream_set_read_buffer;
+use function stream_set_write_buffer;
+use function strlen;
+use function substr;
+use function time;
+use function touch;
+use function unpack;
+use function zlib_decode;
+use function zlib_encode;
+use const STR_PAD_RIGHT;
+use const ZLIB_ENCODING_DEFLATE;
 
 class RegionLoader{
 	const VERSION = 1;
@@ -133,7 +159,7 @@ class RegionLoader{
 	protected function saveChunk($x, $z, $chunkData){
 		$length = strlen($chunkData) + 1;
 		if($length + 4 > self::MAX_SECTOR_LENGTH){
-			throw new ChunkException("Chunk is too big! ".($length + 4)." > ".self::MAX_SECTOR_LENGTH);
+			throw new ChunkException("Chunk is too big! " . ($length + 4) . " > " . self::MAX_SECTOR_LENGTH);
 		}
 		$sectors = (int) ceil(($length + 4) / 4096);
 		$index = self::getChunkOffset($x, $z);

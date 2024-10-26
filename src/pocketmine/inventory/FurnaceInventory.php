@@ -21,7 +21,6 @@
 
 namespace pocketmine\inventory;
 
-
 use pocketmine\item\Item;
 use pocketmine\tile\Furnace;
 
@@ -64,7 +63,6 @@ class FurnaceInventory extends ContainerInventory{
 	}
 
 	/**
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */
@@ -73,7 +71,6 @@ class FurnaceInventory extends ContainerInventory{
 	}
 
 	/**
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */
@@ -82,7 +79,6 @@ class FurnaceInventory extends ContainerInventory{
 	}
 
 	/**
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */

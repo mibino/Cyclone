@@ -23,6 +23,7 @@ namespace pocketmine\level\format\generic;
 
 use pocketmine\level\format\ChunkSection;
 use pocketmine\utils\ChunkException;
+use function str_repeat;
 
 /**
  * Stub used to detect empty chunks

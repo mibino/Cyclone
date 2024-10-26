@@ -23,17 +23,18 @@ namespace pocketmine\tile;
 
 use pocketmine\inventory\BrewingInventory;
 use pocketmine\inventory\InventoryHolder;
-use pocketmine\item\Item;
 use pocketmine\item\Fish;
+use pocketmine\item\Item;
 use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\nbt\tag\IntTag;
 use pocketmine\network\protocol\ContainerSetDataPacket;
 use pocketmine\Server;
+use function microtime;
 
 class BrewingStand extends Spawnable implements InventoryHolder, Container, Nameable{
 	const MAX_BREW_TIME = 400;
@@ -124,7 +125,6 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
 	}
 
 	/**
-	 * @param $index
 	 *
 	 * @return int
 	 */
@@ -158,7 +158,6 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
 	 * This method should not be used by plugins, use the Inventory
 	 *
 	 * @param int  $index
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */

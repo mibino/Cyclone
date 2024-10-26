@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,14 +15,13 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
-
 
 class AdventureSettingsPacket extends DataPacket{
 	const NETWORK_ID = Info::ADVENTURE_SETTINGS_PACKET;
@@ -65,30 +64,30 @@ class AdventureSettingsPacket extends DataPacket{
 		$this->userPermission = $this->getUnsignedVarInt();
 
 		$this->worldImmutable = (bool) ($this->flags & 1);
-		$this->noPvp          = (bool) ($this->flags & (1 << 1));
-		$this->noPvm          = (bool) ($this->flags & (1 << 2));
-		$this->noMvp          = (bool) ($this->flags & (1 << 3));
+		$this->noPvp = (bool) ($this->flags & (1 << 1));
+		$this->noPvm = (bool) ($this->flags & (1 << 2));
+		$this->noMvp = (bool) ($this->flags & (1 << 3));
 
-		$this->autoJump       = (bool) ($this->flags & (1 << 5));
-		$this->allowFlight    = (bool) ($this->flags & (1 << 6));
-		$this->noClip         = (bool) ($this->flags & (1 << 7));
+		$this->autoJump = (bool) ($this->flags & (1 << 5));
+		$this->allowFlight = (bool) ($this->flags & (1 << 6));
+		$this->noClip = (bool) ($this->flags & (1 << 7));
 
-		$this->isFlying       = (bool) ($this->flags & (1 << 9));
+		$this->isFlying = (bool) ($this->flags & (1 << 9));
 	}
 
 	public function encode(){
 		$this->reset();
 
 		$this->flags |= ((int) $this->worldImmutable);
-		$this->flags |= ((int) $this->noPvp)       << 1;
-		$this->flags |= ((int) $this->noPvm)       << 2;
-		$this->flags |= ((int) $this->noMvp)       << 3;
+		$this->flags |= ((int) $this->noPvp) << 1;
+		$this->flags |= ((int) $this->noPvm) << 2;
+		$this->flags |= ((int) $this->noMvp) << 3;
 
-		$this->flags |= ((int) $this->autoJump)    << 5;
+		$this->flags |= ((int) $this->autoJump) << 5;
 		$this->flags |= ((int) $this->allowFlight) << 6;
-		$this->flags |= ((int) $this->noClip)      << 7;
+		$this->flags |= ((int) $this->noClip) << 7;
 
-		$this->flags |= ((int) $this->isFlying)    << 9;
+		$this->flags |= ((int) $this->isFlying) << 9;
 
 		$this->putUnsignedVarInt($this->flags);
 		$this->putUnsignedVarInt($this->userPermission);

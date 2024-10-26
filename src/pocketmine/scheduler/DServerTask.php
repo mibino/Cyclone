@@ -6,6 +6,18 @@
 namespace pocketmine\scheduler;
 
 use pocketmine\Server;
+use function chr;
+use function explode;
+use function fclose;
+use function fread;
+use function fwrite;
+use function ord;
+use function pack;
+use function rtrim;
+use function stream_set_timeout;
+use function stream_socket_client;
+use function substr;
+use function unpack;
 
 class DServerTask extends AsyncTask{
 
@@ -27,7 +39,6 @@ class DServerTask extends AsyncTask{
 		}
 		$this->re = (array) $re;
 	}
-
 
 	public function getInfo($ds, $time = 1){
 		$tmp = explode(":", $ds);

@@ -45,9 +45,6 @@ interface FullChunk{
 	 */
 	public function getProvider();
 
-	/**
-	 * @param LevelProvider $provider
-	 */
 	public function setProvider(LevelProvider $provider);
 
 	/**
@@ -235,24 +232,12 @@ interface FullChunk{
 
 	public function setGenerated($value = 1);
 
-	/**
-	 * @param Entity $entity
-	 */
 	public function addEntity(Entity $entity);
 
-	/**
-	 * @param Entity $entity
-	 */
 	public function removeEntity(Entity $entity);
 
-	/**
-	 * @param Tile $tile
-	 */
 	public function addTile(Tile $tile);
 
-	/**
-	 * @param Tile $tile
-	 */
 	public function removeTile(Tile $tile);
 
 	/**
@@ -337,7 +322,6 @@ interface FullChunk{
 
 	/**
 	 * @param string        $data
-	 * @param LevelProvider $provider
 	 *
 	 * @return FullChunk
 	 */
@@ -345,7 +329,6 @@ interface FullChunk{
 
 	/**
 	 * @param string        $data
-	 * @param LevelProvider $provider
 	 *
 	 * @return FullChunk
 	 */
@@ -354,7 +337,6 @@ interface FullChunk{
 	/**
 	 * @param int           $chunkX
 	 * @param int           $chunkZ
-	 * @param LevelProvider $provider
 	 *
 	 * @return FullChunk
 	 */

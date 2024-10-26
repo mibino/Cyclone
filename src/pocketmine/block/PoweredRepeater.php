@@ -25,6 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use function round;
 
 class PoweredRepeater extends RedstoneSource{
 	protected $id = self::POWERED_REPEATER_BLOCK;
@@ -66,7 +67,7 @@ class PoweredRepeater extends RedstoneSource{
 		}
 		return $direction;
 	}
-	
+
 	public function getOppositeDirection() : int{
 		return $this->getOppositeSide($this->getDirection());
 	}

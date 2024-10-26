@@ -21,9 +21,12 @@
 
 namespace pocketmine\event\server;
 
-use pocketmine\event;
 use pocketmine\Server;
 use pocketmine\utils\Binary;
+use function chr;
+use function count;
+use function str_replace;
+use function substr;
 
 class QueryRegenerateEvent extends ServerEvent{
 	public static $handlerList = null;
@@ -49,7 +52,6 @@ class QueryRegenerateEvent extends ServerEvent{
 	private $ip;
 
 	private $extraData = [];
-
 
 	public function __construct(Server $server, $timeout = 5){
 		$this->timeout = $timeout;

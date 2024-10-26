@@ -22,6 +22,7 @@
 namespace pocketmine\scheduler;
 
 use pocketmine\event\Timings;
+use function get_class;
 
 class TaskHandler{
 
@@ -50,7 +51,6 @@ class TaskHandler{
 
 	/**
 	 * @param string $timingName
-	 * @param Task   $task
 	 * @param int    $taskId
 	 * @param int    $delay
 	 * @param int    $period

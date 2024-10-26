@@ -26,8 +26,8 @@ use pocketmine\item\Tool;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 use pocketmine\tile\Chest as TileChest;
@@ -88,10 +88,10 @@ class TrappedChest extends RedstoneSource{
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
-				0 => 4,
-				1 => 2,
-				2 => 5,
-				3 => 3,
+			0 => 4,
+			1 => 2,
+			2 => 5,
+			3 => 3,
 		];
 
 		$chest = null;
@@ -115,11 +115,11 @@ class TrappedChest extends RedstoneSource{
 
 		$this->getLevel()->setBlock($block, $this, true, true);
 		$nbt = new CompoundTag("", [
-				new ListTag("Items", []),
-				new StringTag("id", Tile::CHEST),
-				new IntTag("x", $this->x),
-				new IntTag("y", $this->y),
-				new IntTag("z", $this->z)
+			new ListTag("Items", []),
+			new StringTag("id", Tile::CHEST),
+			new IntTag("x", $this->x),
+			new IntTag("y", $this->y),
+			new IntTag("z", $this->z)
 		]);
 		$nbt->Items->setTagType(NBT::TAG_Compound);
 
@@ -166,11 +166,11 @@ class TrappedChest extends RedstoneSource{
 				$chest = $t;
 			}else{
 				$nbt = new CompoundTag("", [
-						new ListTag("Items", []),
-						new StringTag("id", Tile::CHEST),
-						new IntTag("x", $this->x),
-						new IntTag("y", $this->y),
-						new IntTag("z", $this->z)
+					new ListTag("Items", []),
+					new StringTag("id", Tile::CHEST),
+					new IntTag("x", $this->x),
+					new IntTag("y", $this->y),
+					new IntTag("z", $this->z)
 				]);
 				$nbt->Items->setTagType(NBT::TAG_Compound);
 				$chest = Tile::createTile("Chest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
@@ -193,7 +193,7 @@ class TrappedChest extends RedstoneSource{
 
 	public function getDrops(Item $item) : array {
 		return [
-				[$this->id, 0, 1],
+			[$this->id, 0, 1],
 		];
 	}
 }

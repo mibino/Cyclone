@@ -18,7 +18,7 @@
  * @link https://itxtech.org
  *
  */
- 
+
 namespace pocketmine\block;
 
 class RedSandstoneStairs extends SandstoneStairs{

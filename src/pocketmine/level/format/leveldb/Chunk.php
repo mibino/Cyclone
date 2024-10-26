@@ -27,6 +27,15 @@ use pocketmine\nbt\NBT;
 use pocketmine\Player;
 use pocketmine\utils\Binary;
 use pocketmine\utils\BinaryStream;
+use function chr;
+use function count;
+use function is_array;
+use function ord;
+use function pack;
+use function str_repeat;
+use function strlen;
+use function substr;
+use function unpack;
 
 class Chunk extends BaseFullChunk{
 
@@ -241,7 +250,6 @@ class Chunk extends BaseFullChunk{
 
 	/**
 	 * @param string        $data
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */
@@ -330,7 +338,6 @@ class Chunk extends BaseFullChunk{
 				$provider->getDatabase()->delete($chunkIndex . LevelDB::ENTRY_ENTITIES);
 			}
 
-
 			$tiles = [];
 
 			foreach($this->getTiles() as $tile){
@@ -378,7 +385,6 @@ class Chunk extends BaseFullChunk{
 	/**
 	 * @param int           $chunkX
 	 * @param int           $chunkZ
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */

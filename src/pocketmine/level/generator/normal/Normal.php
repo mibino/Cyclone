@@ -49,6 +49,10 @@ use pocketmine\level\generator\populator\Populator;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3 as Vector3;
 use pocketmine\utils\Random;
+use function exp;
+use function max;
+use function min;
+use function sqrt;
 
 class Normal extends Generator{
 	const NAME = "Normal";
@@ -263,7 +267,6 @@ class Normal extends Generator{
 					// A noiseAdjustment of 1 will guarantee ground, a noiseAdjustment of -1 will guarantee air.
 					//$effHeight = min($y - $smoothHeight - $minSum,
 					$noiseAdjustment = 2 * (($maxSum - $y) / ($maxSum - $minSum)) - 1;
-
 
 					// To generate caves, we bring the noiseAdjustment down away from 1.
 					$caveLevel = $minSum - 10;

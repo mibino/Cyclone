@@ -21,8 +21,8 @@
 
 namespace pocketmine\tile;
 
-use pocketmine\block\Block;
 use pocketmine\entity\Entity;
+use pocketmine\entity\Item as ItemEntity;
 use pocketmine\inventory\DispenserInventory;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
@@ -30,22 +30,19 @@ use pocketmine\level\format\FullChunk;
 use pocketmine\level\particle\SmokeParticle;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NBT;
+use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\FloatTag;
-use pocketmine\nbt\tag\ShortTag;
-use pocketmine\entity\Item as ItemEntity;
-use pocketmine\entity\Egg;
-use pocketmine\entity\ThrownExpBottle;
-use pocketmine\entity\ThrownPotion;
-use pocketmine\entity\Arrow;
-use pocketmine\entity\Snowball;
 
-
-use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
+use pocketmine\nbt\tag\ShortTag;
 
 use pocketmine\nbt\tag\StringTag;
+use function count;
+use function is_array;
+use function lcg_value;
+use function mt_rand;
 
 class Dispenser extends Spawnable implements InventoryHolder, Container, Nameable{
 
@@ -97,7 +94,6 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 	}
 
 	/**
-	 * @param $index
 	 *
 	 * @return int
 	 */
@@ -131,7 +127,6 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 	 * This method should not be used by plugins, use the Inventory
 	 *
 	 * @param int  $index
-	 * @param Item $item
 	 *
 	 * @return bool
 	 */

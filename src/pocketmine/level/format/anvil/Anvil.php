@@ -25,14 +25,20 @@ use pocketmine\level\format\FullChunk;
 use pocketmine\level\format\mcregion\McRegion;
 use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\ByteArrayTag;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\tile\Spawnable;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\ChunkException;
-
+use function count;
+use function file_exists;
+use function glob;
+use function is_dir;
+use function pack;
+use function str_repeat;
+use function strpos;
 
 class Anvil extends McRegion{
 
@@ -117,8 +123,6 @@ class Anvil extends McRegion{
 	}
 
 	/**
-	 * @param $x
-	 * @param $z
 	 *
 	 * @return RegionLoader
 	 */

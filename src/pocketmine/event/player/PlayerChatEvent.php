@@ -66,7 +66,6 @@ class PlayerChatEvent extends PlayerEvent implements Cancellable{
 	/**
 	 * Changes the player that is sending the message
 	 *
-	 * @param Player $player
 	 */
 	public function setPlayer(Player $player){
 		$this->player = $player;

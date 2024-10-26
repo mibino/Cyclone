@@ -21,9 +21,12 @@
 
 namespace pocketmine\network;
 
-use pocketmine\Player;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
+use function serialize;
+use function unserialize;
+use function zlib_encode;
+use const ZLIB_ENCODING_DEFLATE;
 
 class CompressBatchedTask extends AsyncTask{
 

@@ -24,6 +24,10 @@ namespace pocketmine\utils;
 use pocketmine\block\Block;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
+use function abs;
+use function floor;
+use function round;
+use function sqrt;
 
 /**
  * This class performs ray tracing and iterates along blocks on a line
@@ -221,7 +225,7 @@ class BlockIterator implements \Iterator{
 		$this->scan();
 
 		if($this->currentBlock <= -1){
-			throw new \OutOfBoundsException;
+			throw new \OutOfBoundsException();
 		}else{
 			$this->currentBlockObject = $this->blockQueue[$this->currentBlock--];
 		}
@@ -235,7 +239,7 @@ class BlockIterator implements \Iterator{
 	public function current(): mixed
 	{
 		if($this->currentBlockObject === null){
-			throw new \OutOfBoundsException;
+			throw new \OutOfBoundsException();
 		}
 		return $this->currentBlockObject;
 	}
@@ -251,7 +255,7 @@ class BlockIterator implements \Iterator{
 	}
 
 	public function valid(): bool
-    {
+	{
 		$this->scan();
 		return $this->currentBlock !== -1;
 	}

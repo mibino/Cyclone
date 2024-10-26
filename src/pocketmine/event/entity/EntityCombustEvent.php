@@ -23,6 +23,7 @@ namespace pocketmine\event\entity;
 
 use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
+use function round;
 
 class EntityCombustEvent extends EntityEvent implements Cancellable{
 	public static $handlerList = null;
@@ -31,7 +32,6 @@ class EntityCombustEvent extends EntityEvent implements Cancellable{
 	protected $ProtectLevel;
 
 	/**
-	 * @param Entity $combustee
 	 * @param int    $duration
 	 * @param int    $ProtectLevel
 	 */

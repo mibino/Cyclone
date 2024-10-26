@@ -25,6 +25,8 @@ use pocketmine\event\Timings;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\PluginException;
+use function array_keys;
+use function spl_object_hash;
 
 class PermissibleBase implements Permissible{
 	/** @var ServerOperator */
@@ -43,9 +45,6 @@ class PermissibleBase implements Permissible{
 	 */
 	private $permissions = [];
 
-	/**
-	 * @param ServerOperator $opable
-	 */
 	public function __construct(ServerOperator $opable){
 		$this->opable = $opable;
 		if($opable instanceof Permissible){
@@ -118,7 +117,6 @@ class PermissibleBase implements Permissible{
 	/**
 	 * //TODO: tick scheduled attachments
 	 *
-	 * @param Plugin $plugin
 	 * @param string $name
 	 * @param bool   $value
 	 *
@@ -145,7 +143,6 @@ class PermissibleBase implements Permissible{
 	}
 
 	/**
-	 * @param PermissionAttachment $attachment
 	 *
 	 * @throws \Throwable
 	 */

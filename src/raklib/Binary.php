@@ -15,6 +15,21 @@
 
 namespace raklib;
 
+use function bcadd;
+use function bccomp;
+use function bcdiv;
+use function bcmod;
+use function bcmul;
+use function chr;
+use function define;
+use function defined;
+use function ord;
+use function pack;
+use function strrev;
+use function substr;
+use function unpack;
+use const PHP_INT_SIZE;
+
 if(!defined("ENDIANNESS")){
 	define("ENDIANNESS", (pack("d", 1) === "\77\360\0\0\0\0\0\0" ? Binary::BIG_ENDIAN : Binary::LITTLE_ENDIAN));
 }
@@ -23,11 +38,9 @@ class Binary{
 	const BIG_ENDIAN = 0x00;
 	const LITTLE_ENDIAN = 0x01;
 
-
 	/**
 	 * Reads a 3-byte big-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return mixed
 	 */
@@ -38,7 +51,6 @@ class Binary{
 	/**
 	 * Writes a 3-byte big-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -49,7 +61,6 @@ class Binary{
 	/**
 	 * Reads a 3-byte little-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return mixed
 	 */
@@ -60,7 +71,6 @@ class Binary{
 	/**
 	 * Writes a 3-byte little-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -71,7 +81,6 @@ class Binary{
 	/**
 	 * Reads a byte boolean
 	 *
-	 * @param $b
 	 *
 	 * @return bool
 	 */
@@ -82,7 +91,6 @@ class Binary{
 	/**
 	 * Writes a byte boolean
 	 *
-	 * @param $b
 	 *
 	 * @return bool|string
 	 */
@@ -115,7 +123,6 @@ class Binary{
 	/**
 	 * Writes an unsigned/signed byte
 	 *
-	 * @param $c
 	 *
 	 * @return string
 	 */
@@ -126,7 +133,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit unsigned big-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return int
 	 */
@@ -137,7 +143,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit signed big-endian number
 	 *
-	 * @param $str
 	 *
 	 * @return int
 	 */
@@ -152,7 +157,6 @@ class Binary{
 	/**
 	 * Writes a 16-bit signed/unsigned big-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */
@@ -163,7 +167,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit signed/unsigned little-endian number
 	 *
-	 * @param      $str
 	 * @param bool $signed
 	 *
 	 * @return int
@@ -185,7 +188,6 @@ class Binary{
 	/**
 	 * Writes a 16-bit signed/unsigned little-endian number
 	 *
-	 * @param $value
 	 *
 	 * @return string
 	 */

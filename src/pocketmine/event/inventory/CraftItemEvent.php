@@ -35,9 +35,7 @@ class CraftItemEvent extends Event implements Cancellable{
 	private $player;
 
 	/**
-	 * @param \pocketmine\Player $player
 	 * @param Item[]             $input
-	 * @param Recipe             $recipe
 	 */
 	public function __construct(Player $player, array $input, Recipe $recipe){
 		$this->player = $player;

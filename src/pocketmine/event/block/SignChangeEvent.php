@@ -37,8 +37,6 @@ class SignChangeEvent extends BlockEvent implements Cancellable{
 	private $lines = [];
 
 	/**
-	 * @param Block    $theBlock
-	 * @param Player   $thePlayer
 	 * @param string[] $theLines
 	 */
 	public function __construct(Block $theBlock, Player $thePlayer, array $theLines){

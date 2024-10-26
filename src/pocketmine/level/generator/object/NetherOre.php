@@ -24,6 +24,8 @@ namespace pocketmine\level\generator\object;
 use pocketmine\level\ChunkManager;
 use pocketmine\math\VectorMath;
 use pocketmine\utils\Random;
+use function sin;
+use const M_PI;
 
 class NetherOre{
 	private $random;

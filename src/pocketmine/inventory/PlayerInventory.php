@@ -26,7 +26,6 @@ use pocketmine\event\entity\EntityArmorChangeEvent;
 use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\item\Item;
-use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\network\protocol\ContainerSetContentPacket;
 use pocketmine\network\protocol\ContainerSetSlotPacket;
@@ -34,6 +33,12 @@ use pocketmine\network\protocol\MobArmorEquipmentPacket;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 use pocketmine\Server;
+use function array_search;
+use function gettype;
+use function is_array;
+use function range;
+use function trigger_error;
+use const E_USER_DEPRECATED;
 
 class PlayerInventory extends BaseInventory{
 
@@ -68,7 +73,7 @@ class PlayerInventory extends BaseInventory{
 					}
 				}
 			}else{
-				throw new \InvalidArgumentException("Expecting ListTag, received ".gettype($contents));
+				throw new \InvalidArgumentException("Expecting ListTag, received " . gettype($contents));
 			}
 		}
 	}
@@ -181,7 +186,6 @@ class PlayerInventory extends BaseInventory{
 	}
 
 	/**
-	 * @param Item $item
 	 *
 	 * @return bool
 	 *
@@ -340,7 +344,6 @@ class PlayerInventory extends BaseInventory{
 			$item = $ev->getNewItem();
 		}
 
-
 		$old = $this->getItem($index);
 		$this->slots[$index] = clone $item;
 		$this->onSlotChange($index, $old, $send);
@@ -453,7 +456,6 @@ class PlayerInventory extends BaseInventory{
 			}
 		}
 	}
-
 
 	/**
 	 * @param int             $index

@@ -36,7 +36,7 @@ class SpellSound extends Sound{
 	}
 
 	public function encode(){
-		$pk = new LevelEventPacket;
+		$pk = new LevelEventPacket();
 		$pk->evid = $this->id;
 		$pk->x = $this->x;
 		$pk->y = $this->y;

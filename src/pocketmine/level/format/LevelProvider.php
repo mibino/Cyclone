@@ -30,7 +30,6 @@ interface LevelProvider{
 	const ORDER_ZXY = 1;
 
 	/**
-	 * @param Level  $level
 	 * @param string $path
 	 */
 	public function __construct(Level $level, $path);
@@ -172,7 +171,6 @@ interface LevelProvider{
 	/**
 	 * @param int       $chunkX
 	 * @param int       $chunkZ
-	 * @param FullChunk $chunk
 	 *
 	 * @return mixed
 	 */
@@ -208,9 +206,6 @@ interface LevelProvider{
 	 */
 	public function getSpawn();
 
-	/**
-	 * @param Vector3 $pos
-	 */
 	public function setSpawn(Vector3 $pos);
 
 	/**

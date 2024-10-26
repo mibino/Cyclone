@@ -27,6 +27,8 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function count;
+use function round;
 
 class SetWorldSpawnCommand extends VanillaCommand{
 

@@ -21,7 +21,6 @@
 
 namespace pocketmine\event\entity;
 
-use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
 use pocketmine\level\Position;
 
@@ -53,16 +52,10 @@ class EntityGenerateEvent extends EntityEvent implements Cancellable{
 		$this->position = $pos;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getType() : int{
 		return $this->entityType;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getCause() : int{
 		return $this->cause;
 	}

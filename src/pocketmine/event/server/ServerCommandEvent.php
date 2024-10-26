@@ -42,7 +42,6 @@ class ServerCommandEvent extends ServerEvent implements Cancellable{
 	protected $sender;
 
 	/**
-	 * @param CommandSender $sender
 	 * @param string        $command
 	 */
 	public function __construct(CommandSender $sender, $command){

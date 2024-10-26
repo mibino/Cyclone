@@ -16,7 +16,7 @@
 namespace raklib\protocol;
 
 class PacketReliability {
-	
+
 	//pure UDP, but will discard duplicate packets
 	const UNRELIABLE = 0;
 

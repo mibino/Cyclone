@@ -33,8 +33,24 @@ use pocketmine\event\TimingsHandler;
 use pocketmine\permission\Permissible;
 use pocketmine\permission\Permission;
 use pocketmine\Server;
-use pocketmine\utils\MainLogger;
 use pocketmine\utils\PluginException;
+use function array_map;
+use function basename;
+use function constant;
+use function count;
+use function defined;
+use function explode;
+use function get_class;
+use function is_array;
+use function is_dir;
+use function is_subclass_of;
+use function microtime;
+use function preg_match;
+use function spl_object_hash;
+use function stripos;
+use function strpos;
+use function strtolower;
+use function strtoupper;
 
 /**
  * Manages all the plugins, Permissions and Permissibles
@@ -92,10 +108,6 @@ class PluginManager{
 
 	public static $useTimings = false;
 
-	/**
-	 * @param Server           $server
-	 * @param SimpleCommandMap $commandMap
-	 */
 	public function __construct(Server $server, SimpleCommandMap $commandMap){
 		$this->server = $server;
 		$this->commandMap = $commandMap;
@@ -293,7 +305,6 @@ class PluginManager{
 				}
 			}
 
-
 			while(count($plugins) > 0){
 				$missingDependency = true;
 				foreach($plugins as $name => $file){
@@ -383,7 +394,6 @@ class PluginManager{
 	}
 
 	/**
-	 * @param Permission $permission
 	 *
 	 * @return bool
 	 */
@@ -422,9 +432,6 @@ class PluginManager{
 		}
 	}
 
-	/**
-	 * @param Permission $permission
-	 */
 	public function recalculatePermissionDefaults(Permission $permission){
 		if(isset($this->permissions[$permission->getName()])){
 			unset($this->defaultPermsOp[$permission->getName()]);
@@ -433,9 +440,6 @@ class PluginManager{
 		}
 	}
 
-	/**
-	 * @param Permission $permission
-	 */
 	private function calculatePermissionDefault(Permission $permission){
 		Timings::$permissionDefaultTimer->startTiming();
 		if($permission->getDefault() === Permission::DEFAULT_OP or $permission->getDefault() === Permission::DEFAULT_TRUE){
@@ -461,7 +465,6 @@ class PluginManager{
 
 	/**
 	 * @param string      $permission
-	 * @param Permissible $permissible
 	 */
 	public function subscribeToPermission($permission, Permissible $permissible){
 		if(!isset($this->permSubs[$permission])){
@@ -472,7 +475,6 @@ class PluginManager{
 
 	/**
 	 * @param string      $permission
-	 * @param Permissible $permissible
 	 */
 	public function unsubscribeFromPermission($permission, Permissible $permissible){
 		if(isset($this->permSubs[$permission])){
@@ -510,7 +512,6 @@ class PluginManager{
 
 	/**
 	 * @param boolean     $op
-	 * @param Permissible $permissible
 	 */
 	public function subscribeToDefaultPerms($op, Permissible $permissible){
 		if($op === true){
@@ -522,7 +523,6 @@ class PluginManager{
 
 	/**
 	 * @param boolean     $op
-	 * @param Permissible $permissible
 	 */
 	public function unsubscribeFromDefaultPerms($op, Permissible $permissible){
 		if($op === true){
@@ -575,7 +575,6 @@ class PluginManager{
 	}
 
 	/**
-	 * @param Plugin $plugin
 	 *
 	 * @return bool
 	 */
@@ -587,9 +586,6 @@ class PluginManager{
 		}
 	}
 
-	/**
-	 * @param Plugin $plugin
-	 */
 	public function enablePlugin(Plugin $plugin){
 		if(!$plugin->isEnabled()){
 			try{
@@ -605,7 +601,6 @@ class PluginManager{
 	}
 
 	/**
-	 * @param Plugin $plugin
 	 *
 	 * @return PluginCommand[]
 	 */
@@ -661,9 +656,6 @@ class PluginManager{
 		}
 	}
 
-	/**
-	 * @param Plugin $plugin
-	 */
 	public function disablePlugin(Plugin $plugin){
 		if($plugin->isEnabled()){
 			try{
@@ -692,7 +684,6 @@ class PluginManager{
 	/**
 	 * Calls an event
 	 *
-	 * @param Event $event
 	 */
 	public function callEvent(Event $event){
 		foreach($event->getHandlers()->getRegisteredListeners() as $registration){
@@ -718,8 +709,6 @@ class PluginManager{
 	/**
 	 * Registers all the events in the given Listener class
 	 *
-	 * @param Listener $listener
-	 * @param Plugin   $plugin
 	 *
 	 * @throws PluginException
 	 */
@@ -767,10 +756,7 @@ class PluginManager{
 
 	/**
 	 * @param string        $event Class name that extends Event
-	 * @param Listener      $listener
 	 * @param int           $priority
-	 * @param EventExecutor $executor
-	 * @param Plugin        $plugin
 	 * @param bool          $ignoreCancelled
 	 *
 	 * @throws PluginException
@@ -797,7 +783,6 @@ class PluginManager{
 	}
 
 	/**
-	 * @param $event
 	 *
 	 * @return HandlerList
 	 */

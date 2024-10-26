@@ -17,6 +17,9 @@ namespace raklib\protocol;
 
 #ifndef COMPILE
 use raklib\Binary;
+use function count;
+use function sort;
+use const SORT_NUMERIC;
 #endif
 
 #include <rules/RakLibPacket.h>

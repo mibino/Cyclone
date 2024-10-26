@@ -21,6 +21,9 @@
 
 namespace raklib\protocol;
 
+use function strlen;
+use function substr;
+
 #include <rules/RakLibPacket.h>
 
 abstract class DataPacket extends Packet{

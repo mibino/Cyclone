@@ -21,12 +21,12 @@
 
 namespace pocketmine\entity;
 
-
 use pocketmine\level\format\FullChunk;
-use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\level\particle\SpellParticle;
+use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
+use function mt_rand;
 
 class ThrownExpBottle extends Projectile{
 	const NETWORK_ID = 68;

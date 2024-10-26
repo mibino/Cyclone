@@ -25,16 +25,19 @@ use pocketmine\level\format\generic\BaseChunk;
 use pocketmine\level\format\generic\EmptyChunkSection;
 use pocketmine\level\format\LevelProvider;
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\ByteArrayTag;
+use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\nbt\tag\ListTag;
-use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\IntArrayTag;
+use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\LongTag;
 use pocketmine\Player;
 use pocketmine\utils\Binary;
 use pocketmine\utils\BinaryStream;
+use function array_fill;
+use function count;
+use const ZLIB_ENCODING_DEFLATE;
 
 class Chunk extends BaseChunk{
 
@@ -164,7 +167,6 @@ class Chunk extends BaseChunk{
 
 	/**
 	 * @param string        $data
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */
@@ -187,7 +189,6 @@ class Chunk extends BaseChunk{
 
 	/**
 	 * @param string        $data
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */
@@ -244,7 +245,6 @@ class Chunk extends BaseChunk{
 
 		$nbt->Entities = new ListTag("Entities", $entities);
 		$nbt->Entities->setTagType(NBT::TAG_Compound);
-
 
 		$tiles = [];
 		foreach($this->getTiles() as $tile){
@@ -308,7 +308,6 @@ class Chunk extends BaseChunk{
 		$nbt->Entities = new ListTag("Entities", $entities);
 		$nbt->Entities->setTagType(NBT::TAG_Compound);
 
-
 		$tiles = [];
 		foreach($this->getTiles() as $tile){
 			$tile->saveNBT();
@@ -337,7 +336,6 @@ class Chunk extends BaseChunk{
 	/**
 	 * @param int           $chunkX
 	 * @param int           $chunkZ
-	 * @param LevelProvider $provider
 	 *
 	 * @return Chunk
 	 */

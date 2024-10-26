@@ -33,6 +33,18 @@ use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use function abs;
+use function cos;
+use function count;
+use function deg2rad;
+use function floor;
+use function intval;
+use function max;
+use function min;
+use function mt_rand;
+use function round;
+use function sin;
+use const PHP_INT_SIZE;
 
 class CaveCommand extends VanillaCommand{
 
@@ -49,7 +61,7 @@ class CaveCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-		
+
 		//TODO: Get rid of this and add support for relative coordinaties
 		if($sender instanceof Player and $args[0] == "getmypos"){
 			$sender->sendMessage("Your position: ({$sender->getX()}, {$sender->getY()}, {$sender->getZ()}, {$sender->getLevel()->getFolderName()})");
@@ -64,7 +76,7 @@ class CaveCommand extends VanillaCommand{
 		}
 		$level = $sender->getServer()->getLevelByName($args[7]);
 		if(!$level instanceof Level){
-			$sender->sendMessage(TextFormat::RED ."Wrong LevelName");
+			$sender->sendMessage(TextFormat::RED . "Wrong LevelName");
 			return false;
 		}
 		$pos = new Position($args[4], $args[5], $args[6], $level);
@@ -87,10 +99,10 @@ class CaveCommand extends VanillaCommand{
 	}
 
 	public function getDirectionVector($yaw, $pitch){
-		$y = -\sin(\deg2rad($pitch));
-		$xz = \cos(\deg2rad($pitch));
-		$x = -$xz * \sin(\deg2rad($yaw));
-		$z = $xz * \cos(\deg2rad($yaw));
+		$y = -sin(deg2rad($pitch));
+		$xz = cos(deg2rad($pitch));
+		$x = -$xz * sin(deg2rad($yaw));
+		$z = $xz * cos(deg2rad($yaw));
 
 		$temporalVector = new Vector3($x, $y, $z);
 		return $temporalVector->normalize();
@@ -120,7 +132,7 @@ class CaveCommand extends VanillaCommand{
 		for($u = 0; $u <= $ls; $u += $i){
 			if($pitch > 12) $pitch = -45;
 			$pitch += 5 + mt_rand(0, 5);
-			$pos->getLevel()->getServer()->getLogger()->debug("[Caves] ".TextFormat::YELLOW . "yaw: $yaw  pitch: $pitch");
+			$pos->getLevel()->getServer()->getLogger()->debug("[Caves] " . TextFormat::YELLOW . "yaw: $yaw  pitch: $pitch");
 			if($tt) $pitch = mt_rand(0, 100) * 0.05;
 			//$s2[0] = $s1[0] -\sin($yaw / 180 * M_PI) * \cos($pitch / 180 * M_PI) * $i;
 			//$s2[1] = $s1[1] +\sin($pitch / 180 * M_PI) * $i;
@@ -226,8 +238,8 @@ class CaveCommand extends VanillaCommand{
 		$vector = new Vector3(0, 0, 0);
 		$vBlock = new Vector3(0, 0, 0);
 		$stepLen = 0.3;
-		$mRays = \intval($rays - 1);
-		$affectedBlocks = array();
+		$mRays = intval($rays - 1);
+		$affectedBlocks = [];
 		for($i = 0; $i < $rays; ++$i){
 			for($j = 0; $j < $rays; ++$j){
 				for($k = 0; $k < $rays; ++$k){
@@ -238,7 +250,7 @@ class CaveCommand extends VanillaCommand{
 						$pointerY = $source->y;
 						$pointerZ = $source->z;
 
-						for($blastForce = $size * (\mt_rand(700, 1300) / 1000); $blastForce > 0; $blastForce -= $stepLen * 0.75){
+						for($blastForce = $size * (mt_rand(700, 1300) / 1000); $blastForce > 0; $blastForce -= $stepLen * 0.75){
 							$x = (int) $pointerX;
 							$y = (int) $pointerY;
 							$z = (int) $pointerZ;
@@ -253,7 +265,7 @@ class CaveCommand extends VanillaCommand{
 							if($block->getId() !== 0){
 								$blastForce -= (mt_rand(1, 3) / 5 + 0.3) * $stepLen;
 								if($blastForce > 0){
-									if(!isset($affectedBlocks[$index = (\PHP_INT_SIZE === 8 ? ((($block->x) & 0xFFFFFFF) << 35) | ((($block->y) & 0x7f) << 28) | (($block->z) & 0xFFFFFFF) : ($block->x) . ":" . ($block->y) . ":" . ($block->z))])){
+									if(!isset($affectedBlocks[$index = (PHP_INT_SIZE === 8 ? ((($block->x) & 0xFFFFFFF) << 35) | ((($block->y) & 0x7f) << 28) | (($block->z) & 0xFFFFFFF) : ($block->x) . ":" . ($block->y) . ":" . ($block->z))])){
 										$affectedBlocks[$index] = $block;
 									}
 								}

@@ -22,6 +22,9 @@
 namespace pocketmine\scheduler;
 
 use pocketmine\Server;
+use function in_array;
+use function serialize;
+use function unserialize;
 
 /**
  * Class used to run async tasks in other threads.
@@ -154,7 +157,6 @@ abstract class AsyncTask extends \Threaded implements \Collectable{
 	 * Actions to execute when completed (on main thread)
 	 * Implement this if you want to handle the data in your AsyncTask after it has been processed
 	 *
-	 * @param Server $server
 	 *
 	 * @return void
 	 */

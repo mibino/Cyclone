@@ -27,6 +27,8 @@ use pocketmine\permission\PermissionAttachment;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
+use function explode;
+use function trim;
 
 class ConsoleCommandSender implements CommandSender{
 
@@ -55,7 +57,6 @@ class ConsoleCommandSender implements CommandSender{
 	}
 
 	/**
-	 * @param Plugin $plugin
 	 * @param string $name
 	 * @param bool   $value
 	 *
@@ -66,7 +67,6 @@ class ConsoleCommandSender implements CommandSender{
 	}
 
 	/**
-	 * @param PermissionAttachment $attachment
 	 *
 	 * @return void
 	 */
@@ -114,9 +114,6 @@ class ConsoleCommandSender implements CommandSender{
 		}
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return "CONSOLE";
 	}

@@ -29,6 +29,10 @@ use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\PluginException;
 use pocketmine\utils\ReversePriorityQueue;
+use function count;
+use function get_class;
+use function is_array;
+use function is_object;
 
 class ServerScheduler{
 	public static $WORKERS = 2;
@@ -57,7 +61,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param Task $task
 	 *
 	 * @return null|TaskHandler
 	 */
@@ -68,7 +71,6 @@ class ServerScheduler{
 	/**
 	 * Submits an asynchronous task to the Worker Pool
 	 *
-	 * @param AsyncTask $task
 	 *
 	 * @return void
 	 */
@@ -81,7 +83,6 @@ class ServerScheduler{
 	/**
 	 * Submits an asynchronous task to a specific Worker in the Pool
 	 *
-	 * @param AsyncTask $task
 	 * @param int       $worker
 	 *
 	 * @return void
@@ -101,7 +102,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param Task $task
 	 * @param int  $delay
 	 *
 	 * @return null|TaskHandler
@@ -111,7 +111,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param Task $task
 	 * @param int  $period
 	 *
 	 * @return null|TaskHandler
@@ -121,7 +120,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param Task $task
 	 * @param int  $delay
 	 * @param int  $period
 	 *
@@ -141,9 +139,6 @@ class ServerScheduler{
 		}
 	}
 
-	/**
-	 * @param Plugin $plugin
-	 */
 	public function cancelTasks(Plugin $plugin){
 		foreach($this->tasks as $taskId => $task){
 			$ptask = $task->getTask();
@@ -176,9 +171,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param Task $task
-	 * @param      $delay
-	 * @param      $period
 	 *
 	 * @return null|TaskHandler
 	 *

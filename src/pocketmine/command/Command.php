@@ -30,6 +30,10 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
+use function explode;
+use function file_get_contents;
+use function json_decode;
+use function str_replace;
 
 abstract class Command{
 	/** @var \stdClass */
@@ -92,7 +96,6 @@ abstract class Command{
 	/**
 	 * Returns an \stdClass containing command data
 	 *
-	 * @return \stdClass
 	 */
 	public function getDefaultCommandData() : \stdClass{
 		return $this->commandData;
@@ -102,7 +105,6 @@ abstract class Command{
 	 * Generates modified command data for the specified player
 	 * for AvailableCommandsPacket.
 	 *
-	 * @param Player $player
 	 *
 	 * @return \stdClass|null
 	 */
@@ -126,7 +128,6 @@ abstract class Command{
 	}
 
 	/**
-	 * @param CommandSender $sender
 	 * @param string        $commandLabel
 	 * @param string[]      $args
 	 *
@@ -134,9 +135,6 @@ abstract class Command{
 	 */
 	public abstract function execute(CommandSender $sender, $commandLabel, array $args);
 
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return $this->name;
 	}
@@ -147,7 +145,6 @@ abstract class Command{
 	public function getPermission(){
 		return $this->commandData->pocketminePermission ?? null;
 	}
-	
 
 	/**
 	 * @param string|null $permission
@@ -161,7 +158,6 @@ abstract class Command{
 	}
 
 	/**
-	 * @param CommandSender $target
 	 *
 	 * @return bool
 	 */
@@ -180,7 +176,6 @@ abstract class Command{
 	}
 
 	/**
-	 * @param CommandSender $target
 	 *
 	 * @return bool
 	 */
@@ -220,7 +215,6 @@ abstract class Command{
 	/**
 	 * Registers the command into a Command map
 	 *
-	 * @param CommandMap $commandMap
 	 *
 	 * @return bool
 	 */
@@ -235,7 +229,6 @@ abstract class Command{
 	}
 
 	/**
-	 * @param CommandMap $commandMap
 	 *
 	 * @return bool
 	 */
@@ -252,7 +245,6 @@ abstract class Command{
 	}
 
 	/**
-	 * @param CommandMap $commandMap
 	 *
 	 * @return bool
 	 */
@@ -334,14 +326,13 @@ abstract class Command{
 	}
 
 	/**
-	 * @param CommandSender $source
 	 * @param string        $message
 	 * @param bool          $sendToSource
 	 */
 	public static function broadcastCommandMessage(CommandSender $source, $message, $sendToSource = true){
 		if($message instanceof TextContainer){
 			$m = clone $message;
-			$result = "[".$source->getName().": ".($source->getServer()->getLanguage()->get($m->getText()) !== $m->getText() ? "%" : "") . $m->getText() ."]";
+			$result = "[" . $source->getName() . ": " . ($source->getServer()->getLanguage()->get($m->getText()) !== $m->getText() ? "%" : "") . $m->getText() . "]";
 
 			$users = $source->getServer()->getPluginManager()->getPermissionSubscriptions(Server::BROADCAST_CHANNEL_ADMINISTRATIVE);
 			$colored = TextFormat::GRAY . TextFormat::ITALIC . $result;

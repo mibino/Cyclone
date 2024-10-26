@@ -94,14 +94,14 @@ class Lever extends RedstoneSource{
 		$side = $this->meta;
 		if($this->isActivated()) $side ^= 0x08;
 		$faces = [
-				5 => 0,
-				6 => 0,
-				3 => 2,
-				1 => 4,
-				4 => 3,
-				2 => 5,
-				0 => 1,
-				7 => 1,
+			5 => 0,
+			6 => 0,
+			3 => 2,
+			1 => 4,
+			4 => 3,
+			2 => 5,
+			0 => 1,
+			7 => 1,
 		];
 
 		$block = $this->getSide($faces[$side])->getSide(Vector3::SIDE_UP);
@@ -117,14 +117,14 @@ class Lever extends RedstoneSource{
 		$side = $this->meta;
 		if($this->isActivated()) $side ^= 0x08;
 		$faces = [
-				5 => 0,
-				6 => 0,
-				3 => 2,
-				1 => 4,
-				4 => 3,
-				2 => 5,
-				0 => 1,
-				7 => 1,
+			5 => 0,
+			6 => 0,
+			3 => 2,
+			1 => 4,
+			4 => 3,
+			2 => 5,
+			0 => 1,
+			7 => 1,
 		];
 
 		$block = $this->getSide($faces[$side])->getSide(Vector3::SIDE_UP);

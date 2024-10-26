@@ -56,7 +56,6 @@ abstract class Task{
 	/**
 	 * Actions to execute when run
 	 *
-	 * @param $currentTick
 	 *
 	 * @return void
 	 */

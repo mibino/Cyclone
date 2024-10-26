@@ -22,7 +22,6 @@
 namespace pocketmine\event\entity;
 
 use pocketmine\entity\Entity;
-use pocketmine\Event;
 use pocketmine\event\Cancellable;
 use pocketmine\math\Vector3;
 
@@ -43,6 +42,5 @@ class EntityMotionEvent extends EntityEvent implements Cancellable{
 	public function getVector(){
 		return $this->mot;
 	}
-
 
 }

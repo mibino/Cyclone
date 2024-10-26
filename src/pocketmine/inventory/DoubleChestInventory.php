@@ -23,11 +23,13 @@ namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
 use pocketmine\level\Level;
-use pocketmine\network\Network;
 use pocketmine\network\protocol\BlockEventPacket;
 use pocketmine\Player;
 
 use pocketmine\tile\Chest;
+use function array_merge;
+use function array_slice;
+use function count;
 
 class DoubleChestInventory extends ChestInventory implements InventoryHolder{
 	/** @var ChestInventory */
@@ -72,14 +74,12 @@ class DoubleChestInventory extends ChestInventory implements InventoryHolder{
 	}
 
 	/**
-	 * @param array $items
 	 * @param true $send
 	 */
 	public function setContents(array $items, $send = true){
 		if(count($items) > $this->size){
 			$items = array_slice($items, 0, $this->size, true);
 		}
-
 
 		for($i = 0; $i < $this->size; ++$i){
 			if(!isset($items[$i])){

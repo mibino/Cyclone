@@ -24,6 +24,7 @@ namespace pocketmine\level\generator\populator;
 use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
+use function mt_rand;
 
 class NetherLava extends Populator{
 	/** @var ChunkManager */
@@ -270,7 +271,6 @@ class NetherLava extends Populator{
 
 		return ($decay >= 0 && $blockDecay >= $decay) ? $decay : $blockDecay;
 	}
-
 
 	private function canNetherLavaStay($x, $y, $z){
 		$b = $this->level->getBlockIdAt($x, $y, $z);

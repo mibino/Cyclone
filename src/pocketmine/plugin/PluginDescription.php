@@ -23,6 +23,14 @@ namespace pocketmine\plugin;
 
 use pocketmine\permission\Permission;
 use pocketmine\utils\PluginException;
+use function constant;
+use function defined;
+use function is_array;
+use function preg_replace;
+use function str_replace;
+use function stripos;
+use function strtoupper;
+use function yaml_parse;
 
 class PluginDescription{
 	private $name;
@@ -50,11 +58,10 @@ class PluginDescription{
 	 * @param string|array $yamlString
 	 */
 	public function __construct($yamlString){
-		$this->loadMap(!is_array($yamlString) ? \yaml_parse($yamlString) : $yamlString);
+		$this->loadMap(!is_array($yamlString) ? yaml_parse($yamlString) : $yamlString);
 	}
 
 	/**
-	 * @param array $plugin
 	 *
 	 * @throws PluginException
 	 */
@@ -193,9 +200,6 @@ class PluginDescription{
 		return $this->main;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return $this->name;
 	}

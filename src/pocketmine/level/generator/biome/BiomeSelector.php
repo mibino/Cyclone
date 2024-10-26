@@ -23,6 +23,7 @@ namespace pocketmine\level\generator\biome;
 
 use pocketmine\level\generator\noise\Simplex;
 use pocketmine\utils\Random;
+use function call_user_func;
 
 class BiomeSelector{
 
@@ -71,8 +72,6 @@ class BiomeSelector{
 	}
 
 	/**
-	 * @param $x
-	 * @param $z
 	 *
 	 * @return Biome
 	 */

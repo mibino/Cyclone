@@ -23,8 +23,14 @@ namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
-use pocketmine\utils\TextFormat;
 use pocketmine\Player;
+use pocketmine\utils\TextFormat;
+use function count;
+use function explode;
+use function floor;
+use function is_numeric;
+use function max;
+use function min;
 
 class BiomeCommand extends VanillaCommand{
 

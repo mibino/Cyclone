@@ -19,23 +19,22 @@
  *
  */
 
-
 namespace pocketmine\entity;
 
-use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\Player;
-use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\item\Item as ItemItem;
+use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\network\protocol\MobEquipmentPacket;
+use pocketmine\Player;
 
 class Skeleton extends Monster implements ProjectileSource{
 	const NETWORK_ID = 34;
 
 	public $dropExp = [5, 5];
-	
+
 	public function getName() : string{
 		return "Skeleton";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -52,7 +51,7 @@ class Skeleton extends Monster implements ProjectileSource{
 		$player->dataPacket($pk);
 
 		parent::spawnTo($player);
-		
+
 		$pk = new MobEquipmentPacket();
 		$pk->eid = $this->getId();
 		$pk->item = new ItemItem(ItemItem::BOW);

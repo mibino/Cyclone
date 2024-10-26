@@ -30,7 +30,11 @@ use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
 use pocketmine\tile\Tile;
-
+use function array_fill;
+use function chr;
+use function count;
+use function ord;
+use function strlen;
 
 abstract class BaseFullChunk implements FullChunk{
 

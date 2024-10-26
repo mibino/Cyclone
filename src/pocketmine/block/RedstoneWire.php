@@ -25,6 +25,8 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use function count;
+use function in_array;
 
 class RedstoneWire extends RedstoneSource{
 
@@ -379,7 +381,6 @@ class RedstoneWire extends RedstoneSource{
 				}
 			}
 		}
-
 
 		return $hasUpdated;
 	}

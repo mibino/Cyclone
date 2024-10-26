@@ -24,7 +24,6 @@
  */
 namespace pocketmine\network\protocol;
 
-
 interface Info{
 
 	/**
@@ -113,14 +112,4 @@ interface Info{
 	const RESOURCE_PACK_CHUNK_DATA_PACKET = 0x4e;
 	const RESOURCE_PACK_CHUNK_REQUEST_PACKET = 0x4f;
 }
-
-
-
-
-
-
-
-
-
-
 

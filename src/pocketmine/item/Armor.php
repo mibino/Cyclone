@@ -19,13 +19,13 @@
  *
 */
 
-
 namespace pocketmine\item;
 
+use pocketmine\item\enchantment\Enchantment;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\utils\Color;
-use pocketmine\item\enchantment\Enchantment;
+use function mt_rand;
 
 abstract class Armor extends Item{
 	const TIER_LEATHER = 1;
@@ -50,7 +50,6 @@ abstract class Armor extends Item{
 	/**
 	 *
 	 * @param Item $object
-	 * @param int $cost
 	 *
 	 * @return bool
 	 */

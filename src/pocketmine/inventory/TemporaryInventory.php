@@ -28,7 +28,6 @@ abstract class TemporaryInventory extends ContainerInventory{
 
 	abstract public function getResultSlotIndex();
 
-
 	public function onClose(Player $who){
 		foreach($this->getContents() as $slot => $item){
 			if($slot === $this->getResultSlotIndex()){

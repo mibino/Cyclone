@@ -22,9 +22,12 @@
 namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
+use pocketmine\math\Vector2;
 use pocketmine\Server;
 use pocketmine\utils\UUID;
-use pocketmine\math\Vector2;
+use function array_fill;
+use function array_key_exists;
+use function count;
 
 class ShapedRecipeFromJson extends ShapedRecipe{
 	/** @var Item */
@@ -41,7 +44,6 @@ class ShapedRecipeFromJson extends ShapedRecipe{
 	private $shapeItems = [];
 
 	/**
-	 * @param Item     $result
 	 * @param int      $height
 	 * @param int      $width
 	 *
@@ -89,7 +91,6 @@ class ShapedRecipeFromJson extends ShapedRecipe{
 
 	/**
 	 * @param string $key
-	 * @param Item   $item
 	 *
 	 * @return $this
 	 * @throws \Exception
@@ -130,8 +131,6 @@ class ShapedRecipeFromJson extends ShapedRecipe{
 	}
 
 	/**
-	 * @param $x
-	 * @param $y
 	 * @return null|Item
 	 */
 	public function getIngredient($x, $y){

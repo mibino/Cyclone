@@ -23,6 +23,11 @@ namespace raklib\protocol;
 
 #ifndef COMPILE
 use raklib\Binary;
+use function ceil;
+use function chr;
+use function ord;
+use function strlen;
+use function substr;
 #endif
 
 #include <rules/RakLibPacket.h>

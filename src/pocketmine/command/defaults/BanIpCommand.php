@@ -25,7 +25,10 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
-
+use function array_shift;
+use function count;
+use function implode;
+use function preg_match;
 
 class BanIpCommand extends VanillaCommand{
 

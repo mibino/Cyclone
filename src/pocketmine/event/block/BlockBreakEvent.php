@@ -25,6 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 use pocketmine\Player;
+use function is_numeric;
 
 class BlockBreakEvent extends BlockEvent implements Cancellable{
 	public static $handlerList = null;
@@ -43,7 +44,7 @@ class BlockBreakEvent extends BlockEvent implements Cancellable{
 		$this->block = $block;
 		$this->item = $item;
 		$this->player = $player;
-		$this->instaBreak = (bool)$instaBreak;
+		$this->instaBreak = (bool) $instaBreak;
 		$drops = $player->isSurvival() ? $block->getDrops($item) : [];
 		if($drops != null && is_numeric($drops[0]))
 			$this->blockDrops[] = Item::get($drops[0], $drops[1], $drops[2]);
@@ -83,6 +84,6 @@ class BlockBreakEvent extends BlockEvent implements Cancellable{
 	 * @param boolean $instaBreak
 	 */
 	public function setInstaBreak($instaBreak){
-		$this->instaBreak = (bool)$instaBreak;
+		$this->instaBreak = (bool) $instaBreak;
 	}
 }

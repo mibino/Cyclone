@@ -22,6 +22,8 @@
 namespace pocketmine\entity;
 
 use pocketmine\Server;
+use function max;
+use function min;
 
 class Attribute{
 
@@ -85,7 +87,6 @@ class Attribute{
 	}
 
 	/**
-	 * @param $id
 	 *
 	 * @return null|Attribute
 	 */
@@ -94,7 +95,6 @@ class Attribute{
 	}
 
 	/**
-	 * @param $name
 	 *
 	 * @return null|Attribute
 	 */

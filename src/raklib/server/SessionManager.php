@@ -45,6 +45,18 @@ use raklib\protocol\UNCONNECTED_PING;
 use raklib\protocol\UNCONNECTED_PING_OPEN_CONNECTIONS;
 use raklib\protocol\UNCONNECTED_PONG;
 use raklib\RakLib;
+use function asort;
+use function chr;
+use function count;
+use function max;
+use function microtime;
+use function mt_rand;
+use function ord;
+use function serialize;
+use function strlen;
+use function substr;
+use function time_sleep_until;
+use const PHP_INT_MAX;
 
 class SessionManager{
 	protected $packetPool = [];
@@ -125,7 +137,6 @@ class SessionManager{
 		}
 		$this->ipSec = [];
 
-
 		if(($this->ticks & 0b1111) === 0){
 			$diff = max(0.005, $time - $this->lastMeasure);
 			$this->streamOption("bandwidth", serialize([
@@ -152,7 +163,6 @@ class SessionManager{
 		++$this->ticks;
 	}
 
-
 	private function receivePacket(){
 		$len = $this->socket->readPacket($buffer, $source, $port);
 		if($buffer !== null){
@@ -172,7 +182,7 @@ class SessionManager{
 
 				if($pid === UNCONNECTED_PING::$ID){
 					//No need to create a session for just pings
-					$packet = new UNCONNECTED_PING;
+					$packet = new UNCONNECTED_PING();
 					$packet->buffer = $buffer;
 					$packet->decode();
 
@@ -347,7 +357,7 @@ class SessionManager{
 			$this->block[$address] = $final;
 		}
 	}
-	
+
 	public function unblockAddress($address){
 		unset($this->block[$address]);
 	}
@@ -394,11 +404,10 @@ class SessionManager{
 	}
 
 	private function registerPacket($id, $class){
-		$this->packetPool[$id] = new $class;
+		$this->packetPool[$id] = new $class();
 	}
 
 	/**
-	 * @param $id
 	 *
 	 * @return Packet
 	 */

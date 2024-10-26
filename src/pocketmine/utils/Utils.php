@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -23,7 +23,67 @@
  * Various Utilities used around the code
  */
 namespace pocketmine\utils;
+
 use pocketmine\ThreadManager;
+use function array_merge;
+use function bin2hex;
+use function chunk_split;
+use function count;
+use function curl_close;
+use function curl_exec;
+use function curl_init;
+use function curl_setopt;
+use function dechex;
+use function exec;
+use function file;
+use function file_exists;
+use function file_get_contents;
+use function get_current_user;
+use function get_loaded_extensions;
+use function getenv;
+use function gettype;
+use function hexdec;
+use function implode;
+use function is_array;
+use function is_string;
+use function memory_get_usage;
+use function ord;
+use function php_uname;
+use function phpversion;
+use function preg_grep;
+use function preg_match;
+use function preg_match_all;
+use function preg_replace;
+use function random_bytes;
+use function sha1;
+use function spl_object_hash;
+use function str_pad;
+use function str_split;
+use function strip_tags;
+use function stripos;
+use function strlen;
+use function strpos;
+use function strtolower;
+use function sys_get_temp_dir;
+use function trim;
+use const CURLOPT_AUTOREFERER;
+use const CURLOPT_CONNECTTIMEOUT;
+use const CURLOPT_FOLLOWLOCATION;
+use const CURLOPT_FORBID_REUSE;
+use const CURLOPT_FRESH_CONNECT;
+use const CURLOPT_HTTPHEADER;
+use const CURLOPT_POST;
+use const CURLOPT_POSTFIELDS;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_SSL_VERIFYHOST;
+use const CURLOPT_SSL_VERIFYPEER;
+use const CURLOPT_TIMEOUT;
+use const PHP_EOL;
+use const PHP_INT_MAX;
+use const PHP_INT_SIZE;
+use const PHP_MAXPATHLEN;
+use const STR_PAD_LEFT;
+use const STR_PAD_RIGHT;
 
 /**
  * Big collection of functions
@@ -37,7 +97,6 @@ class Utils{
 	/**
 	 * Generates an unique identifier to a callable
 	 *
-	 * @param callable $variable
 	 *
 	 * @return string
 	 */
@@ -192,10 +251,9 @@ class Utils{
 				self::$os = "other";
 			}
 		}
-		
+
 		return self::$os;
 	}
-
 
 	public static function getRealMemoryUsage(){
 		$stack = 0;
@@ -315,11 +373,9 @@ class Utils{
 		return $output;
 	}
 
-
 	/**
 	 * Returns a string that can be printed, replaces non-printable characters
 	 *
-	 * @param $str
 	 *
 	 * @return string
 	 */
@@ -370,9 +426,7 @@ class Utils{
 	/**
 	 * GETs an URL using cURL
 	 *
-	 * @param     $page
 	 * @param int $timeout default 10
-	 * @param array $extraHeaders
 	 *
 	 * @return bool|mixed
 	 */
@@ -401,10 +455,8 @@ class Utils{
 	/**
 	 * POSTs data to an URL
 	 *
-	 * @param              $page
 	 * @param array|string $args
 	 * @param int          $timeout
-	 * @param array $extraHeaders
 	 *
 	 * @return bool|mixed
 	 */

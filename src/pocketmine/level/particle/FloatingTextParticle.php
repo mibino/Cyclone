@@ -22,13 +22,13 @@
 namespace pocketmine\level\particle;
 
 use pocketmine\entity\Entity;
-use pocketmine\entity\Item as ItemEntity;
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
-use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\AddPlayerPacket;
 use pocketmine\network\protocol\RemoveEntityPacket;
 use pocketmine\utils\UUID;
+use function bcadd;
+use function mt_rand;
 
 class FloatingTextParticle extends Particle{
 	//TODO: HACK!
@@ -39,7 +39,6 @@ class FloatingTextParticle extends Particle{
 	protected $invisible = false;
 
 	/**
-	 * @param Vector3 $pos
 	 * @param int $text
 	 * @param string $title
 	 */
@@ -64,11 +63,11 @@ class FloatingTextParticle extends Particle{
 	public function setTitle($title){
 		$this->title = $title;
 	}
-	
+
 	public function isInvisible(){
 		return $this->invisible;
 	}
-	
+
 	public function setInvisible($value = true){
 		$this->invisible = (bool) $value;
 	}
@@ -107,7 +106,7 @@ class FloatingTextParticle extends Particle{
 				Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, $flags],
 				Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $this->title . ($this->text !== "" ? "\n" . $this->text : "")],
 				Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1],
-            ];
+			];
 
 			$p[] = $pk;
 		}

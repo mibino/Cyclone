@@ -27,7 +27,6 @@ use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerExperienceChangeEvent;
 use pocketmine\inventory\FloatingInventory;
 use pocketmine\inventory\InventoryHolder;
-use pocketmine\inventory\InventoryType;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\inventory\SimpleTransactionQueue;
 use pocketmine\item\enchantment\Enchantment;
@@ -39,15 +38,22 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
-use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\AddPlayerPacket;
 use pocketmine\network\protocol\RemoveEntityPacket;
 use pocketmine\Player;
 use pocketmine\utils\UUID;
+use function floor;
+use function max;
+use function microtime;
+use function min;
+use function mt_rand;
+use function strlen;
+use const PHP_INT_MAX;
+use const PHP_INT_MIN;
 
 class Human extends Creature implements ProjectileSource, InventoryHolder{
-	
+
 	const DATA_PLAYER_FLAG_SLEEP = 1;
 	const DATA_PLAYER_FLAG_DEAD = 2; //TODO: CHECK
 
@@ -121,7 +127,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 * WARNING: This method does not check if full and may throw an exception if out of bounds.
 	 * Use {@link Human::addFood()} for this purpose
 	 *
-	 * @param float $new
 	 *
 	 * @throws \InvalidArgumentException
 	 */
@@ -160,7 +165,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 * WARNING: This method does not check if saturated and may throw an exception if out of bounds.
 	 * Use {@link Human::addSaturation()} for this purpose
 	 *
-	 * @param float $saturation
 	 *
 	 * @throws \InvalidArgumentException
 	 */
@@ -181,7 +185,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 * WARNING: This method does not check if exhausted and does not consume saturation/food.
 	 * Use {@link Human::exhaust()} for this purpose.
 	 *
-	 * @param float $exhaustion
 	 */
 	public function setExhaustion(float $exhaustion){
 		$this->attributeMap->getAttribute(Attribute::EXHAUSTION)->setValue($exhaustion);
@@ -190,8 +193,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * Increases a human's exhaustion level.
 	 *
-	 * @param float $amount
-	 * @param int   $cause
 	 *
 	 * @return float the amount of exhaustion level increased
 	 */
@@ -261,11 +262,9 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * Changes the total exp of a player
 	 *
-	 * @param int $xp
 	 * @param bool $syncLevel This will reset the level to be in sync with the total. Usually you don't want to do this,
 	 *                        because it'll mess up use of xp in anvils and enchanting tables.
 	 *
-	 * @return bool
 	 */
 	public function setTotalXp(int $xp, bool $syncLevel = false) : bool{
 		$xp &= 0x7fffffff;
@@ -345,9 +344,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * Returns the total amount of exp required to reach the specified level.
 	 *
-	 * @param int $level
 	 *
-	 * @return int
 	 */
 	public static function getTotalXpRequirement(int $level) : int{
 		if($level <= 16){
@@ -363,9 +360,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * Returns the amount of exp required to complete the specified level.
 	 *
-	 * @param int $level
 	 *
-	 * @return int
 	 */
 	public static function getLevelXpRequirement(int $level) : int{
 		if($level <= 16){
@@ -381,7 +376,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * Converts a quantity of exp into a level and a progress percentage
 	 *
-	 * @param int $xp
 	 *
 	 * @return int[]
 	 */
