@@ -749,10 +749,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->rawUUID = null;
 
 		$this->creationTime = microtime(true);
-
-		$this->exp = 0;
-		$this->expLevel = 0;
-		$this->food = 20;
 		Entity::setHealth(20);
 	}
 
@@ -1762,11 +1758,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	}
 
-	public $foodTick = 0;
-
 	public $starvationTick = 0;
-
-	public $foodUsageTime = 0;
 
 	protected $moving = false;
 
@@ -2031,7 +2023,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$nbt->Health = new ShortTag("Health", 20);
 			$nbt->MaxHealth = new ShortTag("MaxHealth", 20);
 		}
-		$this->food = $nbt["Hunger"];
 		$this->setMaxHealth($nbt["MaxHealth"]);
 		Entity::setHealth(($nbt["Health"] <= 0) ? 20 : $nbt["Health"]);
 
@@ -2807,8 +2798,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						$this->setHealth($this->getMaxHealth());
 						$this->setFood(20);
 						$this->starvationTick = 0;
-						$this->foodTick = 0;
-						$this->foodUsageTime = 0;
 
 						$this->sendData($this);
 
@@ -3823,11 +3812,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 			$this->namedtag["playerGameType"] = $this->gamemode;
 			$this->namedtag["lastPlayed"] = new LongTag("lastPlayed", floor(microtime(true) * 1000));
-			$this->namedtag["Hunger"] = new ShortTag("Hunger", $this->food);
 			$this->namedtag["Health"] = new ShortTag("Health", $this->getHealth());
 			$this->namedtag["MaxHealth"] = new ShortTag("MaxHealth", $this->getMaxHealth());
-			$this->namedtag["Experience"] = new LongTag("Experience", $this->exp);
-			$this->namedtag["ExpLevel"] = new LongTag("ExpLevel", $this->expLevel);
 
 			if($this->username != "" and $this->namedtag instanceof CompoundTag){
 				$this->server->saveOfflinePlayerData($this->username, $this->namedtag, $async);
@@ -4002,7 +3988,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function setHealth($amount){
 		parent::setHealth($amount);
 		if($this->spawned === true){
-			$this->foodTick = 0;
 			$this->getAttributeMap()->getAttribute(Attribute::HEALTH)->setMaxValue($this->getMaxHealth())->setValue($amount, true);
 		}
 	}

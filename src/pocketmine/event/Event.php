@@ -28,10 +28,11 @@ use function get_class;
 
 abstract class Event{
 
+	public static $handlerList = null;
+
 	/**
 	 * Any callable event must declare the static variable
 	 *
-	 * public static $handlerList = null;
 	 * public static $eventPool = [];
 	 * public static $nextEvent = 0;
 	 *
@@ -64,8 +65,6 @@ abstract class Event{
 
 	/**
 	 * @param bool $value
-	 *
-	 * @return bool
 	 *
 	 * @throws \BadMethodCallException
 	 */

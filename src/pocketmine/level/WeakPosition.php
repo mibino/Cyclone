@@ -28,6 +28,8 @@ use function assert;
 
 class WeakPosition extends Position{
 
+	public int $levelId;
+
 	/**
 	 * @param int   $x
 	 * @param int   $y

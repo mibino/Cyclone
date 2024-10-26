@@ -723,9 +723,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * WARNING: Do not use this, it's only for internal use.
 	 * Changes to this function won't be recorded on the version.
-	 *
-	 *
-	 * @return bool
 	 */
 	public function doTick(int $currentTick){
 

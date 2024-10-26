@@ -59,32 +59,34 @@ use function time_sleep_until;
 use const PHP_INT_MAX;
 
 class SessionManager{
-	protected $packetPool = [];
+	protected array $packetPool = [];
 
 	/** @var RakLibServer */
-	protected $server;
+	protected RakLibServer $server;
 
-	protected $socket;
+	protected int $serverId;
 
-	protected $receiveBytes = 0;
-	protected $sendBytes = 0;
+	protected UDPServerSocket $socket;
+
+	protected int $receiveBytes = 0;
+	protected int $sendBytes = 0;
 
 	/** @var Session[] */
-	protected $sessions = [];
+	protected array $sessions = [];
 
-	protected $name = "";
+	protected string $name = "";
 
-	protected $packetLimit = 1000;
+	protected int $packetLimit = 1000;
 
-	protected $shutdown = false;
+	protected bool $shutdown = false;
 
-	protected $ticks = 0;
+	protected int $ticks = 0;
 	protected $lastMeasure;
 
-	protected $block = [];
-	protected $ipSec = [];
+	protected array $block = [];
+	protected array $ipSec = [];
 
-	public $portChecking = true;
+	public bool $portChecking = true;
 
 	public function __construct(RakLibServer $server, UDPServerSocket $socket){
 		$this->server = $server;
@@ -164,6 +166,8 @@ class SessionManager{
 	}
 
 	private function receivePacket(){
+		$port = $source = $buffer = null;
+
 		$len = $this->socket->readPacket($buffer, $source, $port);
 		if($buffer !== null){
 			$this->receiveBytes += $len;

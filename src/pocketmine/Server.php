@@ -173,7 +173,6 @@ use function asort;
 use function base64_encode;
 use function bccomp;
 use function class_exists;
-use function cleanPath;
 use function cli_set_process_title;
 use function count;
 use function define;
@@ -188,7 +187,6 @@ use function gc_collect_cycles;
 use function getenv;
 use function getmypid;
 use function getopt;
-use function getTrace;
 use function implode;
 use function ini_set;
 use function is_array;
@@ -197,7 +195,6 @@ use function is_numeric;
 use function is_string;
 use function is_subclass_of;
 use function json_decode;
-use function kill;
 use function max;
 use function microtime;
 use function min;
@@ -2248,11 +2245,6 @@ class Server{
 	 * Shutdowns the server correctly
 	 */
 	public function shutdown(bool $restart = false, string $msg = ""){
-		/*if($this->isRunning){
-			$killer = new ServerKiller(90);
-			$killer->start();
-			$killer->kill();
-		}*/
 		$this->isRunning = false;
 		if($msg != ""){
 			$this->propertyCache["settings.shutdown-message"] = $msg;
@@ -2319,7 +2311,7 @@ class Server{
 		}catch(\Throwable $e){
 			$this->logger->logException($e);
 			$this->logger->emergency("Crashed while crashing, killing process");
-			@kill(getmypid());
+			@\pocketmine\kill(getmypid());
 		}
 
 	}
@@ -2396,7 +2388,7 @@ class Server{
 			$errstr = substr($errstr, 0, $pos);
 		}
 
-		$errfile = cleanPath($errfile);
+		$errfile = \pocketmine\cleanPath($errfile);
 
 		if($this->logger instanceof MainLogger){
 			$this->logger->logException($e, $trace);
@@ -2408,7 +2400,7 @@ class Server{
 			"fullFile" => $e->getFile(),
 			"file" => $errfile,
 			"line" => $errline,
-			"trace" => @getTrace(1, $trace)
+			"trace" => @\pocketmine\getTrace(1, $trace)
 		];
 
 		global $lastExceptionError, $lastError;
