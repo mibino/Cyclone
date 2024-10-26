@@ -58,7 +58,6 @@ class MainLogger extends \AttachableThreadedLogger{
 	protected $shutdown;
 	protected bool $logDebug;
 	private $logResource;
-	/** @var MainLogger */
 	public static ?MainLogger $logger = null;
 
 	private $consoleCallback;

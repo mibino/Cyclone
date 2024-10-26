@@ -106,7 +106,6 @@ interface Logger{
 	/**
 	 * Logs a Throwable object
 	 *
-	 * @param Throwable  $e
 	 * @param array|null $trace
 	 * @phpstan-param list<array<string, mixed>>|null $trace
 	 *

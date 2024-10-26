@@ -61,7 +61,6 @@ use const PHP_INT_MAX;
 class SessionManager{
 	protected array $packetPool = [];
 
-	/** @var RakLibServer */
 	protected RakLibServer $server;
 
 	protected int $serverId;

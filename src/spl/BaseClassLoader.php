@@ -24,14 +24,10 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 	/** @var \Threaded|string[] */
 	private $classes;
 
-
-	/**
-	 * @param ClassLoader|null $parent
-	 */
 	public function __construct(ClassLoader $parent = null){
 		$this->parent = $parent;
-		$this->lookup = new \Threaded;
-		$this->classes = new \Threaded;
+		$this->lookup = new \Threaded();
+		$this->classes = new \Threaded();
 	}
 
 	/**
@@ -62,7 +58,6 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 			$this->lookup[] = $path;
 		}
 	}
-	
 
 	/**
 	 * @return string[]
@@ -143,7 +138,7 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 			if(method_exists($name, "onClassLoaded") and (new ReflectionClass($name))->getMethod("onClassLoaded")->isStatic()){
 				$name::onClassLoaded();
 			}
-			
+
 			$this->classes[] = $name;
 
 			return true;

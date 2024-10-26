@@ -195,6 +195,7 @@ use function is_numeric;
 use function is_string;
 use function is_subclass_of;
 use function json_decode;
+use function kill;
 use function max;
 use function microtime;
 use function min;

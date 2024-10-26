@@ -25,7 +25,6 @@ abstract class AttachableThreadedLogger extends \ThreadedLogger{
 	}
 
 	/**
-	 * @param ThreadedLoggerAttachment $attachment
 	 *
 	 * @return void
 	 */
@@ -34,7 +33,6 @@ abstract class AttachableThreadedLogger extends \ThreadedLogger{
 	}
 
 	/**
-	 * @param ThreadedLoggerAttachment $attachment
 	 *
 	 * @return void
 	 */

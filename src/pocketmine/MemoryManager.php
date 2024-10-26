@@ -41,7 +41,6 @@ use function is_object;
 use function is_resource;
 use function is_string;
 use function json_encode;
-use function md5;
 use function min;
 use function mkdir;
 use function preg_match;

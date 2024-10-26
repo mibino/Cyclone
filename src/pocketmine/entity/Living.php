@@ -278,7 +278,7 @@ abstract class Living extends Entity implements Damageable{
 
 		return $blocks;
 	}
-	
+
 	/**
 	 * @param int $maxDistance
 	 *

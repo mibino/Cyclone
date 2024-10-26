@@ -17,9 +17,6 @@
 
 interface ClassLoader{
 
-	/**
-	 * @param ClassLoader $parent
-	 */
 	public function __construct(ClassLoader $parent = null);
 
 	/**

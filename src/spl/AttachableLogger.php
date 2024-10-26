@@ -18,14 +18,12 @@
 interface AttachableLogger extends \Logger{
 
 	/**
-	 * @param LoggerAttachment $attachment
 	 *
 	 * @return void
 	 */
 	public function addAttachment(\LoggerAttachment $attachment);
 
 	/**
-	 * @param LoggerAttachment $attachment
 	 *
 	 * @return void
 	 */
