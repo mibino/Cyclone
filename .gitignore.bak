@@ -10,8 +10,6 @@ server.properties
 *.txt
 genisys.yml
 crashdumps/*
-server.lock
-/phpstan.neon
 
 # Common IDEs
 .idea/*
@@ -31,19 +29,3 @@ Desktop.ini
 /docs/build/
 !/docs/requirements.txt
 .project
-
-# Composer
-vendor/*
-
-# Travis files
-test_data/*
-
-# Doxygen
-Documentation/*
-
-# PHPUnit
-/.phpunit.result.cache
-
-# php-cs-fixer
-/.php_cs.cache
-/.php-cs-fixer.cache

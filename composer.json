@@ -1,0 +1,28 @@
+{
+	"name": "sunch233/cyclone",
+	"description": "A server software for Minecraft: Bedrock Edition written in PHP",
+	"type": "project",
+	"license": "GPL-3.0-or-later",
+	"require": {
+		"php": "^8.1",
+		"php-64bit": "*",
+		"ext-igbinary": "^3.0.1",
+		"ext-json": "*",
+		"ext-mbstring": "*",
+		"ext-morton": "^0.1.0",
+		"ext-openssl": "*",
+		"ext-pcre": "*",
+		"ext-phar": "*",
+		"ext-pthreads": "^4.0",
+		"ext-reflection": "*",
+		"ext-sockets": "*",
+		"ext-spl": "*",
+		"ext-yaml": ">=2.0.0",
+		"ext-zip": "*",
+		"ext-zlib": ">=1.2.11",
+		"ext-libdeflate": "*"
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^1.10"
+	}
+}
