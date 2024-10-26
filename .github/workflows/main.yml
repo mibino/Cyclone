@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  phpstan:
+    name: PHPStan analysis
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: pmmp/setup-php-action@3.1.0
+        with:
+          php-version: 8.1
+          install-path: "./bin"
+          pm-version-major: 4
+
+      - name: Restore Composer package cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/composer/files
+            ~/.cache/composer/vcs
+          key: "composer-v2-cache-${{ inputs.php }}-${{ hashFiles('./composer.lock') }}"
+          restore-keys: |
+            composer-v2-cache-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyze -l 0 src tests --no-progress --memory-limit=2G
+
+  codestyle:
+    name: Code Style checks
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP and tools
+        uses: shivammathur/setup-php@2.31.1
+        with:
+          php-version: 8.2
+          tools: php-cs-fixer:3.60
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run PHP-CS-Fixer
+        run: php-cs-fixer fix --dry-run --diff --ansi
