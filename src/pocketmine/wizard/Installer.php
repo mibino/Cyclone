@@ -48,8 +48,10 @@ class Installer{
 
 	private $defaultLang;
 
+	private InstallerLang $lang;
+
 	public function __construct(){
-		echo "[*] Genisys set-up wizard\n";
+		echo "[*] Cyclone set-up wizard\n";
 		echo "[*] Please select a language:\n";
 		foreach(InstallerLang::$languages as $short => $native){
 			echo " $native => $short\n";

@@ -26,10 +26,12 @@ namespace pocketmine\utils;
  * Manages PocketMine-MP version strings, and compares them
  */
 class VersionString{
-	private $major;
-	private $build;
-	private $minor;
-	private $development = false;
+	private int $major;
+	private int $build;
+	private int $minor;
+	private bool $development = false;
+
+	private int $generation;
 
 	public function __construct($version = \pocketmine\VERSION){
 		if(is_int($version)){

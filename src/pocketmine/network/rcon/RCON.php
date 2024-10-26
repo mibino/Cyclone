@@ -37,12 +37,14 @@ class RCON{
 	const PROTOCOL_VERSION = 3;
 
 	/** @var Server */
-	private $server;
+	private Server $server;
 	private $socket;
-	private $password;
+	private string $password;
 	/** @var RCONInstance[] */
-	private $workers = [];
-	private $clientsPerThread;
+	private array $workers = [];
+
+	private int $threads;
+	private int $clientsPerThread;
 
 	public function __construct(Server $server, $password, $port = 19132, $interface = "0.0.0.0", $threads = 1, $clientsPerThread = 50){
 		$this->server = $server;
