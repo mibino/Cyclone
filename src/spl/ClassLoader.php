@@ -2,7 +2,7 @@
 
 /*
  * PocketMine Standard PHP Library
- * Copyright (C) 2014 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
+ * Copyright (C) 2014-2018 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,6 +17,9 @@
 
 interface ClassLoader{
 
+	/**
+	 * @param ClassLoader $parent
+	 */
 	public function __construct(ClassLoader $parent = null);
 
 	/**
@@ -24,12 +27,17 @@ interface ClassLoader{
 	 *
 	 * @param string $path
 	 * @param bool   $prepend
+	 *
+	 * @return void
 	 */
 	public function addPath($path, $prepend = false);
 
 	/**
 	 * Removes a path from the lookup list
 	 *
+	 * @param string $path
+	 *
+	 * @return void
 	 */
 	public function removePath($path);
 
@@ -43,7 +51,7 @@ interface ClassLoader{
 	/**
 	 * Returns the parent ClassLoader, if any
 	 *
-	 * @return ClassLoader
+	 * @return ClassLoader|null
 	 */
 	public function getParent();
 
@@ -62,8 +70,6 @@ interface ClassLoader{
 	 * @param string $name
 	 *
 	 * @return bool
-	 *
-	 * @throws ClassNotFoundException
 	 */
 	public function loadClass($name);
 

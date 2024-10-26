@@ -2,7 +2,7 @@
 
 /*
  * PocketMine Standard PHP Library
- * Copyright (C) 2014 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
+ * Copyright (C) 2014-2018 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +21,17 @@ interface Logger{
 	 * System is unusable
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function emergency($message);
 
 	/**
-	 * Action must me taken immediately
+	 * Action must be taken immediately
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function alert($message);
 
@@ -35,6 +39,8 @@ interface Logger{
 	 * Critical conditions
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function critical($message);
 
@@ -43,6 +49,8 @@ interface Logger{
 	 * be logged and monitored.
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function error($message);
 
@@ -53,6 +61,8 @@ interface Logger{
 	 * that are not necessarily wrong.
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function warning($message);
 
@@ -60,13 +70,17 @@ interface Logger{
 	 * Normal but significant events.
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function notice($message);
 
 	/**
-	 * Inersting events.
+	 * Interesting events.
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function info($message);
 
@@ -74,6 +88,8 @@ interface Logger{
 	 * Detailed debug information.
 	 *
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function debug($message);
 
@@ -82,12 +98,19 @@ interface Logger{
 	 *
 	 * @param mixed  $level
 	 * @param string $message
+	 *
+	 * @return void
 	 */
 	public function log($level, $message);
 
 	/**
 	 * Logs a Throwable object
 	 *
+	 * @param Throwable  $e
+	 * @param array|null $trace
+	 * @phpstan-param list<array<string, mixed>>|null $trace
+	 *
+	 * @return void
 	 */
 	public function logException(\Throwable $e, $trace = null);
 }

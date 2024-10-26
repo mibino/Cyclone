@@ -2,7 +2,7 @@
 
 /*
  * PocketMine Standard PHP Library
- * Copyright (C) 2014 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
+ * Copyright (C) 2014-2018 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,17 +17,21 @@
 
 class BaseClassLoader extends \Threaded implements ClassLoader{
 
-	/** @var \ClassLoader */
+	/** @var \ClassLoader|null */
 	private $parent;
-	/** @var string[] */
+	/** @var \Threaded|string[] */
 	private $lookup;
-	/** @var string[] */
+	/** @var \Threaded|string[] */
 	private $classes;
 
+
+	/**
+	 * @param ClassLoader|null $parent
+	 */
 	public function __construct(ClassLoader $parent = null){
 		$this->parent = $parent;
-		$this->lookup = new \Threaded();
-		$this->classes = new \Threaded();
+		$this->lookup = new \Threaded;
+		$this->classes = new \Threaded;
 	}
 
 	/**
@@ -35,6 +39,8 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 	 *
 	 * @param string $path
 	 * @param bool   $prepend
+	 *
+	 * @return void
 	 */
 	public function addPath($path, $prepend = false){
 
@@ -45,7 +51,7 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 		}
 
 		if($prepend){
-			$this->synchronized(function($path){
+			$this->lookup->synchronized(function(string $path) : void{
 				$entries = $this->getAndRemoveLookupEntries();
 				$this->lookup[] = $path;
 				foreach($entries as $entry){
@@ -56,11 +62,15 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 			$this->lookup[] = $path;
 		}
 	}
+	
 
+	/**
+	 * @return string[]
+	 */
 	protected function getAndRemoveLookupEntries(){
 		$entries = [];
-		while($this->count() > 0){
-			$entries[] = $this->shift();
+		while($this->lookup->count() > 0){
+			$entries[] = $this->lookup->shift();
 		}
 		return $entries;
 	}
@@ -68,6 +78,9 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 	/**
 	 * Removes a path from the lookup list
 	 *
+	 * @param string $path
+	 *
+	 * @return void
 	 */
 	public function removePath($path){
 		foreach($this->lookup as $i => $p){
@@ -93,7 +106,7 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 	/**
 	 * Returns the parent ClassLoader, if any
 	 *
-	 * @return ClassLoader
+	 * @return ClassLoader|null
 	 */
 	public function getParent(){
 		return $this->parent;
@@ -107,7 +120,9 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 	 * @return bool
 	 */
 	public function register($prepend = false){
-		spl_autoload_register([$this, "loadClass"], true, $prepend);
+		return spl_autoload_register(function(string $name) : void{
+			$this->loadClass($name);
+		}, true, $prepend);
 	}
 
 	/**
@@ -122,21 +137,16 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 		if($path !== null){
 			include($path);
 			if(!class_exists($name, false) and !interface_exists($name, false) and !trait_exists($name, false)){
-				if($this->getParent() === null){
-					throw new ClassNotFoundException("Class $name not found");
-				}
 				return false;
 			}
 
 			if(method_exists($name, "onClassLoaded") and (new ReflectionClass($name))->getMethod("onClassLoaded")->isStatic()){
 				$name::onClassLoaded();
 			}
-
+			
 			$this->classes[] = $name;
 
 			return true;
-		}elseif($this->getParent() === null){
-			throw new ClassNotFoundException("Class $name not found");
 		}
 
 		return false;
@@ -150,9 +160,7 @@ class BaseClassLoader extends \Threaded implements ClassLoader{
 	 * @return string|null
 	 */
 	public function findClass($name){
-		$components = explode("\\", $name);
-
-		$baseName = implode(DIRECTORY_SEPARATOR, $components);
+		$baseName = str_replace("\\", DIRECTORY_SEPARATOR, $name);
 
 		foreach($this->lookup as $path){
 			if(PHP_INT_SIZE === 8 and file_exists($path . DIRECTORY_SEPARATOR . $baseName . "__64bit.php")){

@@ -2,7 +2,7 @@
 
 /*
  * PocketMine Standard PHP Library
- * Copyright (C) 2014 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
+ * Copyright (C) 2014-2018 PocketMine Team <https://github.com/PocketMine/PocketMine-SPL>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,32 +17,41 @@
 
 abstract class AttachableThreadedLogger extends \ThreadedLogger{
 
-	/** @var \ThreadedLoggerAttachment */
-	protected $attachment = null;
+	/** @var \Volatile|\ThreadedLoggerAttachment[] */
+	protected $attachments;
 
-	public function addAttachment(\ThreadedLoggerAttachment $attachment){
-		if($this->attachment instanceof \ThreadedLoggerAttachment){
-			$this->attachment->addAttachment($attachment);
-		}else{
-			$this->attachment = $attachment;
-		}
+	public function __construct(){
+		$this->attachments = new \Volatile();
 	}
 
+	/**
+	 * @param ThreadedLoggerAttachment $attachment
+	 *
+	 * @return void
+	 */
+	public function addAttachment(\ThreadedLoggerAttachment $attachment){
+		$this->attachments[] = $attachment;
+	}
+
+	/**
+	 * @param ThreadedLoggerAttachment $attachment
+	 *
+	 * @return void
+	 */
 	public function removeAttachment(\ThreadedLoggerAttachment $attachment){
-		if($this->attachment instanceof \ThreadedLoggerAttachment){
-			if($this->attachment === $attachment){
-				$this->attachment = null;
-				foreach($attachment->getAttachments() as $attachment){
-					$this->addAttachment($attachment);
-				}
+		foreach($this->attachments as $i => $a){
+			if($attachment === $a){
+				unset($this->attachments[$i]);
 			}
 		}
 	}
 
+	/**
+	 * @return void
+	 */
 	public function removeAttachments(){
-		if($this->attachment instanceof \ThreadedLoggerAttachment){
-			$this->attachment->removeAttachments();
-			$this->attachment = null;
+		foreach($this->attachments as $i => $a){
+			unset($this->attachments[$i]);
 		}
 	}
 
@@ -50,12 +59,6 @@ abstract class AttachableThreadedLogger extends \ThreadedLogger{
 	 * @return \ThreadedLoggerAttachment[]
 	 */
 	public function getAttachments(){
-		$attachments = [];
-		if($this->attachment instanceof \ThreadedLoggerAttachment){
-			$attachments[] = $this->attachment;
-			$attachments += $this->attachment->getAttachments();
-		}
-
-		return $attachments;
+		return (array) $this->attachments;
 	}
 }
