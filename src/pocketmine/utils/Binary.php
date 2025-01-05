@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Various Utilities used around the code
@@ -57,7 +57,6 @@ class Binary{
 	/**
 	 * Reads a 3-byte big-endian number
 	 *
-	 *
 	 * @return mixed
 	 */
 	public static function readTriad($str){
@@ -68,7 +67,6 @@ class Binary{
 	/**
 	 * Writes a 3-byte big-endian number
 	 *
-	 *
 	 * @return string
 	 */
 	public static function writeTriad($value){
@@ -77,7 +75,6 @@ class Binary{
 
 	/**
 	 * Reads a 3-byte little-endian number
-	 *
 	 *
 	 * @return mixed
 	 */
@@ -89,7 +86,6 @@ class Binary{
 	/**
 	 * Writes a 3-byte little-endian number
 	 *
-	 *
 	 * @return string
 	 */
 	public static function writeLTriad($value){
@@ -98,7 +94,6 @@ class Binary{
 
 	/**
 	 * Writes a coded metadata string
-	 *
 	 *
 	 * @return string
 	 */
@@ -210,7 +205,6 @@ class Binary{
 	/**
 	 * Reads a byte boolean
 	 *
-	 *
 	 * @return bool
 	 */
 	public static function readBool($b){
@@ -219,7 +213,6 @@ class Binary{
 
 	/**
 	 * Writes a byte boolean
-	 *
 	 *
 	 * @return bool|string
 	 */
@@ -253,7 +246,6 @@ class Binary{
 	/**
 	 * Writes an unsigned/signed byte
 	 *
-	 *
 	 * @return string
 	 */
 	public static function writeByte($c){
@@ -262,7 +254,6 @@ class Binary{
 
 	/**
 	 * Reads a 16-bit unsigned big-endian number
-	 *
 	 *
 	 * @return int
 	 */
@@ -273,7 +264,6 @@ class Binary{
 
 	/**
 	 * Reads a 16-bit signed big-endian number
-	 *
 	 *
 	 * @return int
 	 */
@@ -289,7 +279,6 @@ class Binary{
 	/**
 	 * Writes a 16-bit signed/unsigned big-endian number
 	 *
-	 *
 	 * @return string
 	 */
 	public static function writeShort($value){
@@ -298,7 +287,6 @@ class Binary{
 
 	/**
 	 * Reads a 16-bit unsigned little-endian number
-	 *
 	 *
 	 * @return int
 	 */
@@ -309,7 +297,6 @@ class Binary{
 
 	/**
 	 * Reads a 16-bit signed little-endian number
-	 *
 	 *
 	 * @return int
 	 */
@@ -324,7 +311,6 @@ class Binary{
 
 	/**
 	 * Writes a 16-bit signed/unsigned little-endian number
-	 *
 	 *
 	 * @return string
 	 */

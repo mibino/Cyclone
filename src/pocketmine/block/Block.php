@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * All Block classes are in here
@@ -320,8 +320,8 @@ class Block extends Position implements BlockIds, Metadatable{
 	}
 
 	/**
-	 * @param int      $id
-	 * @param int      $meta
+	 * @param int $id
+	 * @param int $meta
 	 *
 	 * @return Block
 	 */
@@ -378,7 +378,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Returns if the item can be broken with an specific Item
 	 *
-	 *
 	 * @return bool
 	 */
 	public function isBreakable(Item $item){
@@ -391,7 +390,6 @@ class Block extends Position implements BlockIds, Metadatable{
 
 	/**
 	 * Do the actions needed so the block is broken with the Item
-	 *
 	 *
 	 * @return mixed
 	 */
@@ -412,7 +410,6 @@ class Block extends Position implements BlockIds, Metadatable{
 
 	/**
 	 * Do actions when activated by Item. Returns if it has done anything
-	 *
 	 *
 	 * @return bool
 	 */
@@ -531,7 +528,6 @@ class Block extends Position implements BlockIds, Metadatable{
 
 	/**
 	 * AKA: Block->isActivable
-	 *
 	 */
 	public function canBeActivated() : bool{
 		return false;
@@ -588,7 +584,6 @@ class Block extends Position implements BlockIds, Metadatable{
 
 	/**
 	 * Sets the block position to a new Position object
-	 *
 	 */
 	final public function position(Position $v){
 		$this->x = (int) $v->x;
@@ -600,8 +595,6 @@ class Block extends Position implements BlockIds, Metadatable{
 
 	/**
 	 * Returns an array of Item objects to be dropped
-	 *
-	 *
 	 */
 	public function getDrops(Item $item) : array{
 		if(!isset(self::$list[$this->getId()])){ //Unknown blocks
@@ -615,7 +608,6 @@ class Block extends Position implements BlockIds, Metadatable{
 
 	/**
 	 * Returns the seconds that this block takes to be broken using an specific Item
-	 *
 	 *
 	 * @return float
 	 */
@@ -688,7 +680,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	/**
 	 * Checks for collision against an AxisAlignedBB
 	 *
-	 *
 	 * @return bool
 	 */
 	public function collidesWithBB(AxisAlignedBB $bb){
@@ -726,7 +717,6 @@ class Block extends Position implements BlockIds, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return MovingObjectPosition
 	 */
 	public function calculateIntercept(Vector3 $pos1, Vector3 $pos2){

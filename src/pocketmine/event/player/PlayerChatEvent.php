@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -37,9 +37,7 @@ class PlayerChatEvent extends PlayerEvent implements Cancellable{
 	/** @var string */
 	protected $format;
 
-	/**
-	 * @var Player[]
-	 */
+	/** @var Player[] */
 	protected $recipients = [];
 
 	public function __construct(Player $player, $message, $format = "chat.type.text", array $recipients = null){
@@ -65,7 +63,6 @@ class PlayerChatEvent extends PlayerEvent implements Cancellable{
 
 	/**
 	 * Changes the player that is sending the message
-	 *
 	 */
 	public function setPlayer(Player $player){
 		$this->player = $player;

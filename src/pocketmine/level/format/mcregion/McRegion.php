@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format\mcregion;
 
@@ -256,7 +256,6 @@ class McRegion extends BaseLevelProvider{
 	}
 
 	/**
-	 *
 	 * @return RegionLoader
 	 */
 	protected function getRegion($x, $z){

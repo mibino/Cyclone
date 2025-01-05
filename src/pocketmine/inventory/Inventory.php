@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Handles the creation of virtual inventories or mapped to an InventoryHolder
@@ -55,7 +55,7 @@ interface Inventory{
 	 * If a plugin refuses the update or $index is invalid, it'll return false
 	 * If a source Player is specified, it won't send a Inventory update to it
 	 *
-	 * @param int    $index
+	 * @param int $index
 	 *
 	 * @return bool
 	 */
@@ -67,14 +67,12 @@ interface Inventory{
 	 *
 	 * Returns the Items that did not fit.
 	 *
-	 *
 	 * @return Item[]
 	 */
 	public function addItem(...$slots);
 
 	/**
 	 * Checks if a given Item can be added to the inventory
-	 *
 	 *
 	 * @return bool
 	 */
@@ -83,7 +81,6 @@ interface Inventory{
 	/**
 	 * Removes the given Item from the inventory.
 	 * It will return the Items that couldn't be removed.
-	 *
 	 *
 	 * @return Item[]
 	 */
@@ -114,7 +111,6 @@ interface Inventory{
 	 * Checks if the inventory contains any Item with the same material data.
 	 * It will check id, amount, and metadata (if not null)
 	 *
-	 *
 	 * @return bool
 	 */
 	public function contains(Item $item);
@@ -123,7 +119,6 @@ interface Inventory{
 	 * Will return all the Items that has the same id and metadata (if not null).
 	 * Won't check amount
 	 *
-	 *
 	 * @return Item[]
 	 */
 	public function all(Item $item);
@@ -131,7 +126,6 @@ interface Inventory{
 	/**
 	 * Will return the first slot has the same id and metadata (if not null) as the Item.
 	 * -1 if not found, will check amount
-	 *
 	 *
 	 * @return int
 	 */
@@ -146,14 +140,13 @@ interface Inventory{
 
 	/**
 	 * Will remove all the Items that has the same id and metadata (if not null)
-	 *
 	 */
 	public function remove(Item $item);
 
 	/**
 	 * Will clear a specific slot
 	 *
-	 * @param int    $index
+	 * @param int $index
 	 *
 	 * @return bool
 	 */
@@ -187,7 +180,6 @@ interface Inventory{
 	/**
 	 * Tries to open the inventory to a player
 	 *
-	 *
 	 * @return bool
 	 */
 	public function open(Player $who);
@@ -197,9 +189,9 @@ interface Inventory{
 	public function onClose(Player $who);
 
 	/**
-	 * @param int    $index
-	 * @param Item   $before
-	 * @param bool   $send
+	 * @param int  $index
+	 * @param Item $before
+	 * @param bool $send
 	 */
 	public function onSlotChange($index, $before, $send);
 }

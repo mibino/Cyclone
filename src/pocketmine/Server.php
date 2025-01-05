@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine;
 
@@ -959,8 +959,8 @@ class Server{
 	}
 
 	/**
-	 * @param string   $name
-	 * @param bool     $async
+	 * @param string $name
+	 * @param bool   $async
 	 */
 	public function saveOfflinePlayerData($name, CompoundTag $nbtTag, $async = false){
 		if($this->shouldSavePlayerData()){
@@ -981,7 +981,6 @@ class Server{
 	}
 
 	/**
-	 *
 	 * @return Player
 	 */
 	public function getPlayer(string $name){
@@ -1005,7 +1004,6 @@ class Server{
 	}
 
 	/**
-	 *
 	 * @return Player
 	 */
 	public function getPlayerExact(string $name){
@@ -1106,7 +1104,6 @@ class Server{
 	}
 
 	/**
-	 *
 	 * @return Level
 	 */
 	public function getLevelByName($name){
@@ -1120,7 +1117,7 @@ class Server{
 	}
 
 	/**
-	 * @param bool  $forceUnload
+	 * @param bool $forceUnload
 	 *
 	 * @return bool
 	 */
@@ -1639,10 +1636,10 @@ class Server{
 	}
 
 	/**
-	 * @param string          $filePath
-	 * @param string          $dataPath
-	 * @param string          $pluginPath
-	 * @param string          $defaultLang
+	 * @param string $filePath
+	 * @param string $dataPath
+	 * @param string $pluginPath
+	 * @param string $defaultLang
 	 */
 	public function __construct(\ClassLoader $autoloader, \ThreadedLogger $logger, $filePath, $dataPath, $pluginPath, $defaultLang = "unknown"){
 		self::$instance = $this;
@@ -1982,7 +1979,6 @@ class Server{
 	/**
 	 * @param string        $message
 	 * @param Player[]|null $recipients
-	 *
 	 */
 	public function broadcastMessage($message, $recipients = null) : int{
 		if(!is_array($recipients)){
@@ -1999,7 +1995,6 @@ class Server{
 
 	/**
 	 * @param Player[]|null $recipients
-	 *
 	 */
 	public function broadcastTip(string $tip, $recipients = null) : int{
 		if(!is_array($recipients)){
@@ -2023,7 +2018,6 @@ class Server{
 
 	/**
 	 * @param Player[]|null $recipients
-	 *
 	 */
 	public function broadcastPopup(string $popup, $recipients = null) : int{
 		if(!is_array($recipients)){
@@ -2047,7 +2041,6 @@ class Server{
 
 	/**
 	 * @param string $message
-	 *
 	 */
 	public function broadcast($message, string $permissions) : int{
 		/** @var CommandSender[] $recipients */
@@ -2070,7 +2063,7 @@ class Server{
 	/**
 	 * Broadcasts a Minecraft packet to a list of players
 	 *
-	 * @param Player[]   $players
+	 * @param Player[] $players
 	 */
 	public static function broadcastPacket(array $players, DataPacket $packet){
 		$packet->encode();
@@ -2175,7 +2168,7 @@ class Server{
 	/**
 	 * Executes a command from a CommandSender
 	 *
-	 * @param string        $commandLine
+	 * @param string $commandLine
 	 *
 	 * @return bool
 	 *
@@ -2701,7 +2694,7 @@ class Server{
 	}
 
 	/**
-	 * @param null        $defaultValue
+	 * @param null $defaultValue
 	 * @return bool|mixed|null
 	 */
 	public function getAdvancedProperty($variable, $defaultValue = null, Config $cfg = null){

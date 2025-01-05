@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\entity;
 
@@ -87,7 +87,6 @@ class Villager extends Creature implements NPC, Ageable{
 
 	/**
 	 * Sets the villager profession
-	 *
 	 */
 	public function setProfession(int $profession){
 		$this->namedtag->Profession = new ByteTag("Profession", $profession);

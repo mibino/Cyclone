@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -40,9 +40,7 @@ class PlayerInteractEvent extends PlayerEvent implements Cancellable{
 	const RIGHT_CLICK_AIR = 3;
 	const PHYSICAL = 4;
 
-	/**
-	 * @var \pocketmine\block\Block;
-	 */
+	/** @var \pocketmine\block\Block; */
 	protected $blockTouched;
 
 	protected $touchVector;
@@ -50,7 +48,7 @@ class PlayerInteractEvent extends PlayerEvent implements Cancellable{
 	/** @var int */
 	protected $blockFace;
 
-	/** @var \pocketmine\item\Item */
+	/** @var Item */
 	protected $item;
 
 	protected $action;

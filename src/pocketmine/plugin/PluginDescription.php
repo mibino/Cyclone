@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\plugin;
 
@@ -49,9 +49,7 @@ class PluginDescription{
 
 	private $geniapi;
 
-	/**
-	 * @var Permission[]
-	 */
+	/** @var Permission[] */
 	private $permissions = [];
 
 	/**
@@ -62,7 +60,6 @@ class PluginDescription{
 	}
 
 	/**
-	 *
 	 * @throws PluginException
 	 */
 	private function loadMap(array $plugin){

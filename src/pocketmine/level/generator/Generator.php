@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Noise classes used in Levels
@@ -54,7 +54,6 @@ abstract class Generator{
 	}
 
 	/**
-	 *
 	 * @return Generator
 	 */
 	public static function getGenerator($name){
@@ -76,11 +75,11 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param int   $xSize
-	 * @param int   $samplingRate
-	 * @param int   $x
-	 * @param int   $y
-	 * @param int   $z
+	 * @param int $xSize
+	 * @param int $samplingRate
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
 	 *
 	 * @return \SplFixedArray
 	 */
@@ -109,12 +108,12 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param int   $xSize
-	 * @param int   $zSize
-	 * @param int   $samplingRate
-	 * @param int   $x
-	 * @param int   $y
-	 * @param int   $z
+	 * @param int $xSize
+	 * @param int $zSize
+	 * @param int $samplingRate
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
 	 *
 	 * @return \SplFixedArray
 	 */
@@ -160,15 +159,15 @@ abstract class Generator{
 	}
 
 	/**
-	 * @param int   $xSize
-	 * @param int   $ySize
-	 * @param int   $zSize
-	 * @param int   $xSamplingRate
-	 * @param int   $ySamplingRate
-	 * @param int   $zSamplingRate
-	 * @param int   $x
-	 * @param int   $y
-	 * @param int   $z
+	 * @param int $xSize
+	 * @param int $ySize
+	 * @param int $zSize
+	 * @param int $xSamplingRate
+	 * @param int $ySamplingRate
+	 * @param int $zSamplingRate
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
 	 *
 	 * @return \SplFixedArray
 	 */

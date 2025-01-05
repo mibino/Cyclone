@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\permission;
 
@@ -35,14 +35,10 @@ class PermissibleBase implements Permissible{
 	/** @var Permissible */
 	private $parent = null;
 
-	/**
-	 * @var PermissionAttachment[]
-	 */
+	/** @var PermissionAttachment[] */
 	private $attachments = [];
 
-	/**
-	 * @var PermissionAttachmentInfo[]
-	 */
+	/** @var PermissionAttachmentInfo[] */
 	private $permissions = [];
 
 	public function __construct(ServerOperator $opable){
@@ -143,7 +139,6 @@ class PermissibleBase implements Permissible{
 	}
 
 	/**
-	 *
 	 * @throws \Throwable
 	 */
 	public function removeAttachment(PermissionAttachment $attachment){

@@ -1,15 +1,21 @@
 <?php
 
 /*
- * RakLib network library
  *
- *
- * This project is not affiliated with Jenkins Software LLC nor RakNet.
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
+ *
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
  *
  */
 
@@ -41,7 +47,6 @@ class Binary{
 	/**
 	 * Reads a 3-byte big-endian number
 	 *
-	 *
 	 * @return mixed
 	 */
 	public static function readTriad($str){
@@ -50,7 +55,6 @@ class Binary{
 
 	/**
 	 * Writes a 3-byte big-endian number
-	 *
 	 *
 	 * @return string
 	 */
@@ -61,7 +65,6 @@ class Binary{
 	/**
 	 * Reads a 3-byte little-endian number
 	 *
-	 *
 	 * @return mixed
 	 */
 	public static function readLTriad($str){
@@ -70,7 +73,6 @@ class Binary{
 
 	/**
 	 * Writes a 3-byte little-endian number
-	 *
 	 *
 	 * @return string
 	 */
@@ -81,7 +83,6 @@ class Binary{
 	/**
 	 * Reads a byte boolean
 	 *
-	 *
 	 * @return bool
 	 */
 	public static function readBool($b){
@@ -90,7 +91,6 @@ class Binary{
 
 	/**
 	 * Writes a byte boolean
-	 *
 	 *
 	 * @return bool|string
 	 */
@@ -123,7 +123,6 @@ class Binary{
 	/**
 	 * Writes an unsigned/signed byte
 	 *
-	 *
 	 * @return string
 	 */
 	public static function writeByte($c){
@@ -133,7 +132,6 @@ class Binary{
 	/**
 	 * Reads a 16-bit unsigned big-endian number
 	 *
-	 *
 	 * @return int
 	 */
 	public static function readShort($str){
@@ -142,7 +140,6 @@ class Binary{
 
 	/**
 	 * Reads a 16-bit signed big-endian number
-	 *
 	 *
 	 * @return int
 	 */
@@ -156,7 +153,6 @@ class Binary{
 
 	/**
 	 * Writes a 16-bit signed/unsigned big-endian number
-	 *
 	 *
 	 * @return string
 	 */
@@ -187,7 +183,6 @@ class Binary{
 
 	/**
 	 * Writes a 16-bit signed/unsigned little-endian number
-	 *
 	 *
 	 * @return string
 	 */

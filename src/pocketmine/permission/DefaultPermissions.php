@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\permission;
 
@@ -27,7 +27,6 @@ abstract class DefaultPermissions{
 	const ROOT = "pocketmine";
 
 	/**
-	 *
 	 * @return Permission
 	 */
 	public static function registerPermission(Permission $perm, Permission $parent = null){

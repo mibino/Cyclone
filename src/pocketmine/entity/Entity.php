@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * All the entity classes
@@ -179,9 +179,7 @@ abstract class Entity extends Location implements Metadatable{
 	private static $knownEntities = [];
 	private static $shortNames = [];
 
-	/**
-	 * @var Player[]
-	 */
+	/** @var Player[] */
 	protected $hasSpawned = [];
 
 	/** @var Effect[] */
@@ -549,7 +547,7 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	/**
-	 * @param int|string  $type
+	 * @param int|string $type
 	 *
 	 * @return Entity|Projectile
 	 */
@@ -704,7 +702,7 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * @param Player[]|Player $player
-	 * @param array           $data Properly formatted entity data, defaults to everything
+	 * @param array           $data   Properly formatted entity data, defaults to everything
 	 */
 	public function sendData($player, array $data = null){
 		if(!is_array($player)){
@@ -737,7 +735,7 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	/**
-	 * @param float             $damage
+	 * @param float $damage
 	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if($this->hasEffect(Effect::FIRE_RESISTANCE)
@@ -770,8 +768,7 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	/**
-	 * @param float                   $amount
-	 *
+	 * @param float $amount
 	 */
 	public function heal($amount, EntityRegainHealthEvent $source){
 		$this->server->getPluginManager()->callEvent($source);
@@ -1518,7 +1515,7 @@ abstract class Entity extends Location implements Metadatable{
 		}
 
 		if($this->getLevel()->getServer()->redstoneEnabled and !$this->isPlayer){
-			/** @var \pocketmine\block\PressurePlate $block * */
+			/** @var PressurePlate $block * */
 			foreach($this->activatedPressurePlates as $key => $block){
 				if(!isset($blocksaround[$key])) $block->checkActivation();
 			}
@@ -1736,7 +1733,7 @@ abstract class Entity extends Location implements Metadatable{
 		}
 
 		if($this->getLevel()->getServer()->redstoneEnabled){
-			/** @var \pocketmine\block\PressurePlate $block * */
+			/** @var PressurePlate $block * */
 			foreach($this->activatedPressurePlates as $key => $block){
 				$block->checkActivation();
 			}

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\utils;
 
@@ -109,38 +109,38 @@ class MainLogger extends \AttachableThreadedLogger{
 	}
 
 	public function emergency($message, $name = "EMERGENCY"){
-		$this->send($message, \LogLevel::EMERGENCY, $name, TextFormat::RED);
+		$this->send($message, LogLevel::EMERGENCY, $name, TextFormat::RED);
 	}
 
 	public function alert($message, $name = "ALERT"){
-		$this->send($message, \LogLevel::ALERT, $name, TextFormat::RED);
+		$this->send($message, LogLevel::ALERT, $name, TextFormat::RED);
 	}
 
 	public function critical($message, $name = "CRITICAL"){
-		$this->send($message, \LogLevel::CRITICAL, $name, TextFormat::RED);
+		$this->send($message, LogLevel::CRITICAL, $name, TextFormat::RED);
 	}
 
 	public function error($message, $name = "ERROR"){
-		$this->send($message, \LogLevel::ERROR, $name, TextFormat::DARK_RED);
+		$this->send($message, LogLevel::ERROR, $name, TextFormat::DARK_RED);
 	}
 
 	public function warning($message, $name = "WARNING"){
-		$this->send($message, \LogLevel::WARNING, $name, TextFormat::YELLOW);
+		$this->send($message, LogLevel::WARNING, $name, TextFormat::YELLOW);
 	}
 
 	public function notice($message, $name = "NOTICE"){
-		$this->send($message, \LogLevel::NOTICE, $name, TextFormat::AQUA);
+		$this->send($message, LogLevel::NOTICE, $name, TextFormat::AQUA);
 	}
 
 	public function info($message, $name = "INFO"){
-		$this->send($message, \LogLevel::INFO, $name, TextFormat::WHITE);
+		$this->send($message, LogLevel::INFO, $name, TextFormat::WHITE);
 	}
 
 	public function debug($message, $name = "DEBUG"){
 		if($this->logDebug === false){
 			return;
 		}
-		$this->send($message, \LogLevel::DEBUG, $name, TextFormat::GRAY);
+		$this->send($message, LogLevel::DEBUG, $name, TextFormat::GRAY);
 	}
 
 	/**

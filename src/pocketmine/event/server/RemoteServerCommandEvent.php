@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -30,7 +30,7 @@ class RemoteServerCommandEvent extends ServerCommandEvent{
 	public static $handlerList = null;
 
 	/**
-	 * @param string        $command
+	 * @param string $command
 	 */
 	public function __construct(CommandSender $sender, $command){
 		parent::__construct($sender, $command);

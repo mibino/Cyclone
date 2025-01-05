@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\plugin;
 
@@ -52,13 +52,11 @@ interface PluginLoader{
 	public function getPluginFilters();
 
 	/**
-	 *
 	 * @return void
 	 */
 	public function enablePlugin(Plugin $plugin);
 
 	/**
-	 *
 	 * @return void
 	 */
 	public function disablePlugin(Plugin $plugin);

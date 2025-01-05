@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\command;
 
@@ -30,13 +30,13 @@ interface CommandMap{
 	public function registerAll($fallbackPrefix, array $commands);
 
 	/**
-	 * @param string  $fallbackPrefix
-	 * @param string  $label
+	 * @param string $fallbackPrefix
+	 * @param string $label
 	 */
 	public function register($fallbackPrefix, Command $command, $label = null);
 
 	/**
-	 * @param string        $cmdLine
+	 * @param string $cmdLine
 	 *
 	 * @return boolean
 	 */

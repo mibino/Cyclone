@@ -17,15 +17,15 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\command;
 
 interface CommandExecutor{
 
 	/**
-	 * @param string        $label
-	 * @param string[]      $args
+	 * @param string   $label
+	 * @param string[] $args
 	 *
 	 * @return boolean
 	 */

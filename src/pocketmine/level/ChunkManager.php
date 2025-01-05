@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 declare(strict_types=1);
 
@@ -29,10 +29,9 @@ interface ChunkManager{
 	/**
 	 * Gets the raw block id.
 	 *
-	 *
 	 * @return int 0-255
 	 */
-	public function getBlockIdAt(int $x, int $y, int $z): int;
+	public function getBlockIdAt(int $x, int $y, int $z) : int;
 
 	/**
 	 * Sets the raw block id.
@@ -43,7 +42,6 @@ interface ChunkManager{
 
 	/**
 	 * Gets the raw block metadata
-	 *
 	 *
 	 * @return int 0-15
 	 */
@@ -59,14 +57,12 @@ interface ChunkManager{
 	/**
 	 * Gets the raw block light level
 	 *
-	 *
 	 * @return int 0-15
 	 */
 	public function getBlockLightAt(int $x, int $y, int $z) : int;
 
 	/**
 	 * Updates the light around the block
-	 *
 	 */
 	public function updateBlockLight(int $x, int $y, int $z);
 
@@ -78,7 +74,6 @@ interface ChunkManager{
 	public function setBlockLightAt(int $x, int $y, int $z, int $level);
 
 	/**
-	 *
 	 * @return FullChunk|null
 	 */
 	public function getChunk(int $chunkX, int $chunkZ);

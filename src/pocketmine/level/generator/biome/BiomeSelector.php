@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\generator\biome;
 
@@ -72,7 +72,6 @@ class BiomeSelector{
 	}
 
 	/**
-	 *
 	 * @return Biome
 	 */
 	public function pickBiome($x, $z){

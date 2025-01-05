@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Task scheduling related classes
@@ -36,14 +36,10 @@ use function is_object;
 
 class ServerScheduler{
 	public static $WORKERS = 2;
-	/**
-	 * @var ReversePriorityQueue<Task>
-	 */
+	/** @var ReversePriorityQueue<Task> */
 	protected $queue;
 
-	/**
-	 * @var TaskHandler[]
-	 */
+	/** @var TaskHandler[] */
 	protected $tasks = [];
 
 	/** @var AsyncPool */
@@ -61,7 +57,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 *
 	 * @return null|TaskHandler
 	 */
 	public function scheduleTask(Task $task){
@@ -70,7 +65,6 @@ class ServerScheduler{
 
 	/**
 	 * Submits an asynchronous task to the Worker Pool
-	 *
 	 *
 	 * @return void
 	 */
@@ -83,7 +77,7 @@ class ServerScheduler{
 	/**
 	 * Submits an asynchronous task to a specific Worker in the Pool
 	 *
-	 * @param int       $worker
+	 * @param int $worker
 	 *
 	 * @return void
 	 */
@@ -102,7 +96,7 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param int  $delay
+	 * @param int $delay
 	 *
 	 * @return null|TaskHandler
 	 */
@@ -111,7 +105,7 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param int  $period
+	 * @param int $period
 	 *
 	 * @return null|TaskHandler
 	 */
@@ -120,8 +114,8 @@ class ServerScheduler{
 	}
 
 	/**
-	 * @param int  $delay
-	 * @param int  $period
+	 * @param int $delay
+	 * @param int $period
 	 *
 	 * @return null|TaskHandler
 	 */
@@ -171,7 +165,6 @@ class ServerScheduler{
 	}
 
 	/**
-	 *
 	 * @return null|TaskHandler
 	 *
 	 * @throws PluginException

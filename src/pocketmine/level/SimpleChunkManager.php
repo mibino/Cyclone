@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 declare(strict_types=1);
 
@@ -47,7 +47,6 @@ class SimpleChunkManager implements ChunkManager{
 	/**
 	 * Gets the raw block id.
 	 *
-	 *
 	 * @return int 0-255
 	 */
 	public function getBlockIdAt(int $x, int $y, int $z) : int{
@@ -70,7 +69,6 @@ class SimpleChunkManager implements ChunkManager{
 
 	/**
 	 * Gets the raw block metadata
-	 *
 	 *
 	 * @return int 0-15
 	 */
@@ -95,7 +93,6 @@ class SimpleChunkManager implements ChunkManager{
 	/**
 	 * Gets the raw block light level
 	 *
-	 *
 	 * @return int 0-15
 	 */
 	public function getBlockLightAt(int $x, int $y, int $z) : int{
@@ -118,7 +115,6 @@ class SimpleChunkManager implements ChunkManager{
 
 	/**
 	 * Updates the light around the block
-	 *
 	 */
 	public function updateBlockLight(int $x, int $y, int $z){
 		$lightPropagationQueue = new \SplQueue();
@@ -208,7 +204,6 @@ class SimpleChunkManager implements ChunkManager{
 	}
 
 	/**
-	 *
 	 * @return FullChunk|null
 	 */
 	public function getChunk(int $chunkX, int $chunkZ){

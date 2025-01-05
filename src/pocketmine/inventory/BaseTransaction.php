@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -189,7 +189,7 @@ class BaseTransaction implements Transaction{
 	 * Handles transaction execution. Returns whether transaction was successful or not.
 	 */
 
-	public function execute(Player $source): bool{
+	public function execute(Player $source) : bool{
 		if($this->getInventory()->processSlotChange($this)){ //This means that the transaction should be handled the normal way
 			if(!$source->getServer()->allowInventoryCheats and !$source->isCreative()){
 				$change = $this->getChange();

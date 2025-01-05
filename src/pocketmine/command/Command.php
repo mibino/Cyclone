@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Command handling related classes
@@ -50,14 +50,10 @@ abstract class Command{
 	/** @var string */
 	private $label;
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $aliases = [];
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $activeAliases = [];
 
 	/** @var CommandMap */
@@ -95,7 +91,6 @@ abstract class Command{
 
 	/**
 	 * Returns an \stdClass containing command data
-	 *
 	 */
 	public function getDefaultCommandData() : \stdClass{
 		return $this->commandData;
@@ -104,7 +99,6 @@ abstract class Command{
 	/**
 	 * Generates modified command data for the specified player
 	 * for AvailableCommandsPacket.
-	 *
 	 *
 	 * @return \stdClass|null
 	 */
@@ -123,13 +117,13 @@ abstract class Command{
 		return $customData;
 	}
 
-	public function getOverloads(): \stdClass{
+	public function getOverloads() : \stdClass{
 		return $this->commandData->overloads;
 	}
 
 	/**
-	 * @param string        $commandLabel
-	 * @param string[]      $args
+	 * @param string   $commandLabel
+	 * @param string[] $args
 	 *
 	 * @return mixed
 	 */
@@ -158,7 +152,6 @@ abstract class Command{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function testPermission(CommandSender $target){
@@ -176,7 +169,6 @@ abstract class Command{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function testPermissionSilent(CommandSender $target){
@@ -215,7 +207,6 @@ abstract class Command{
 	/**
 	 * Registers the command into a Command map
 	 *
-	 *
 	 * @return bool
 	 */
 	public function register(CommandMap $commandMap){
@@ -229,7 +220,6 @@ abstract class Command{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function unregister(CommandMap $commandMap){
@@ -245,7 +235,6 @@ abstract class Command{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	private function allowChangesFrom(CommandMap $commandMap){
@@ -326,8 +315,8 @@ abstract class Command{
 	}
 
 	/**
-	 * @param string        $message
-	 * @param bool          $sendToSource
+	 * @param string $message
+	 * @param bool   $sendToSource
 	 */
 	public static function broadcastCommandMessage(CommandSender $source, $message, $sendToSource = true){
 		if($message instanceof TextContainer){

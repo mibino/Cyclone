@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\block;
 
@@ -465,7 +465,6 @@ abstract class Liquid extends Transparent{
 
 	/**
 	 * Creates fizzing sound and smoke. Used when lava flows over block or mixes with water.
-	 *
 	 */
 	protected function triggerLavaMixEffects(Vector3 $pos){
 		$this->getLevel()->addSound(new FizzSound($pos->add(0.5, 0.5, 0.5), 2.5 + mt_rand(0, 1000) / 1000 * 0.8));

@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -42,7 +42,7 @@ class ServerCommandEvent extends ServerEvent implements Cancellable{
 	protected $sender;
 
 	/**
-	 * @param string        $command
+	 * @param string $command
 	 */
 	public function __construct(CommandSender $sender, $command){
 		$this->sender = $sender;

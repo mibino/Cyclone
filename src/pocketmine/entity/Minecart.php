@@ -2,20 +2,20 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
  *
  */
 
@@ -129,7 +129,7 @@ class Minecart extends Vehicle{
 	}
 
 	private function isRail($rail) {
-		return ($rail !== null and in_array($rail->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL]));
+		return ($rail !== null and in_array($rail->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL], true));
 	}
 
 	private function getCurrentRail() {
@@ -184,7 +184,7 @@ class Minecart extends Vehicle{
 	 * Determine the direction the minecart should move based on the candidate direction (current direction
 	 * minecart is moving, or the direction the player is looking) and the type of rail that the minecart is
 	 * on.
-	 * @param RailType $railType Type of rail the minecart is on.
+	 * @param RailType  $railType           Type of rail the minecart is on.
 	 * @param Direction $candidateDirection Direction minecart already moving, or direction player looking.
 	 * @return Direction The direction the minecart should move.
 	 */
@@ -261,7 +261,7 @@ class Minecart extends Vehicle{
 	 * Need to alter direction on curves halfway through the turn and reset the minecart to be in the middle of
 	 * the rail again so as not to collide with nearby blocks.
 	 * @param Direction $currentDirection Direction minecart currently moving
-	 * @param Direction $newDirection Direction minecart should turn once has hit the halfway point.
+	 * @param Direction $newDirection     Direction minecart should turn once has hit the halfway point.
 	 * @return Direction Either the current direction or the new direction depending on haw far across the rail the
 	 * minecart is.
 	 */
@@ -406,7 +406,7 @@ class Minecart extends Vehicle{
 		$nextMoveVector = $nextMoveVector->multiply($this->moveSpeed);
 		$newVector = $this->add($nextMoveVector->x, $nextMoveVector->y, $nextMoveVector->z);
 		$possibleRail = $this->getCurrentRail();
-		if(in_array($possibleRail->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL])) {
+		if(in_array($possibleRail->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL], true)) {
 			$this->moveUsingVector($newVector);
 			return true;
 		}
@@ -441,7 +441,7 @@ class Minecart extends Vehicle{
 			for($x = $minX; $x <= $maxX; ++$x){
 				for($y = $minY; $y <= $maxY; ++$y){
 					$block = $this->level->getBlock($this->temporalVector->setComponents($x, $y, $z));
-					if(in_array($block->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL])) $rails[] = $block;
+					if(in_array($block->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL], true)) $rails[] = $block;
 				}
 			}
 		}

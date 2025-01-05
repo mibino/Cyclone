@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -46,4 +46,3 @@ class RawChicken extends Food{
 		}
 	}
 }
-

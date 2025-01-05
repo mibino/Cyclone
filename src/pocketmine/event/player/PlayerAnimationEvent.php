@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -36,7 +36,7 @@ class PlayerAnimationEvent extends PlayerEvent implements Cancellable{
 	private $animationType;
 
 	/**
-	 * @param int    $animation
+	 * @param int $animation
 	 */
 	public function __construct(Player $player, $animation = self::ARM_SWING){
 		$this->player = $player;

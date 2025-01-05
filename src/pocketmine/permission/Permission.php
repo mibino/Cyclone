@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Permission related classes
@@ -41,7 +41,6 @@ class Permission{
 	public static $DEFAULT_PERMISSION = self::DEFAULT_OP;
 
 	/**
-	 *
 	 * @return string
 	 */
 	public static function getByName($value){
@@ -83,9 +82,7 @@ class Permission{
 	/** @var string */
 	private $description;
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $children = [];
 
 	/** @var string */
@@ -191,7 +188,6 @@ class Permission{
 	}
 
 	/**
-	 *
 	 * @return Permission[]
 	 */
 	public static function loadPermissions(array $data, $default = self::DEFAULT_OP){

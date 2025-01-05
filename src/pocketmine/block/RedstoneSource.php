@@ -2,20 +2,20 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
  *
  */
 
@@ -124,7 +124,7 @@ class RedstoneSource extends Flowable{
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_DOWN];
 
 			foreach($sides as $side){
-				if(!in_array($side, $ignore)){
+				if(!in_array($side, $ignore, true)){
 					$block = $this->getSide($side);
 					$this->activateBlock($block);
 				}
@@ -140,13 +140,13 @@ class RedstoneSource extends Flowable{
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 
 			foreach($sides as $side){
-				if(!in_array($side, $ignore)){
+				if(!in_array($side, $ignore, true)){
 					$block = $this->getSide($side);
 					$this->deactivateBlock($block);
 				}
 			}
 
-			if(!in_array(Vector3::SIDE_DOWN, $ignore)){
+			if(!in_array(Vector3::SIDE_DOWN, $ignore, true)){
 				$block = $this->getSide(Vector3::SIDE_DOWN);
 				if(!$this->checkPower($block)){
 					/** @var $block ActiveRedstoneLamp */
@@ -173,7 +173,7 @@ class RedstoneSource extends Flowable{
 			Vector3::SIDE_NORTH
 		];
 		foreach($sides as $side){
-			if(!in_array($side, $ignore)){
+			if(!in_array($side, $ignore, true)){
 				$pos = $block->getSide($side);
 				if($pos instanceof RedstoneSource){
 					if($pos->isActivated($this)){
@@ -189,7 +189,7 @@ class RedstoneSource extends Flowable{
 			}
 		}
 
-		if($block->getId() == Block::ACTIVE_REDSTONE_LAMP and !in_array(Vector3::SIDE_UP, $ignore)){
+		if($block->getId() == Block::ACTIVE_REDSTONE_LAMP and !in_array(Vector3::SIDE_UP, $ignore, true)){
 			$pos = $block->getSide(Vector3::SIDE_UP);
 			if($pos instanceof RedstoneSource and $pos->getId() != self::REDSTONE_TORCH){
 				if($pos->isActivated($this)) return true;
@@ -202,7 +202,7 @@ class RedstoneSource extends Flowable{
 	public function checkTorchOn(Block $pos, array $ignore = []){
 		$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP];
 		foreach($sides as $side){
-			if(!in_array($side, $ignore)){
+			if(!in_array($side, $ignore, true)){
 				/** @var RedstoneTorch $block */
 				$block = $pos->getSide($side);
 				if($block->getId() == self::REDSTONE_TORCH){
@@ -227,7 +227,7 @@ class RedstoneSource extends Flowable{
 	public function checkTorchOff(Block $pos, array $ignore = []){
 		$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP];
 		foreach($sides as $side){
-			if(!in_array($side, $ignore)){
+			if(!in_array($side, $ignore, true)){
 				/** @var RedstoneTorch $block */
 				$block = $pos->getSide($side);
 				if($block->getId() == self::UNLIT_REDSTONE_TORCH){

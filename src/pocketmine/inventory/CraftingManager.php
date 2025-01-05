@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -16,7 +17,8 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
+
 namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
@@ -277,7 +279,6 @@ class CraftingManager{
 	}
 
 	/**
-	 *
 	 * @return FurnaceRecipe
 	 */
 	public function matchFurnaceRecipe(Item $input){
@@ -290,7 +291,6 @@ class CraftingManager{
 	}
 
 	/**
-	 *
 	 * @return BrewingRecipe
 	 */
 	public function matchBrewingRecipe(Item $input, Item $potion){

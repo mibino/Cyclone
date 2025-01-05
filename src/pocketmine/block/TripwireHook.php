@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\block;
 
@@ -29,7 +29,7 @@ class TripwireHook extends Solid {
 		$this->meta = $meta;
 	}
 
-	public function getName() :string {
+	public function getName() : string {
 		return "Tripwire Hook";
 	}
 

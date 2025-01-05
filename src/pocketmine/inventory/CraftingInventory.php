@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -33,7 +33,6 @@ class CraftingInventory extends BaseInventory{
 	private $resultInventory;
 
 	/**
-	 *
 	 * @throws \Throwable
 	 */
 	public function __construct(InventoryHolder $holder, Inventory $resultInventory, InventoryType $inventoryType){

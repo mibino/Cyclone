@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\entity;
 
@@ -87,7 +87,6 @@ class Attribute{
 	}
 
 	/**
-	 *
 	 * @return null|Attribute
 	 */
 	public static function getAttribute($id){
@@ -95,7 +94,6 @@ class Attribute{
 	}
 
 	/**
-	 *
 	 * @return null|Attribute
 	 */
 	public static function getAttributeByName($name){

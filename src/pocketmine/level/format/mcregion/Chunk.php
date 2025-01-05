@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format\mcregion;
 
@@ -303,7 +303,7 @@ class Chunk extends BaseFullChunk{
 	}
 
 	/**
-	 * @param string        $data
+	 * @param string $data
 	 *
 	 * @return Chunk
 	 */
@@ -437,8 +437,8 @@ class Chunk extends BaseFullChunk{
 	}
 
 	/**
-	 * @param int           $chunkX
-	 * @param int           $chunkZ
+	 * @param int $chunkX
+	 * @param int $chunkZ
 	 *
 	 * @return Chunk
 	 */

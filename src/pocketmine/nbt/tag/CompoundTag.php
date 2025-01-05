@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\nbt\tag;
 
@@ -50,12 +50,12 @@ class CompoundTag extends NamedTag implements \ArrayAccess{
 		return $count;
 	}
 
-	public function offsetExists($offset): bool
+	public function offsetExists($offset) : bool
 	{
 		return isset($this->{$offset}) and $this->{$offset} instanceof Tag;
 	}
 
-	public function offsetGet($offset): mixed
+	public function offsetGet($offset) : mixed
 	{
 		if(isset($this->{$offset}) and $this->{$offset} instanceof Tag){
 			if($this->{$offset} instanceof \ArrayAccess){
@@ -68,7 +68,7 @@ class CompoundTag extends NamedTag implements \ArrayAccess{
 		return null;
 	}
 
-	public function offsetSet($offset, $value): void
+	public function offsetSet($offset, $value) : void
 	{
 		if($value instanceof Tag){
 			$this->{$offset} = $value;
@@ -77,7 +77,7 @@ class CompoundTag extends NamedTag implements \ArrayAccess{
 		}
 	}
 
-	public function offsetUnset($offset): void
+	public function offsetUnset($offset) : void
 	{
 		unset($this->{$offset});
 	}

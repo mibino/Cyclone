@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format;
 
@@ -169,8 +169,8 @@ interface LevelProvider{
 	public function isChunkLoaded($X, $Z);
 
 	/**
-	 * @param int       $chunkX
-	 * @param int       $chunkZ
+	 * @param int $chunkX
+	 * @param int $chunkZ
 	 *
 	 * @return mixed
 	 */

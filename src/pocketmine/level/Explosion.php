@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level;
 
@@ -54,9 +54,7 @@ class Explosion{
 	public $level;
 	public $source;
 	public $size;
-	/**
-	 * @var Block[]
-	 */
+	/** @var Block[] */
 	public $affectedBlocks = [];
 	public $stepLen = 0.3;
 	/** @var Entity|Block */

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -44,8 +44,8 @@ class ShapedRecipe implements Recipe{
 	private $shapeItems = [];
 
 	/**
-	 * @param int  $height
-	 * @param int  $width
+	 * @param int $height
+	 * @param int $width
 	 *
 	 * @throws \Exception
 	 */

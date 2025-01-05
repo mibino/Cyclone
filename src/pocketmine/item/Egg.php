@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -27,4 +27,3 @@ class Egg extends Item{
 	}
 
 }
-

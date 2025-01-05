@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Network-related classes
@@ -213,7 +213,7 @@ class Network {
 	}
 
 	/**
-	 * @param int        $id 0-255
+	 * @param int        $id    0-255
 	 * @param DataPacket $class
 	 */
 	public function registerPacket($id, $class) {
@@ -266,7 +266,6 @@ class Network {
 	}
 
 	/**
-	 *
 	 * @return DataPacket
 	 */
 	public function getPacket($id) {

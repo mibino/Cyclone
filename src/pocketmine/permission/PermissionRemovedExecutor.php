@@ -17,14 +17,13 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\permission;
 
 interface PermissionRemovedExecutor{
 
 	/**
-	 *
 	 * @return void
 	 */
 	public function attachmentRemoved(PermissionAttachment $attachment);

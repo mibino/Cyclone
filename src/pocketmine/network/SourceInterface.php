@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Network-related classes
@@ -35,8 +35,8 @@ interface SourceInterface{
 	/**
 	 * Sends a DataPacket to the interface, returns an unique identifier for the packet if $needACK is true
 	 *
-	 * @param bool       $needACK
-	 * @param bool       $immediate
+	 * @param bool $needACK
+	 * @param bool $immediate
 	 *
 	 * @return int
 	 */
@@ -46,7 +46,6 @@ interface SourceInterface{
 	 * Terminates the connection
 	 *
 	 * @param string $reason
-	 *
 	 */
 	public function close(Player $player, $reason = "unknown reason");
 

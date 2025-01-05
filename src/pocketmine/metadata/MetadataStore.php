@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Saves extra data on runtime for different items
@@ -34,8 +34,8 @@ abstract class MetadataStore{
 	/**
 	 * Adds a metadata value to an object.
 	 *
-	 * @param mixed         $subject
-	 * @param string        $metadataKey
+	 * @param mixed  $subject
+	 * @param string $metadataKey
 	 *
 	 * @throws \Exception
 	 */
@@ -111,7 +111,6 @@ abstract class MetadataStore{
 	 * Invalidates all metadata in the metadata store that originates from the
 	 * given plugin. Doing this will force each invalidated metadata item to
 	 * be recalculated the next time it is accessed.
-	 *
 	 */
 	public function invalidateAll(Plugin $owningPlugin){
 		/** @var $values MetadataValue[] */
@@ -126,7 +125,7 @@ abstract class MetadataStore{
 	 * Creates a unique name for the object receiving metadata by combining
 	 * unique data from the subject with a metadataKey.
 	 *
-	 * @param string      $metadataKey
+	 * @param string $metadataKey
 	 *
 	 * @return string
 	 *

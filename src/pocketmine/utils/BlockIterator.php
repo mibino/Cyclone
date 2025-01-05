@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\utils;
 
@@ -220,7 +220,7 @@ class BlockIterator implements \Iterator{
 		return $this->getPosition($direction->z, $position->z, $block->z);
 	}
 
-	public function next(): void
+	public function next() : void
 	{
 		$this->scan();
 
@@ -236,7 +236,7 @@ class BlockIterator implements \Iterator{
 	 *
 	 * @throws \OutOfBoundsException
 	 */
-	public function current(): mixed
+	public function current() : mixed
 	{
 		if($this->currentBlockObject === null){
 			throw new \OutOfBoundsException();
@@ -244,17 +244,17 @@ class BlockIterator implements \Iterator{
 		return $this->currentBlockObject;
 	}
 
-	public function rewind(): void
+	public function rewind() : void
 	{
 		throw new \InvalidStateException("BlockIterator doesn't support rewind()");
 	}
 
-	public function key(): mixed
+	public function key() : mixed
 	{
 		return $this->currentBlock - 1;
 	}
 
-	public function valid(): bool
+	public function valid() : bool
 	{
 		$this->scan();
 		return $this->currentBlock !== -1;

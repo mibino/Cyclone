@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\entity;
 
@@ -234,8 +234,8 @@ abstract class Living extends Entity implements Damageable{
 	}
 
 	/**
-	 * @param int   $maxDistance
-	 * @param int   $maxLength
+	 * @param int $maxDistance
+	 * @param int $maxLength
 	 *
 	 * @return Block[]
 	 */

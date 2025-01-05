@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Minecraft: PE multiplayer protocol implementation
@@ -112,4 +112,3 @@ interface Info{
 	const RESOURCE_PACK_CHUNK_DATA_PACKET = 0x4e;
 	const RESOURCE_PACK_CHUNK_REQUEST_PACKET = 0x4f;
 }
-

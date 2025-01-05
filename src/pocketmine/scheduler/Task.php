@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\scheduler;
 
@@ -55,7 +55,6 @@ abstract class Task{
 
 	/**
 	 * Actions to execute when run
-	 *
 	 *
 	 * @return void
 	 */

@@ -2,20 +2,20 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
  *
  */
 
@@ -124,9 +124,9 @@ class RedstoneTorch extends RedstoneSource{
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP, Vector3::SIDE_DOWN];
 
 			foreach($sides as $side){
-				if(!in_array($side, $ignore)){
+				if(!in_array($side, $ignore, true)){
 					$block = $this->getSide($side);
-					if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck)){
+					if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck, true)){
 						$this->activateBlock($block);
 					}
 				}
@@ -151,17 +151,17 @@ class RedstoneTorch extends RedstoneSource{
 			$sides = [Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 
 			foreach($sides as $side){
-				if(!in_array($side, $ignore)){
+				if(!in_array($side, $ignore, true)){
 					$block = $this->getSide($side);
-					if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck)){
+					if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck, true)){
 						$this->deactivateBlock($block);
 					}
 				}
 			}
 
-			if(!in_array(Vector3::SIDE_DOWN, $ignore)){
+			if(!in_array(Vector3::SIDE_DOWN, $ignore, true)){
 				$block = $this->getSide(Vector3::SIDE_DOWN);
-				if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck)){
+				if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck, true)){
 					if(!$this->checkPower($block)){
 						/** @var $block ActiveRedstoneLamp */
 						if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();

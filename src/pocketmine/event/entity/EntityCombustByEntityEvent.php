@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  *
  *  ____            _        _   __  __ _                  __  __ ____
  * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -28,8 +28,8 @@ class EntityCombustByEntityEvent extends EntityCombustEvent{
 	protected $combuster;
 
 	/**
-	 * @param int    $duration
-	 * @param int    $ProtectLevel
+	 * @param int $duration
+	 * @param int $ProtectLevel
 	 */
 	public function __construct(Entity $combuster, Entity $combustee, $duration, $ProtectLevel = 0){
 		parent::__construct($combustee, $duration, $ProtectLevel);

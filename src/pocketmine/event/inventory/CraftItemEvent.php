@@ -1,5 +1,6 @@
 <?php
-/**
+
+/*
  *
  *  ____            _        _   __  __ _                  __  __ ____
  * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
@@ -13,10 +14,11 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
+
 namespace pocketmine\event\inventory;
 
 use pocketmine\event\Cancellable;
@@ -31,11 +33,11 @@ class CraftItemEvent extends Event implements Cancellable{
 	private $input = [];
 	/** @var Recipe */
 	private $recipe;
-	/** @var \pocketmine\Player */
+	/** @var Player */
 	private $player;
 
 	/**
-	 * @param Item[]             $input
+	 * @param Item[] $input
 	 */
 	public function __construct(Player $player, array $input, Recipe $recipe){
 		$this->player = $player;
@@ -62,7 +64,7 @@ class CraftItemEvent extends Event implements Cancellable{
 	}
 
 	/**
-	 * @return \pocketmine\Player
+	 * @return Player
 	 */
 	public function getPlayer(){
 		return $this->player;

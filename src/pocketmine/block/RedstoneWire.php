@@ -2,20 +2,20 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
  *
  */
 
@@ -170,7 +170,7 @@ class RedstoneWire extends RedstoneSource{
 
 			$sides = [Vector3::SIDE_WEST, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 			foreach($sides as $s){
-				if(!in_array($s, $side[1])) {
+				if(!in_array($s, $side[1], true)) {
 					$block = $this->getSide(Vector3::SIDE_DOWN)->getSide($s);
 					$this->activateBlock($block);
 				}
@@ -205,7 +205,7 @@ class RedstoneWire extends RedstoneSource{
 
 			$sides = [Vector3::SIDE_WEST, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 			foreach($sides as $s){
-				if(!in_array($s, $side[1])) {
+				if(!in_array($s, $side[1], true)) {
 					$this->deactivateBlock($this->getSide(Vector3::SIDE_DOWN)->getSide($s));
 				}
 			}
@@ -303,7 +303,7 @@ class RedstoneWire extends RedstoneSource{
 	public function calcSignal($strength = 15, $type = self::ON, array $hasUpdated = []){
 		//This algorithm is provided by Stary and written by PeratX
 		$hash = Level::blockHash($this->x, $this->y, $this->z);
-		if(!in_array($hash, $hasUpdated)){
+		if(!in_array($hash, $hasUpdated, true)){
 			$hasUpdated[] = $hash;
 			if($type == self::DESTROY or $type == self::OFF){
 				$this->meta = $strength;
@@ -333,7 +333,7 @@ class RedstoneWire extends RedstoneSource{
 
 					foreach($hasChecked as $side => $bool){
 						$needUpdate = $this->getSide($side);
-						if(!in_array(Level::blockHash($needUpdate->x, $needUpdate->y, $needUpdate->z), $hasUpdated)){
+						if(!in_array(Level::blockHash($needUpdate->x, $needUpdate->y, $needUpdate->z), $hasUpdated, true)){
 							$result = $this->updateNormalWire($needUpdate, $strength - 1, $type, $hasUpdated);
 							if(count($result) != count($hasUpdated)){
 								$hasUpdated = $result;
@@ -346,7 +346,7 @@ class RedstoneWire extends RedstoneSource{
 					foreach($hasChecked as $side => $bool){
 						if(!$bool){
 							$needUpdate = $this->getLevel()->getBlock($baseBlock->getSide($side));
-							if(!in_array(Level::blockHash($needUpdate->x, $needUpdate->y, $needUpdate->z), $hasUpdated)){
+							if(!in_array(Level::blockHash($needUpdate->x, $needUpdate->y, $needUpdate->z), $hasUpdated, true)){
 								$result = $this->updateNormalWire($needUpdate, $strength - 1, $type, $hasUpdated);
 								if(count($result) != count($hasUpdated)){
 									$hasUpdated = $result;
@@ -360,7 +360,7 @@ class RedstoneWire extends RedstoneSource{
 					foreach($hasChecked as $side => $bool){
 						if(!$bool){
 							$needUpdate = $this->getLevel()->getBlock($baseBlock->getSide($side));
-							if(!in_array(Level::blockHash($needUpdate->x, $needUpdate->y, $needUpdate->z), $hasUpdated)){
+							if(!in_array(Level::blockHash($needUpdate->x, $needUpdate->y, $needUpdate->z), $hasUpdated, true)){
 								$result = $this->updateNormalWire($needUpdate, $strength - 1, $type, $hasUpdated);
 								if(count($result) != count($hasUpdated)){
 									$hasUpdated = $result;

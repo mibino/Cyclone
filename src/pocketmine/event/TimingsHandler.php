@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\event;
 
@@ -50,7 +50,7 @@ class TimingsHandler{
 	private $violations = 0;
 
 	/**
-	 * @param string         $name
+	 * @param string $name
 	 */
 	public function __construct($name, TimingsHandler $parent = null){
 		$this->name = $name;

@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -38,7 +38,7 @@ abstract class PlayerBucketEvent extends PlayerEvent implements Cancellable{
 	private $item;
 
 	/**
-	 * @param int    $blockFace
+	 * @param int $blockFace
 	 */
 	public function __construct(Player $who, Block $blockClicked, $blockFace, Item $bucket, Item $itemInHand){
 		$this->player = $who;

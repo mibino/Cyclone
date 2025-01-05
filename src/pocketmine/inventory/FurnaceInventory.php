@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -63,7 +63,6 @@ class FurnaceInventory extends ContainerInventory{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function setResult(Item $item){
@@ -71,7 +70,6 @@ class FurnaceInventory extends ContainerInventory{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function setFuel(Item $item){
@@ -79,7 +77,6 @@ class FurnaceInventory extends ContainerInventory{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function setSmelting(Item $item){

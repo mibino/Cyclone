@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace raklib\protocol;
 
@@ -50,7 +50,7 @@ class EncapsulatedPacket{
 	/**
 	 * @param string $binary
 	 * @param bool   $internal
-	 * @param int	&$offset
+	 * @param int    &$offset
 	 *
 	 * @return EncapsulatedPacket
 	 */

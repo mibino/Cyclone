@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format;
 
@@ -64,7 +64,6 @@ interface FullChunk{
 	 * @param int $z       0-15
 	 * @param int $blockId , if null, do not change
 	 * @param int $meta    0-15, if null, do not change
-	 *
 	 */
 	public function setBlock($x, $y, $z, $blockId = null, $meta = null);
 
@@ -170,9 +169,9 @@ interface FullChunk{
 	public function getHeightMap($x, $z);
 
 	/**
-	 * @param int $x 0-15
-	 * @param int $z 0-15
-	 * @param $value 0-255
+	 * @param int $x     0-15
+	 * @param int $z     0-15
+	 * @param     $value 0-255
 	 */
 	public function setHeightMap($x, $z, $value);
 
@@ -321,22 +320,22 @@ interface FullChunk{
 	public function setChanged($changed = true);
 
 	/**
-	 * @param string        $data
+	 * @param string $data
 	 *
 	 * @return FullChunk
 	 */
 	public static function fromBinary($data, LevelProvider $provider = null);
 
 	/**
-	 * @param string        $data
+	 * @param string $data
 	 *
 	 * @return FullChunk
 	 */
 	public static function fromFastBinary($data, LevelProvider $provider = null);
 
 	/**
-	 * @param int           $chunkX
-	 * @param int           $chunkZ
+	 * @param int $chunkX
+	 * @param int $chunkZ
 	 *
 	 * @return FullChunk
 	 */

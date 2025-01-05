@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\permission;
 
@@ -28,9 +28,7 @@ class PermissionAttachment{
 	/** @var PermissionRemovedExecutor */
 	private $removed = null;
 
-	/**
-	 * @var bool[]
-	 */
+	/** @var bool[] */
 	private $permissions = [];
 
 	/** @var Permissible */
@@ -40,7 +38,6 @@ class PermissionAttachment{
 	private $plugin;
 
 	/**
-	 *
 	 * @throws PluginException
 	 */
 	public function __construct(Plugin $plugin, Permissible $permissible){

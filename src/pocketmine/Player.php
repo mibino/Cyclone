@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine;
 
@@ -448,7 +448,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/**
 	 * @deprecated Use Human::canPickupXp(), this method will be removed in the future.
 	 */
-	public function canPickupExp(): bool{
+	public function canPickupExp() : bool{
 		trigger_error("This method is deprecated, do not use it", E_USER_DEPRECATED);
 		return $this->canPickupXp();
 	}
@@ -647,7 +647,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * @param permission\Permission|string $name
-	 *
 	 */
 	public function hasPermission($name) : bool{
 		if($this->perm == null) return false;else return $this->perm->hasPermission($name);
@@ -657,7 +656,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param string $name
 	 * @param bool   $value
 	 *
-	 * @return permission\PermissionAttachment
+	 * @return PermissionAttachment
 	 */
 	public function addAttachment(Plugin $plugin, $name = null, $value = null){
 		if($this->perm == null) return false;
@@ -721,9 +720,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	/**
-	 * @param null            $clientID
-	 * @param string          $ip
-	 * @param integer         $port
+	 * @param null    $clientID
+	 * @param string  $ip
+	 * @param integer $port
 	 */
 	public function __construct(SourceInterface $interface, $clientID, $ip, $port){
 		$this->interface = $interface;
@@ -763,7 +762,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * @param string $achievementId
-	 *
 	 */
 	public function hasAchievement($achievementId) : bool{
 		if(!isset(Achievement::$list[$achievementId]) or !isset($this->achievements)){
@@ -807,7 +805,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * Gets the player IP address
-	 *
 	 */
 	public function getAddress() : string{
 		return $this->ip;
@@ -1133,7 +1130,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/**
 	 * Batch a Data packet into the channel list to send at the end of the tick
 	 *
-	 *
 	 * @return bool
 	 */
 	public function batchDataPacket(DataPacket $packet){
@@ -1161,7 +1157,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/**
 	 * Sends an ordered DataPacket to the send buffer
 	 *
-	 * @param bool       $needACK
+	 * @param bool $needACK
 	 *
 	 * @return int|bool
 	 */
@@ -1193,7 +1189,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	/**
-	 * @param bool       $needACK
+	 * @param bool $needACK
 	 *
 	 * @return bool|int
 	 */
@@ -1224,7 +1220,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	/**
-	 *
 	 * @return boolean
 	 */
 	public function sleepOn(Vector3 $pos){
@@ -1474,7 +1469,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 
 		if($this->getServer()->redstoneEnabled){
-			/** @var \pocketmine\block\PressurePlate $block * */
+			/** @var PressurePlate $block * */
 			foreach($this->activatedPressurePlates as $key => $block){
 				if(!isset($blocksaround[$key])) $block->checkActivation();
 			}
@@ -2157,7 +2152,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 *
 	 * WARNING: Do not use this, it's only for internal use.
 	 * Changes to this function won't be recorded on the version.
-	 *
 	 */
 	public function handleDataPacket(DataPacket $packet){
 
@@ -3691,7 +3685,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * flag set to kick without the "Kicked by admin" part instead of this method.
 	 *
 	 * @param string $message Message to be broadcasted
-	 * @param string $reason Reason showed in console
+	 * @param string $reason  Reason showed in console
 	 * @param bool   $notify
 	 */
 	public final function close($message = "", $reason = "generic reason", $notify = true){
@@ -4148,8 +4142,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * This method may not be reliable. Clients don't like to be moved into unloaded chunks.
 	 * Use teleport() for a delayed teleport after chunks have been sent.
 	 *
-	 * @param float   $yaw
-	 * @param float   $pitch
+	 * @param float $yaw
+	 * @param float $pitch
 	 */
 	public function teleportImmediate(Vector3 $pos, $yaw = null, $pitch = null){
 		if(parent::teleport($pos, $yaw, $pitch)){
@@ -4182,8 +4176,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/**
 	 * Returns the created/existing window id
 	 *
-	 * @param int       $forceId
-	 *
+	 * @param int $forceId
 	 */
 	public function addWindow(Inventory $inventory, $forceId = null) : int{
 		if($this->windows->contains($inventory)){

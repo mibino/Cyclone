@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\entity;
 
@@ -32,14 +32,13 @@ class AttributeMap implements \ArrayAccess{
 	}
 
 	/**
-	 *
 	 * @return Attribute|null
 	 */
 	public function getAttribute(int $id){
 		return $this->attributes[$id] ?? null;
 	}
 
-	public function getAll(): array{
+	public function getAll() : array{
 		return $this->attributes;
 	}
 
@@ -52,22 +51,22 @@ class AttributeMap implements \ArrayAccess{
 		});
 	}
 
-	public function offsetExists($offset): bool
+	public function offsetExists($offset) : bool
 	{
 		return isset($this->attributes[$offset]);
 	}
 
-	public function offsetGet($offset): mixed
+	public function offsetGet($offset) : mixed
 	{
 		return $this->attributes[$offset]->getValue();
 	}
 
-	public function offsetSet($offset, $value): void
+	public function offsetSet($offset, $value) : void
 	{
 		$this->attributes[$offset]->setValue($value);
 	}
 
-	public function offsetUnset($offset): void
+	public function offsetUnset($offset) : void
 	{
 		throw new \RuntimeException("Could not unset an attribute from an attribute map");
 	}

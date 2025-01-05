@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format\leveldb;
 
@@ -240,7 +240,6 @@ class LevelDB extends BaseLevelProvider{
 	}
 
 	/**
-	 *
 	 * @return Chunk
 	 */
 	private function readChunk($chunkX, $chunkZ){

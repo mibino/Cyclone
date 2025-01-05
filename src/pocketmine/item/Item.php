@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * All the Item classes
@@ -91,7 +91,7 @@ class Item implements ItemIds, \JsonSerializable{
 	protected $durability = 0;
 	protected $name;
 
-	public function canBeActivated() :bool{
+	public function canBeActivated() : bool{
 		return false;
 	}
 
@@ -967,7 +967,7 @@ class Item implements ItemIds, \JsonSerializable{
 		return "Item " . $this->name . " (" . $this->id . ":" . ($this->meta === null ? "?" : $this->meta) . ")x" . $this->count . ($this->hasCompoundTag() ? " tags:0x" . bin2hex($this->getCompoundTag()) : "");
 	}
 
-	final public function jsonSerialize(): mixed
+	final public function jsonSerialize() : mixed
 	{
 		return [
 			"id" => $this->id,
@@ -980,9 +980,8 @@ class Item implements ItemIds, \JsonSerializable{
 	/**
 	 * Serializes the item to an NBT CompoundTag
 	 *
-	 * @param int $slot optional, the inventory slot of the item
+	 * @param int    $slot    optional, the inventory slot of the item
 	 * @param string $tagName optional, the tag name
-	 *
 	 */
 	public function nbtSerialize(int $slot = -1, string $tagName = "") : CompoundTag{
 		$tag = new CompoundTag($tagName, [
@@ -1005,8 +1004,6 @@ class Item implements ItemIds, \JsonSerializable{
 
 	/**
 	 * Deserializes an Item from an NBT CompoundTag
-	 *
-	 *
 	 */
 	public static function nbtDeserialize(CompoundTag $tag) : Item{
 		if(!isset($tag->id) or !isset($tag->Count)){

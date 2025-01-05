@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\block;
 
@@ -55,4 +55,3 @@ class IronBars extends Thin{
 	}
 
 }
-

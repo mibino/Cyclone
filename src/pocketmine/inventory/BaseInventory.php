@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -56,9 +56,9 @@ abstract class BaseInventory implements Inventory{
 	protected $holder;
 
 	/**
-	 * @param Item[]          $items
-	 * @param int             $overrideSize
-	 * @param string          $overrideTitle
+	 * @param Item[] $items
+	 * @param int    $overrideSize
+	 * @param string $overrideTitle
 	 */
 	public function __construct(InventoryHolder $holder, InventoryType $type, array $items = [], $overrideSize = null, $overrideTitle = null){
 		$this->holder = $holder;
@@ -441,7 +441,7 @@ abstract class BaseInventory implements Inventory{
 		}
 	}
 
-	public function processSlotChange(Transaction $transaction): bool{
+	public function processSlotChange(Transaction $transaction) : bool{
 		return true;
 	}
 

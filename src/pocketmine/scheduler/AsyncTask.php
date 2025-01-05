@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\scheduler;
 
@@ -157,7 +157,6 @@ abstract class AsyncTask extends \Threaded implements \Collectable{
 	 * Actions to execute when completed (on main thread)
 	 * Implement this if you want to handle the data in your AsyncTask after it has been processed
 	 *
-	 *
 	 * @return void
 	 */
 	public function onCompletion(Server $server){
@@ -166,7 +165,7 @@ abstract class AsyncTask extends \Threaded implements \Collectable{
 
 	public function cleanObject(){
 		foreach($this as $p => $v){
-			if(!($v instanceof \Threaded) and !in_array($p, ["isFinished", "isGarbage", "cancelRun"])){
+			if(!($v instanceof \Threaded) and !in_array($p, ["isFinished", "isGarbage", "cancelRun"], true)){
 				$this->{$p} = null;
 			}
 		}

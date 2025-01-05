@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\generator\biome;
 
@@ -116,7 +116,6 @@ abstract class Biome{
 	}
 
 	/**
-	 *
 	 * @return Biome
 	 */
 	public static function getBiome($id){

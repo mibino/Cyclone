@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\network\protocol;
 
@@ -110,7 +110,7 @@ class LoginPacket extends DataPacket{
 			$this->serverAddress = $skinToken["ServerAddress"];
 		}
 		if(isset($skinToken["SkinData"])){
-			$this->skin = base64_decode($skinToken["SkinData"]);
+			$this->skin = base64_decode($skinToken["SkinData"], true);
 		}
 		if(isset($skinToken["SkinId"])){
 			$this->skinId = $skinToken["SkinId"];
@@ -152,7 +152,7 @@ class LoginPacket extends DataPacket{
 			$verified = false;
 		}
 
-		return [$verified, json_decode(base64_decode($payloadB64), true)];
+		return [$verified, json_decode(base64_decode($payloadB64, true), true)];
 	}
 
 }

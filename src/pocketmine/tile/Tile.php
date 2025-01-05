@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * All the Tile classes and related classes
@@ -76,7 +76,7 @@ abstract class Tile extends Position{
 	public $tickTimer;
 
 	/**
-	 * @param string    $type
+	 * @param string $type
 	 *
 	 * @return Tile
 	 */
@@ -90,7 +90,6 @@ abstract class Tile extends Position{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public static function registerTile($className){

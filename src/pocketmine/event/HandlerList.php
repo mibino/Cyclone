@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\event;
 
@@ -27,19 +27,13 @@ use function spl_object_hash;
 
 class HandlerList{
 
-	/**
-	 * @var RegisteredListener[]
-	 */
+	/** @var RegisteredListener[] */
 	private $handlers = null;
 
-	/**
-	 * @var RegisteredListener[][]
-	 */
+	/** @var RegisteredListener[][] */
 	private $handlerSlots = [];
 
-	/**
-	 * @var HandlerList[]
-	 */
+	/** @var HandlerList[] */
 	private static $allLists = [];
 
 	public static function bakeAll(){
@@ -82,7 +76,6 @@ class HandlerList{
 	}
 
 	/**
-	 *
 	 * @throws \Throwable
 	 */
 	public function register(RegisteredListener $listener){

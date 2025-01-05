@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 declare(strict_types=1);
 
@@ -84,7 +84,6 @@ final class UUID{
 
 	/**
 	 * Creates an UUIDv3 from binary data or list of binary data
-	 *
 	 */
 	public static function fromData(string ...$data) : UUID{
 		$hash = hash("md5", implode($data), true);

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -67,7 +67,7 @@ class AnvilInventory extends TemporaryInventory{
 		return true;
 	}
 
-	public function processSlotChange(Transaction $transaction): bool{
+	public function processSlotChange(Transaction $transaction) : bool{
 		if($transaction->getSlot() === $this->getResultSlotIndex()){
 			return false;
 		}

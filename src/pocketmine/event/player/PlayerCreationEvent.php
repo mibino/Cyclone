@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -47,11 +47,11 @@ class PlayerCreationEvent extends Event{
 	private $playerClass;
 
 	/**
-	 * @param Player::class   $baseClass
-	 * @param Player::class   $playerClass
-	 * @param mixed           $clientId
-	 * @param string          $address
-	 * @param int             $port
+	 * @param Player::class $baseClass
+	 * @param Player::class $playerClass
+	 * @param mixed         $clientId
+	 * @param string        $address
+	 * @param int           $port
 	 */
 	public function __construct(SourceInterface $interface, $baseClass, $playerClass, $clientId, $address, $port){
 		$this->interface = $interface;

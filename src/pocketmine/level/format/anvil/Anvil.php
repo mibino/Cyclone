@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format\anvil;
 
@@ -123,7 +123,6 @@ class Anvil extends McRegion{
 	}
 
 	/**
-	 *
 	 * @return RegionLoader
 	 */
 	protected function getRegion($x, $z){

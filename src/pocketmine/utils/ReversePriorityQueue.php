@@ -17,13 +17,13 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\utils;
 
 class ReversePriorityQueue extends \SplPriorityQueue{
 
-	public function compare($priority1, $priority2): int
+	public function compare($priority1, $priority2) : int
 	{
 		return (int) -($priority1 - $priority2);
 	}

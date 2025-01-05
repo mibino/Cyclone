@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\plugin;
 
@@ -105,8 +105,8 @@ class PharPluginLoader implements PluginLoader{
 	}
 
 	/**
-	 * @param string            $dataFolder
-	 * @param string            $file
+	 * @param string $dataFolder
+	 * @param string $file
 	 */
 	private function initPlugin(PluginBase $plugin, PluginDescription $description, $dataFolder, $file){
 		$plugin->init($this, $this->server, $description, $dataFolder, $file);

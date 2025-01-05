@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Named Binary Tag handling classes
@@ -557,7 +557,7 @@ class NBT{
 
 	public function writeTag(Tag $tag, bool $network = false){
 		$this->putByte($tag->getType());
-		if($tag instanceof NamedTAG){
+		if($tag instanceof NamedTag){
 			$this->putString($tag->getName(), $network);
 		}
 		$tag->write($this, $network);

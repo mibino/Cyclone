@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\event;
 
@@ -163,7 +163,6 @@ abstract class Timings{
 	}
 
 	/**
-	 *
 	 * @return TimingsHandler
 	 */
 	public static function getPluginTaskTimings(TaskHandler $task, $period){
@@ -194,7 +193,6 @@ abstract class Timings{
 	}
 
 	/**
-	 *
 	 * @return TimingsHandler
 	 */
 	public static function getEntityTimings(Entity $entity){
@@ -211,7 +209,6 @@ abstract class Timings{
 	}
 
 	/**
-	 *
 	 * @return TimingsHandler
 	 */
 	public static function getTileEntityTimings(Tile $tile){
@@ -224,7 +221,6 @@ abstract class Timings{
 	}
 
 	/**
-	 *
 	 * @return TimingsHandler
 	 */
 	public static function getReceiveDataPacketTimings(DataPacket $pk){
@@ -237,7 +233,6 @@ abstract class Timings{
 	}
 
 	/**
-	 *
 	 * @return TimingsHandler
 	 */
 	public static function getSendDataPacketTimings(DataPacket $pk){

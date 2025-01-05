@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____
@@ -16,7 +17,8 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
+
 namespace pocketmine\utils;
 
 #include <rules/DataPacket.h>

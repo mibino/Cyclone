@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\particle;
 
@@ -39,7 +39,7 @@ class FloatingTextParticle extends Particle{
 	protected $invisible = false;
 
 	/**
-	 * @param int $text
+	 * @param int    $text
 	 * @param string $title
 	 */
 	public function __construct(Vector3 $pos, $text, $title = ""){

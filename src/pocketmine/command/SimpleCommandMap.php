@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\command;
 
@@ -90,14 +90,10 @@ use function trim;
 
 class SimpleCommandMap implements CommandMap{
 
-	/**
-	 * @var Command[]
-	 */
+	/** @var Command[] */
 	protected $knownCommands = [];
 
-	/**
-	 * @var bool[]
-	 */
+	/** @var bool[] */
 	protected $commandConfig = [];
 
 	/** @var Server */

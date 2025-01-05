@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level;
 
@@ -74,26 +74,22 @@ interface ChunkLoader{
 
 	/**
 	 * This method will be called when a Chunk is replaced by a new one
-	 *
 	 */
 	public function onChunkChanged(FullChunk $chunk);
 
 	/**
 	 * This method will be called when a registered chunk is loaded
-	 *
 	 */
 	public function onChunkLoaded(FullChunk $chunk);
 
 	/**
 	 * This method will be called when a registered chunk is unloaded
-	 *
 	 */
 	public function onChunkUnloaded(FullChunk $chunk);
 
 	/**
 	 * This method will be called when a registered chunk is populated
 	 * Usually it'll be sent with another call to onChunkChanged()
-	 *
 	 */
 	public function onChunkPopulated(FullChunk $chunk);
 

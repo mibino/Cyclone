@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -48,7 +48,6 @@ abstract class Armor extends Item{
 	}
 
 	/**
-	 *
 	 * @param Item $object
 	 *
 	 * @return bool

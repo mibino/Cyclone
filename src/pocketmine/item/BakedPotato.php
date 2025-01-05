@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -34,4 +34,3 @@ class BakedPotato extends Food{
 		return 7.2;
 	}
 }
-

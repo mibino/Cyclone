@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\entity;
 
@@ -127,7 +127,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 * WARNING: This method does not check if full and may throw an exception if out of bounds.
 	 * Use {@link Human::addFood()} for this purpose
 	 *
-	 *
 	 * @throws \InvalidArgumentException
 	 */
 	public function setFood(float $new){
@@ -165,7 +164,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 * WARNING: This method does not check if saturated and may throw an exception if out of bounds.
 	 * Use {@link Human::addSaturation()} for this purpose
 	 *
-	 *
 	 * @throws \InvalidArgumentException
 	 */
 	public function setSaturation(float $saturation){
@@ -184,7 +182,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * WARNING: This method does not check if exhausted and does not consume saturation/food.
 	 * Use {@link Human::exhaust()} for this purpose.
-	 *
 	 */
 	public function setExhaustion(float $exhaustion){
 		$this->attributeMap->getAttribute(Attribute::EXHAUSTION)->setValue($exhaustion);
@@ -192,7 +189,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/**
 	 * Increases a human's exhaustion level.
-	 *
 	 *
 	 * @return float the amount of exhaustion level increased
 	 */
@@ -264,7 +260,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	 *
 	 * @param bool $syncLevel This will reset the level to be in sync with the total. Usually you don't want to do this,
 	 *                        because it'll mess up use of xp in anvils and enchanting tables.
-	 *
 	 */
 	public function setTotalXp(int $xp, bool $syncLevel = false) : bool{
 		$xp &= 0x7fffffff;
@@ -343,8 +338,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/**
 	 * Returns the total amount of exp required to reach the specified level.
-	 *
-	 *
 	 */
 	public static function getTotalXpRequirement(int $level) : int{
 		if($level <= 16){
@@ -359,8 +352,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/**
 	 * Returns the amount of exp required to complete the specified level.
-	 *
-	 *
 	 */
 	public static function getLevelXpRequirement(int $level) : int{
 		if($level <= 16){
@@ -375,7 +366,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/**
 	 * Converts a quantity of exp into a level and a progress percentage
-	 *
 	 *
 	 * @return int[]
 	 */

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Math related classes, like matrices, bounding boxes and vector
@@ -44,7 +44,7 @@ abstract class Math{
 		return min($high, max($low, $value));
 	}
 
-	public static function solveQuadratic($a, $b, $c): array{
+	public static function solveQuadratic($a, $b, $c) : array{
 		$x[0] = (-$b + sqrt($b ** 2 - 4 * $a * $c)) / (2 * $a);
 		$x[1] = (-$b - sqrt($b ** 2 - 4 * $a * $c)) / (2 * $a);
 		if($x[0] == $x[1]){

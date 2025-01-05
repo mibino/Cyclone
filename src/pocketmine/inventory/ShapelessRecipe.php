@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -56,7 +56,6 @@ class ShapelessRecipe implements Recipe{
 	}
 
 	/**
-	 *
 	 * @returns ShapelessRecipe
 	 *
 	 * @throws \InvalidArgumentException
@@ -78,7 +77,6 @@ class ShapelessRecipe implements Recipe{
 	}
 
 	/**
-	 *
 	 * @return $this
 	 */
 	public function removeIngredient(Item $item){

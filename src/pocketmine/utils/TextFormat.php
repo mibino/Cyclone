@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\utils;
 
@@ -393,7 +393,6 @@ abstract class TextFormat{
 
 	/**
 	 * Returns a string with colorized ANSI Escape codes
-	 *
 	 *
 	 * @return string
 	 */

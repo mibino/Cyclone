@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Set-up wizard used on the first run
@@ -158,10 +158,10 @@ LICENSE;
 		do{
 			echo "[?] " . $this->lang->level_type . " (" . self::DEFAULT_LEVEL_TYPE . "): ";
 			$type = strtoupper((string) $this->getInput(self::DEFAULT_LEVEL_TYPE));
-			if(!in_array($type, self::LEVEL_TYPES)){
+			if(!in_array($type, self::LEVEL_TYPES, true)){
 				echo "[!] " . $this->lang->invalid_level_type . "\n";
 			}
-		}while(!in_array($type, self::LEVEL_TYPES));
+		}while(!in_array($type, self::LEVEL_TYPES, true));
 		$config->set("level-type", $type);
 
 		/*echo "[*] " . $this->lang->ram_warning . "\n";

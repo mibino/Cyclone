@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\command;
 
@@ -60,14 +60,13 @@ class ConsoleCommandSender implements CommandSender{
 	 * @param string $name
 	 * @param bool   $value
 	 *
-	 * @return \pocketmine\permission\PermissionAttachment
+	 * @return PermissionAttachment
 	 */
 	public function addAttachment(Plugin $plugin, $name = null, $value = null){
 		return $this->perm->addAttachment($plugin, $name, $value);
 	}
 
 	/**
-	 *
 	 * @return void
 	 */
 	public function removeAttachment(PermissionAttachment $attachment){
@@ -93,7 +92,7 @@ class ConsoleCommandSender implements CommandSender{
 	}
 
 	/**
-	 * @return \pocketmine\Server
+	 * @return Server
 	 */
 	public function getServer(){
 		return Server::getInstance();

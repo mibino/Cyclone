@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level;
 
@@ -31,9 +31,9 @@ class WeakPosition extends Position{
 	public int $levelId;
 
 	/**
-	 * @param int   $x
-	 * @param int   $y
-	 * @param int   $z
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
 	 */
 	public function __construct($x = 0, $y = 0, $z = 0, Level $level = null){
 		$this->x = $x;

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * All Level related classes are here, like Generators, Populators, Noise, ...
@@ -301,7 +301,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * This method is internal use only. Do not use this in plugins
-	 *
 	 */
 	public function setBlockTempData(Vector3 $pos, $data = null){
 		if($data == null and isset($this->blockTempData[self::blockHash($pos->x, $pos->y, $pos->z)])){
@@ -326,7 +325,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Returns the chunk unique hash/key
 	 *
-	 *
 	 * @return string
 	 */
 	public static function chunkHash(int $x, int $z){
@@ -337,7 +335,7 @@ class Level implements ChunkManager, Metadatable{
 		return PHP_INT_SIZE === 8 ? (($x & 0xFFFFFFF) << 35) | (($y & 0x7f) << 28) | ($z & 0xFFFFFFF) : $x . ":" . $y . ":" . $z;
 	}
 
-	public static function chunkBlockHash(int $x, int $y, int $z): int{
+	public static function chunkBlockHash(int $x, int $y, int $z) : int{
 		return ($x << 11) | ($z << 7) | $y;
 	}
 
@@ -500,7 +498,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns the unique level identifier
-	 *
 	 */
 	final public function getId() : int{
 		return $this->levelId;
@@ -585,7 +582,6 @@ class Level implements ChunkManager, Metadatable{
 	 * Unloads the current level from memory safely
 	 *
 	 * @param bool $force default false, force unload of default level
-	 *
 	 */
 	public function unload(bool $force = false) : bool{
 
@@ -625,7 +621,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Gets the players being used in a specific chunk
 	 *
-	 *
 	 * @return Player[]
 	 */
 	public function getChunkPlayers(int $chunkX, int $chunkZ) : array{
@@ -634,7 +629,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Gets the chunk loaders being used in a specific chunk
-	 *
 	 *
 	 * @return ChunkLoader[]
 	 */
@@ -1128,7 +1122,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return Block[]
 	 */
 	public function getCollisionBlocks(AxisAlignedBB $bb, bool $targetFirst = false) : array{
@@ -1182,7 +1175,7 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 * @param boolean       $entities
+	 * @param boolean $entities
 	 *
 	 * @return AxisAlignedBB[]
 	 */
@@ -1303,7 +1296,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return int bitmap, (id << 4) | data
 	 */
 	public function getFullBlock(int $x, int $y, int $z) : int{
@@ -1314,7 +1306,6 @@ class Level implements ChunkManager, Metadatable{
 	 * Gets the Block object on the Vector3 location
 	 *
 	 * @param boolean $cached
-	 *
 	 */
 	public function getBlock(Vector3 $pos, $cached = true) : Block{
 		$pos = $pos->floor();
@@ -1444,7 +1435,7 @@ class Level implements ChunkManager, Metadatable{
 	 * If $update is true, it'll get the neighbour blocks (6 sides) and update them.
 	 * If you are doing big changes, you might want to set this to false, then update manually.
 	 *
-	 * @param bool    $direct @deprecated
+	 * @param bool $direct @deprecated
 	 *
 	 * @return bool Whether the block has been updated or not
 	 */
@@ -1500,7 +1491,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return null|DroppedItem
 	 */
 	public function dropItem(Vector3 $source, Item $item, Vector3 $motion = null, int $delay = 10){
@@ -1540,8 +1530,7 @@ class Level implements ChunkManager, Metadatable{
 	 * Tries to break a block using a item, including Player time checks if available
 	 * It'll try to lower the durability if Item is a tool, and set it to Air if broken.
 	 *
-	 * @param Item    &$item (if null, can break anything)
-	 *
+	 * @param Item &$item (if null, can break anything)
 	 */
 	public function useBreakOn(Vector3 $vector, Item &$item = null, Player $player = null, bool $createParticles = false) : bool{
 		$target = $this->getBlock($vector);
@@ -1701,11 +1690,10 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Uses a item on a position and face, placing it or activating the block
 	 *
-	 * @param float   $fx     default 0.0
-	 * @param float   $fy     default 0.0
-	 * @param float   $fz     default 0.0
-	 * @param Player  $player default null
-	 *
+	 * @param float  $fx     default 0.0
+	 * @param float  $fy     default 0.0
+	 * @param float  $fz     default 0.0
+	 * @param Player $player default null
 	 */
 	public function useItemOn(Vector3 $vector, Item &$item, int $face, float $fx = 0.0, float $fy = 0.0, float $fz = 0.0, Player $player = null) : bool{
 		$target = $this->getBlock($vector);
@@ -1888,7 +1876,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return Entity
 	 */
 	public function getEntity(int $entityId){
@@ -1906,7 +1893,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns the entities colliding the current one inside the AxisAlignedBB
-	 *
 	 *
 	 * @return Entity[]
 	 */
@@ -1944,7 +1930,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns the entities near the current one inside the AxisAlignedBB
-	 *
 	 *
 	 * @return Entity[]
 	 */
@@ -1994,7 +1979,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return Tile
 	 */
 	public function getTileById(int $tileId){
@@ -2019,7 +2003,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns the Tile in a position, or null if not found
-	 *
 	 *
 	 * @return Tile
 	 */
@@ -2060,7 +2043,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Gets the raw block id.
 	 *
-	 *
 	 * @return int 0-255
 	 */
 	public function getBlockIdAt(int $x, int $y, int $z) : int{
@@ -2088,16 +2070,14 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Gets the raw block extra data
 	 *
-	 *
 	 * @return int 16-bit
 	 */
-	public function getBlockExtraDataAt(int $x, int $y, int $z): int{
+	public function getBlockExtraDataAt(int $x, int $y, int $z) : int{
 		return $this->getChunk($x >> 4, $z >> 4, true)->getBlockExtraData($x & 0x0f, $y & 0x7f, $z & 0x0f);
 	}
 
 	/**
 	 * Sets the raw block metadata.
-	 *
 	 */
 	public function setBlockExtraDataAt(int $x, int $y, int $z, int $id, int $data){
 		$this->getChunk($x >> 4, $z >> 4, true)->setBlockExtraData($x & 0x0f, $y & 0x7f, $z & 0x0f, ($data << 8) | $id);
@@ -2107,7 +2087,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Gets the raw block metadata
-	 *
 	 *
 	 * @return int 0-15
 	 */
@@ -2136,7 +2115,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Gets the raw block skylight level
 	 *
-	 *
 	 * @return int 0-15
 	 */
 	public function getBlockSkyLightAt(int $x, int $y, int $z) : int{
@@ -2154,7 +2132,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Gets the raw block light level
-	 *
 	 *
 	 * @return int 0-15
 	 */
@@ -2176,7 +2153,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @return int[]
 	 */
 	public function getBiomeColor(int $x, int $z) : array{
@@ -2300,7 +2276,6 @@ class Level implements ChunkManager, Metadatable{
 	 * Directly send a lightning to a player
 	 *
 	 * @deprecated
-	 *
 	 */
 	public function sendLighting(int $x, int $y, int $z, Player $p){
 		$pk = new AddEntityPacket();
@@ -2315,7 +2290,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Add a lightning
-	 *
 	 */
 	public function spawnLightning(Vector3 $pos) : Lightning{
 		$nbt = new CompoundTag("", [
@@ -2381,7 +2355,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Gets the highest block Y value at a specific $x and $z
 	 *
-	 *
 	 * @return int 0-127
 	 */
 	public function getHighestBlockAt(int $x, int $z) : int{
@@ -2408,15 +2381,13 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns a Position pointing to the spawn
-	 *
 	 */
-	public function getSpawnLocation(): Position{
+	public function getSpawnLocation() : Position{
 		return Position::fromObject($this->provider->getSpawn(), $this);
 	}
 
 	/**
 	 * Sets the level spawn location
-	 *
 	 */
 	public function setSpawnLocation(Vector3 $pos){
 		$previousSpawn = $this->getSpawnLocation();
@@ -2502,7 +2473,6 @@ class Level implements ChunkManager, Metadatable{
 	/**
 	 * Removes the entity from the level index
 	 *
-	 *
 	 * @throws LevelException
 	 */
 	public function removeEntity(Entity $entity){
@@ -2522,7 +2492,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @throws LevelException
 	 */
 	public function addEntity(Entity $entity){
@@ -2536,7 +2505,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @throws LevelException
 	 */
 	public function addTile(Tile $tile){
@@ -2548,7 +2516,6 @@ class Level implements ChunkManager, Metadatable{
 	}
 
 	/**
-	 *
 	 * @throws LevelException
 	 */
 	public function removeTile(Tile $tile){
@@ -2706,8 +2673,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns true if the spawn is part of the spawn
-	 *
-	 *
 	 */
 	public function isSpawnChunk(int $X, int $Z) : bool{
 		$spawnX = $this->provider->getSpawn()->getFloorX() >> 4;
@@ -2771,7 +2736,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Gets the current time
-	 *
 	 */
 	public function getTime() : int{
 		return $this->time;
@@ -2779,7 +2743,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns the Level name
-	 *
 	 */
 	public function getName() : string{
 		return $this->provider->getName();
@@ -2787,7 +2750,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Returns the Level folder name
-	 *
 	 */
 	public function getFolderName() : string{
 		return $this->folderName;
@@ -2795,7 +2757,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Sets the current time on the level
-	 *
 	 */
 	public function setTime(int $time){
 		$this->time = $time;
@@ -2829,7 +2790,6 @@ class Level implements ChunkManager, Metadatable{
 
 	/**
 	 * Sets the seed for the level
-	 *
 	 */
 	public function setSeed(int $seed){
 		$this->provider->setSeed($seed);

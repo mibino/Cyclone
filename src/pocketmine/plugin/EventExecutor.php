@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\plugin;
 
@@ -27,7 +27,6 @@ use pocketmine\event\Listener;
 interface EventExecutor{
 
 	/**
-	 *
 	 * @return void
 	 */
 	public function execute(Listener $listener, Event $event);

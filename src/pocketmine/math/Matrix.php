@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\math;
 
@@ -30,22 +30,22 @@ class Matrix implements \ArrayAccess{
 	private $rows = 0;
 	private $columns = 0;
 
-	public function offsetExists($offset): bool
+	public function offsetExists($offset) : bool
 	{
 		return isset($this->matrix[(int) $offset]);
 	}
 
-	public function offsetGet($offset): mixed
+	public function offsetGet($offset) : mixed
 	{
 		return $this->matrix[(int) $offset];
 	}
 
-	public function offsetSet($offset, $value): void
+	public function offsetSet($offset, $value) : void
 	{
 		$this->matrix[(int) $offset] = $value;
 	}
 
-	public function offsetUnset($offset): void
+	public function offsetUnset($offset) : void
 	{
 		unset($this->matrix[(int) $offset]);
 	}

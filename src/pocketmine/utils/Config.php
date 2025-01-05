@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\utils;
 
@@ -123,7 +123,6 @@ class Config{
 	}
 
 	/**
-	 *
 	 * @return mixed
 	 */
 	public static function fixYAMLIndexes($str){
@@ -250,7 +249,6 @@ class Config{
 	}
 
 	/**
-	 *
 	 * @return boolean|mixed
 	 */
 	public function __get($k){
@@ -262,7 +260,6 @@ class Config{
 	}
 
 	/**
-	 *
 	 * @return boolean
 	 */
 	public function __isset($k){
@@ -387,7 +384,6 @@ class Config{
 	}
 
 	/**
-	 *
 	 * @return integer
 	 */
 	private function fillDefaults($default, &$data){

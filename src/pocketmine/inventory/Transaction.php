@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -50,5 +50,5 @@ interface Transaction{
 	 */
 	public function getCreationTime();
 
-	public function execute(Player $source): bool;
+	public function execute(Player $source) : bool;
 }

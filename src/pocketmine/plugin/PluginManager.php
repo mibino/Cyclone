@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\plugin;
 
@@ -63,44 +63,28 @@ class PluginManager{
 	/** @var SimpleCommandMap */
 	private $commandMap;
 
-	/**
-	 * @var Plugin[]
-	 */
+	/** @var Plugin[] */
 	protected $plugins = [];
 
-	/**
-	 * @var Permission[]
-	 */
+	/** @var Permission[] */
 	protected $permissions = [];
 
-	/**
-	 * @var Permission[]
-	 */
+	/** @var Permission[] */
 	protected $defaultPerms = [];
 
-	/**
-	 * @var Permission[]
-	 */
+	/** @var Permission[] */
 	protected $defaultPermsOp = [];
 
-	/**
-	 * @var Permissible[][]
-	 */
+	/** @var Permissible[][] */
 	protected $permSubs = [];
 
-	/**
-	 * @var Permissible[]
-	 */
+	/** @var Permissible[] */
 	protected $defSubs = [];
 
-	/**
-	 * @var Permissible[]
-	 */
+	/** @var Permissible[] */
 	protected $defSubsOp = [];
 
-	/**
-	 * @var PluginLoader[]
-	 */
+	/** @var PluginLoader[] */
 	protected $fileAssociations = [];
 
 	/** @var TimingsHandler */
@@ -394,7 +378,6 @@ class PluginManager{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function addPermission(Permission $permission){
@@ -464,7 +447,7 @@ class PluginManager{
 	}
 
 	/**
-	 * @param string      $permission
+	 * @param string $permission
 	 */
 	public function subscribeToPermission($permission, Permissible $permissible){
 		if(!isset($this->permSubs[$permission])){
@@ -474,7 +457,7 @@ class PluginManager{
 	}
 
 	/**
-	 * @param string      $permission
+	 * @param string $permission
 	 */
 	public function unsubscribeFromPermission($permission, Permissible $permissible){
 		if(isset($this->permSubs[$permission])){
@@ -511,7 +494,7 @@ class PluginManager{
 	}
 
 	/**
-	 * @param boolean     $op
+	 * @param boolean $op
 	 */
 	public function subscribeToDefaultPerms($op, Permissible $permissible){
 		if($op === true){
@@ -522,7 +505,7 @@ class PluginManager{
 	}
 
 	/**
-	 * @param boolean     $op
+	 * @param boolean $op
 	 */
 	public function unsubscribeFromDefaultPerms($op, Permissible $permissible){
 		if($op === true){
@@ -575,7 +558,6 @@ class PluginManager{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function isPluginEnabled(Plugin $plugin){
@@ -601,7 +583,6 @@ class PluginManager{
 	}
 
 	/**
-	 *
 	 * @return PluginCommand[]
 	 */
 	protected function parseYamlCommands(Plugin $plugin){
@@ -683,7 +664,6 @@ class PluginManager{
 
 	/**
 	 * Calls an event
-	 *
 	 */
 	public function callEvent(Event $event){
 		foreach($event->getHandlers()->getRegisteredListeners() as $registration){
@@ -708,7 +688,6 @@ class PluginManager{
 
 	/**
 	 * Registers all the events in the given Listener class
-	 *
 	 *
 	 * @throws PluginException
 	 */
@@ -755,9 +734,9 @@ class PluginManager{
 	}
 
 	/**
-	 * @param string        $event Class name that extends Event
-	 * @param int           $priority
-	 * @param bool          $ignoreCancelled
+	 * @param string $event           Class name that extends Event
+	 * @param int    $priority
+	 * @param bool   $ignoreCancelled
 	 *
 	 * @throws PluginException
 	 */
@@ -783,7 +762,6 @@ class PluginManager{
 	}
 
 	/**
-	 *
 	 * @return HandlerList
 	 */
 	private function getEventListeners($event){

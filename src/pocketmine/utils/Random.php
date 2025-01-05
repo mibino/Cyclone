@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\utils;
 
@@ -33,24 +33,16 @@ class Random{
 	const Z = 521288629;
 	const W = 88675123;
 
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	private $x;
 
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	private $y;
 
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	private $z;
 
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	private $w;
 
 	protected $seed;
@@ -138,7 +130,7 @@ class Random{
 	 * Returns a random integer between $start and $end
 	 *
 	 * @param int $start default 0
-	 * @param int $end default 0x7fffffff
+	 * @param int $end   default 0x7fffffff
 	 *
 	 * @return int
 	 */
@@ -147,7 +139,6 @@ class Random{
 	}
 
 	/**
-	 *
 	 * @return int
 	 */
 	public function nextBoundedInt($bound){

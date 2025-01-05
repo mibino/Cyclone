@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\tile;
 
@@ -33,7 +33,7 @@ interface Container{
 	public function getItem($index);
 
 	/**
-	 * @param int  $index
+	 * @param int $index
 	 */
 	public function setItem($index, Item $item);
 

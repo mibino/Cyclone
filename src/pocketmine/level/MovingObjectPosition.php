@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level;
 
@@ -50,10 +50,10 @@ class MovingObjectPosition{
 	}
 
 	/**
-	 * @param int     $x
-	 * @param int     $y
-	 * @param int     $z
-	 * @param int     $side
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
+	 * @param int $side
 	 *
 	 * @return MovingObjectPosition
 	 */
@@ -68,7 +68,6 @@ class MovingObjectPosition{
 	}
 
 	/**
-	 *
 	 * @return MovingObjectPosition
 	 */
 	public static function fromEntity(Entity $entity){

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -155,7 +155,7 @@ class PlayerInventory extends BaseInventory{
 					}
 				}
 
-				if(($key = array_search($slotMapping, $this->hotbar)) !== false and $slotMapping !== -1){
+				if(($key = array_search($slotMapping, $this->hotbar, true)) !== false and $slotMapping !== -1){
 					/* Do not do slot swaps if the slot was null
 					 * Chosen slot is already linked to a hotbar slot, swap the two slots around.
 					 * This will already have been done on the client-side so no changes need to be sent. */
@@ -186,7 +186,6 @@ class PlayerInventory extends BaseInventory{
 	}
 
 	/**
-	 *
 	 * @return bool
 	 *
 	 * Sets the item in the inventory slot the player is currently holding.

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format;
 
@@ -41,7 +41,7 @@ interface Chunk extends FullChunk{
 	public function getSection($fY);
 
 	/**
-	 * @param int          $fY 0-7
+	 * @param int $fY 0-7
 	 *
 	 * @return boolean
 	 */

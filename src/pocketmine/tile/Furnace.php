@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\tile;
 
@@ -115,7 +115,6 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	}
 
 	/**
-	 *
 	 * @return int
 	 */
 	protected function getSlotIndex($index){
@@ -147,7 +146,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	/**
 	 * This method should not be used by plugins, use the Inventory
 	 *
-	 * @param int  $index
+	 * @param int $index
 	 *
 	 * @return bool
 	 */

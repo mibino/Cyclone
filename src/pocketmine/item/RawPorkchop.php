@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -35,4 +35,3 @@ class RawPorkchop extends Food{
 	}
 
 }
-

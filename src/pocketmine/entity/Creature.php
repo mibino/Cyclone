@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\entity;
 
@@ -87,8 +87,8 @@ abstract class Creature extends Living{
 	}
 
 	/**
-	 * @param bool    $hate
-	 * @param bool    $reason
+	 * @param bool $hate
+	 * @param bool $reason
 	 * @return bool|float|string
 	 * 判断某坐标是否可以行走
 	 * 并给出原因

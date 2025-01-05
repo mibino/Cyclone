@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\level\format\anvil;
 
@@ -166,7 +166,7 @@ class Chunk extends BaseChunk{
 	}
 
 	/**
-	 * @param string        $data
+	 * @param string $data
 	 *
 	 * @return Chunk
 	 */
@@ -188,7 +188,7 @@ class Chunk extends BaseChunk{
 	}
 
 	/**
-	 * @param string        $data
+	 * @param string $data
 	 *
 	 * @return Chunk
 	 */
@@ -334,8 +334,8 @@ class Chunk extends BaseChunk{
 	}
 
 	/**
-	 * @param int           $chunkX
-	 * @param int           $chunkZ
+	 * @param int $chunkX
+	 * @param int $chunkZ
 	 *
 	 * @return Chunk
 	 */

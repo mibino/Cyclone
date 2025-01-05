@@ -6,6 +6,7 @@ $finder = PhpCsFixer\Finder::create()
 
 return (new PhpCsFixer\Config)
 	->setRiskyAllowed(true)
+	->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
 	->setRules([
 		'align_multiline_comment' => [
 			'comment_type' => 'phpdocs_only'
@@ -19,8 +20,10 @@ return (new PhpCsFixer\Config)
 		],
 		'blank_line_after_namespace' => true,
 		'blank_line_after_opening_tag' => true,
-		'cast_spaces' => [
-			'space' => 'single'
+		'blank_line_before_statement' => [
+			'statements' => [
+				'declare'
+			]
 		],
 		'cast_spaces' => [
 			'space' => 'single'
@@ -28,12 +31,35 @@ return (new PhpCsFixer\Config)
 		'concat_space' => [
 			'spacing' => 'one'
 		],
-		//'declare_strict_types' => true,
+		'declare_strict_types' => false,
 		'elseif' => true,
+		'fully_qualified_strict_types' => true,
 		'global_namespace_import' => [
 			'import_constants' => true,
 			'import_functions' => true,
 			'import_classes' => null,
+		],
+		'header_comment' => [
+			'comment_type' => 'comment',
+			'header' => <<<BODY
+
+ ____            _        _   __  __ _                  __  __ ____
+|  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+| |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+|  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+|_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+@author PocketMine Team
+@link http://www.pocketmine.net/
+
+
+BODY,
+			'location' => 'after_open'
 		],
 		'indentation_type' => true,
 		//'logical_operators' => true,
@@ -66,8 +92,28 @@ return (new PhpCsFixer\Config)
 			],
 			'sort_algorithm' => 'alpha'
 		],
-		'unary_operator_spaces' => true
+		'phpdoc_align' => [
+			'align' => 'vertical',
+			'tags' => [
+				'param',
+			]
+		],
+		'phpdoc_line_span' => [
+			'property' => 'single',
+			'method' => null,
+			'const' => null
+		],
+		'phpdoc_trim' => true,
+		'phpdoc_trim_consecutive_blank_line_separation' => true,
+		'return_type_declaration' => [
+			'space_before' => 'one'
+		],
+		'single_blank_line_at_eof' => true,
+		'single_import_per_statement' => true,
+		'strict_param' => true,
+		'unary_operator_spaces' => true,
 	])
 	->setFinder($finder)
 	->setIndent("\t")
-	->setLineEnding("\n");
+	->setLineEnding("\n")
+	->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect());

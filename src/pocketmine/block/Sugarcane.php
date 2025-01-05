@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\block;
 
@@ -46,7 +46,7 @@ class Sugarcane extends Flowable{
 		];
 	}
 
-	public function canBeActivated(): bool {
+	public function canBeActivated() : bool {
 		return true;
 	}
 

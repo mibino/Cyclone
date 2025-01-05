@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 /**
  * Various Utilities used around the code
@@ -96,7 +96,6 @@ class Utils{
 
 	/**
 	 * Generates an unique identifier to a callable
-	 *
 	 *
 	 * @return string
 	 */
@@ -375,7 +374,6 @@ class Utils{
 
 	/**
 	 * Returns a string that can be printed, replaces non-printable characters
-	 *
 	 *
 	 * @return string
 	 */

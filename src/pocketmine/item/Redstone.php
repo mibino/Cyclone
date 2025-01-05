@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -30,4 +30,3 @@ class Redstone extends Item{
 	}
 
 }
-

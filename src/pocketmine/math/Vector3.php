@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\math;
 
@@ -244,7 +244,7 @@ class Vector3{
 	 * Returns a new vector with x value equal to the second parameter, along the line between this vector and the
 	 * passed in vector, or null if not possible.
 	 *
-	 * @param float   $x
+	 * @param float $x
 	 *
 	 * @return Vector3
 	 */
@@ -270,7 +270,7 @@ class Vector3{
 	 * Returns a new vector with y value equal to the second parameter, along the line between this vector and the
 	 * passed in vector, or null if not possible.
 	 *
-	 * @param float   $y
+	 * @param float $y
 	 *
 	 * @return Vector3
 	 */
@@ -296,7 +296,7 @@ class Vector3{
 	 * Returns a new vector with z value equal to the second parameter, along the line between this vector and the
 	 * passed in vector, or null if not possible.
 	 *
-	 * @param float   $z
+	 * @param float $z
 	 *
 	 * @return Vector3
 	 */
@@ -319,7 +319,6 @@ class Vector3{
 	}
 
 	/**
-	 *
 	 * @return Vector3
 	 */
 	public function setComponents($x, $y, $z){
@@ -330,7 +329,6 @@ class Vector3{
 	}
 
 	/**
-	 *
 	 * @return $this
 	 */
 	public function fromObjectAdd(Vector3 $pos, $x, $y, $z){

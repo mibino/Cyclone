@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  *
  *  ____            _        _   __  __ _                  __  __ ____
  * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
  */
@@ -35,17 +35,15 @@ class EntityExplodeEvent extends EntityEvent implements Cancellable{
 	/** @var Position */
 	protected $position;
 
-	/**
-	 * @var Block[]
-	 */
+	/** @var Block[] */
 	protected $blocks;
 
 	/** @var float */
 	protected $yield;
 
 	/**
-	 * @param Block[]  $blocks
-	 * @param float    $yield
+	 * @param Block[] $blocks
+	 * @param float   $yield
 	 */
 	public function __construct(Entity $entity, Position $position, array $blocks, $yield){
 		$this->entity = $entity;

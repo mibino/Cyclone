@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\item;
 
@@ -30,7 +30,7 @@ class GoldenApple extends Food{
 		parent::__construct(self::GOLDEN_APPLE, $meta, $count, "Golden Apple");
 	}
 
-	public function canBeConsumedBy(Entity $entity): bool{
+	public function canBeConsumedBy(Entity $entity) : bool{
 		return $entity instanceof Human and $this->canBeConsumed();
 	}
 
@@ -49,4 +49,3 @@ class GoldenApple extends Food{
 		];
 	}
 }
-

@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\inventory;
 
@@ -50,7 +50,6 @@ class InventoryType{
 	private $typeId;
 
 	/**
-	 *
 	 * @return InventoryType
 	 */
 	public static function get($index){

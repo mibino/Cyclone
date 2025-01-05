@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\permission;
 
@@ -52,7 +52,6 @@ interface Permissible extends ServerOperator{
 	public function addAttachment(Plugin $plugin, $name = null, $value = null);
 
 	/**
-	 *
 	 * @return void
 	 */
 	public function removeAttachment(PermissionAttachment $attachment);

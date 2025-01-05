@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  *
-*/
+ */
 
 namespace pocketmine\plugin;
 
@@ -47,8 +47,8 @@ class RegisteredListener{
 	private $timings;
 
 	/**
-	 * @param int            $priority
-	 * @param boolean        $ignoreCancelled
+	 * @param int     $priority
+	 * @param boolean $ignoreCancelled
 	 */
 	public function __construct(Listener $listener, EventExecutor $executor, $priority, Plugin $plugin, $ignoreCancelled, TimingsHandler $timings){
 		$this->listener = $listener;
