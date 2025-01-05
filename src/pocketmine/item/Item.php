@@ -44,7 +44,6 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
-use pocketmine\Server;
 use pocketmine\utils\Config;
 use function bin2hex;
 use function constant;
@@ -267,7 +266,7 @@ class Item implements ItemIds, \JsonSerializable{
 	private static function initCreativeItems(){
 		self::clearCreativeItems();
 
-		$creativeItems = new Config(Server::getInstance()->getFilePath() . "src/pocketmine/resources/creativeitems.json", Config::JSON, []);
+		$creativeItems = new Config(\pocketmine\PATH . "src/pocketmine/resources/creativeitems.json", Config::JSON, []);
 
 		foreach($creativeItems->getAll() as $data){
 			$item = Item::get($data["id"], $data["damage"], $data["count"], $data["nbt"]);
