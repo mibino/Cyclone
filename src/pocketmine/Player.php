@@ -3199,7 +3199,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$this->inventory->sendContents($this);
 					break;
 				}elseif($recipe === null){
-					$this->server->getLogger()->debug("Null (unknown) crafting recipe received from " . $this->getName() . " for " . $packet->output[0]);
+					$this->server->getLogger()->debug("Null (unknown) crafting recipe received from " . $this->getName());
 					$this->inventory->sendContents($this);
 					break;
 				}
