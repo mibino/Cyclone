@@ -46,6 +46,10 @@ class Sugarcane extends Flowable{
 		];
 	}
 
+	public function canBeActivated(): bool {
+		return true;
+	}
+
 	public function onActivate(Item $item, Player $player = null){
 		if($item->getId() === Item::DYE and $item->getDamage() === 0x0F){ //Bonemeal
 			if($this->getSide(0)->getId() !== self::SUGARCANE_BLOCK){
