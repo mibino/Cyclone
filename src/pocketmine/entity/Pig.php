@@ -17,7 +17,7 @@
  * @link http://www.pocketmine.net/
  *
  * 这注释不太好写啊(
- * 
+ *
  */
 
 namespace pocketmine\entity;
@@ -46,7 +46,7 @@ class Pig extends Animal {
     private $fleeDistance = 0; // 逃跑距离
     private $followingPlayer = null; // 正在跟随的玩家
 
-    public function getName() : string {
+    public function getName(): string {
         return "Pig";
     }
 
